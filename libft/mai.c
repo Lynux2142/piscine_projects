@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   mai.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 12:35:27 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/20 12:21:01 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/20 12:03:46 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/20 12:08:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+int main()
 {
-	if (alst != NULL)
-	{
-		if (*alst == NULL)
-		{
-			del((*alst)->content, 0);
-			free(*alst);
-		}
-	}
+	printf("%d %d\n", atoi("                          123"), ft_atoi("                          123"));
+	return (0);
 }
