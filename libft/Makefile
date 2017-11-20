@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/11/17 15:40:12 by lguiller         ###   ########.fr        #
+#    Updated: 2017/11/20 15:56:57 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,17 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):
-	@gcc $(FLAGS) -c $(SRC)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib libft.a
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+%.o: %.c
+	gcc $(FLAGS) -c $^ -o $@
 
 clean:
-	@/bin/rm -f $(OBJ)
+	/bin/rm -f $(OBJ)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all
