@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/11/20 15:56:57 by lguiller         ###   ########.fr        #
+#    Updated: 2017/11/23 12:20:41 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,16 +31,19 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@echo "Creation de libft.a"
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 %.o: %.c
-	gcc $(FLAGS) -c $^ -o $@
+	@gcc $(FLAGS) -c $^ -o $@
 
 clean:
-	/bin/rm -f $(OBJ)
+	@echo "Suppression des fichiers *.o"
+	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@echo "Suppression de libft.a"
+	@/bin/rm -f $(NAME)
 
 re: fclean all
