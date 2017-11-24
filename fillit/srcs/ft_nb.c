@@ -6,12 +6,22 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 10:49:24 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/23 11:12:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/11/24 10:30:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "fillit.h"
+
+int		ft_sr(int nb)
+{
+	int i;
+
+	i = 0;
+	while ((i * i) < (nb * 4))
+		++i;
+	return (i);
+}
 
 int		ft_nb_row(char *tab)
 {

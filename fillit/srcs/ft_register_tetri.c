@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 08:19:24 by manki             #+#    #+#             */
-/*   Updated: 2017/11/23 14:24:52 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/11/24 11:03:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_fill_one_tetri(char *tab, int *id, int index)
 
 	i = -1;
 	count = 1;
-	id[0] = index + 'A';
+	id[0] = index;
 	while (tab[++i] && count < 4)
 	{
 		q = 1;

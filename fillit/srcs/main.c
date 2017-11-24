@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 16:43:09 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/23 14:24:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/11/24 11:04:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				main(int ac, char **av)
 		{
 			ft_putchar('|');
 			if (i == 0)
-				ft_putchar(id[j][i]);
+				ft_putchar(id[j][i] + 'A');
 			else
 				ft_putchar(id[j][i] + '0');
 			ft_putchar('|');

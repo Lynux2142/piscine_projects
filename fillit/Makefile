@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/11/23 12:18:27 by lguiller         ###   ########.fr        #
+#    Updated: 2017/11/24 15:49:43 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,24 +26,26 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME_H)
 
 $(NAME_H): $(OBJ)
-	@echo "Creation de libft.a"
+	@echo "Creation de libft.a 😎"
 	@make -C libft all
-	@echo "Creation de fillit.a"
+	@echo "Creation de fillit.a 😎"
 	@ar rc $(NAME_H) $(OBJ)
 	@ranlib $(NAME_H)
-	@echo "Creation de fillit"
+	@echo "Creation de fillit 😎"
 	@gcc $(FLAGS) $(LIBFT) $(OBJ) -o $(NAME_EXE)
 
 %.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
 
 clean:
-	@echo "Suppression des *.o"
+	@echo "Suppression des *.o 😱"
 	@make -C libft clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	@echo "Suppression de libft.a, fillit.a et de fillit"
+	@echo "Suppression de libft.a 😱"
+	@echo "Suppression de fillit.a 😱"
+	@echo "Suppression de fillit 😱"
 	@make -C libft fclean
 	@/bin/rm -f $(NAME_EXE) $(NAME_H)
 
