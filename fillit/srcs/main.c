@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 16:43:09 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/26 11:54:15 by manki            ###   ########.fr       */
+/*   Updated: 2017/11/27 14:50:18 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 static int		ft_error(int erreur)
 {
 	ft_putstr("error\n");
-	ft_putnbr(erreur);
 	return (erreur);
 }
 
@@ -61,6 +60,7 @@ int				main(int ac, char **av)
 	int		len;
 	char	**grid;
 	int		i;
+	int		j;
 
 	if (ac > 2)
 		write(2, "Too many arguments.\n", 20);
@@ -78,13 +78,26 @@ int				main(int ac, char **av)
 			return (ft_error(4));
 		if ((i = ft_solve_grid(id, tab, len, grid)) < ft_nb_tetri(tab))
 		{
-			free(grid);
+			j = -1;
+			if (grid != NULL)
+			{
+			while (++j < len)
+				ft_memdel((void *)&grid[j]);
+			ft_memdel((void *)&grid);
+			}
 			len += 1;
 		}
 	}
-	ft_print_result(grid, len);
-	free(grid);
-	free(id);
-	free(tab);
+	if (grid)
+		ft_print_result(grid, len);
+	i = -1;
+	while (++i < len)
+		ft_memdel((void *)&grid[i]);
+	ft_memdel((void *)&grid);
+	i = -1;
+	while (++i < ft_nb_tetri(tab))
+		ft_memdel((void *)&id[i]);
+	ft_memdel((void *)&id);
+	ft_memdel((void *)&tab);
 	return (0);
 }

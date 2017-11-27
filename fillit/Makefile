@@ -6,48 +6,59 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/11/26 10:14:02 by manki            ###   ########.fr        #
+#    Updated: 2017/11/27 17:39:56 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME_EXE = fillit
+##################
+##  VARIABLES   ##
+##################
 
-NAME_H = fillit.a
+NAME	= fillit
 
-SRC = srcs/main.c srcs/ft_stock_and_check_file.c \
-	  srcs/ft_split_rec_tetri.c srcs/ft_nb.c \
-	  srcs/ft_solve_grid.c
+SRC 	= srcs/main.c srcs/ft_stock_and_check_file.c \
+		  srcs/ft_split_rec_tetri.c srcs/ft_nb.c \
+		  srcs/ft_solve_grid.c
 
-OBJ = $(SRC:.c=.o)
+FLAGS 	= -Wall -Wextra -Werror
 
-LIBFT = ./libft/libft.a
+##################
+##    COLORS    ##
+##################
 
-FLAGS = -Wall -Wextra -Werror
+_GREY	=	$ \033[30m
+_RED	=	$ \033[31m
+_GREEN	=	$ \033[32m
+_YELLOW	=	$ \033[33m
+_BLUE	=	$ \033[34m
+_PURPLE	=	$ \033[35m
+_CYAN	=	$ \033[36m
+_WHITE	=	$ \033[37m
+_END	=	$ \033[0m
 
-all: $(NAME_H)
+##################
+##   TARGETS    ##
+##################
 
-$(NAME_H): $(OBJ)
-	@echo "Creation de libft.a 😎"
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@echo "$(_GREEN)Creation de libft.a	😎$(_END)"
 	@make -C libft all
-	@echo "Creation de fillit.a 😎"
-	@ar rc $(NAME_H) $(OBJ)
-	@ranlib $(NAME_H)
-	@echo "Creation de fillit 😎"
-	@gcc $(FLAGS) $(LIBFT) $(OBJ) -o $(NAME_EXE)
+	@echo "$(_GREEN)Creation de fillit	😎$(_END)"
+	@gcc $(FLAGS) ./libft/libft.a $(SRC) -o $(NAME)
 
 %.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
 
 clean:
-	@echo "Suppression des *.o 😱"
+	@echo "$(_RED)Suppression des *.o	😱$(_END)"
 	@make -C libft clean
-	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	@echo "Suppression de libft.a 😱"
-	@echo "Suppression de fillit.a 😱"
-	@echo "Suppression de fillit 😱"
+	@echo "$(_RED)Suppression de libft.a	😱$(_END)"
 	@make -C libft fclean
-	@/bin/rm -f $(NAME_EXE) $(NAME_H)
+	@echo "$(_RED)Suppression de fillit	😱$(_END)"
+	@/bin/rm -f $(NAME)
 
 re: fclean all

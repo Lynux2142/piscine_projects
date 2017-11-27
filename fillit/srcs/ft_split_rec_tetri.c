@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 14:07:29 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/26 10:22:17 by manki            ###   ########.fr       */
+/*   Updated: 2017/11/27 14:51:46 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,23 @@ static char		**ft_split_tetri(char *tab)
 	int		i;
 
 	if ((len = ft_nb_tetri(tab)) > 26)
-		return (0);
+		return (NULL);
 	if (!(group = (char **)malloc(sizeof(char *) * len + 1)))
 		return (NULL);
 	ft_split(tab, group, len);
 	i = -1;
 	while (group[++i])
 		if (!ft_check_one(group[i]))
+		{
+			len = -1;
+			if (group != NULL)
+			{
+				while (++len <= i)
+					ft_memdel((void *)&group[len]);
+				ft_memdel((void *)&group);
+			}
 			return (NULL);
+		}
 	return (group);
 }
 
@@ -123,6 +132,12 @@ int				**ft_split_rec_tetri(char *tab)
 	i = -1;
 	while (++i < len)
 		ft_id_one_tetri(group[i], id[i], i);
-	free(group);
+	i = -1;
+	if (group != NULL)
+	{
+		while (++i < len)
+			ft_memdel((void *)&group[i]);
+		ft_memdel((void *)&group);
+	}
 	return (id);
 }
