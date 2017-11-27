@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 16:43:09 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/24 11:04:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/11/26 11:54:15 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,73 @@
 static int		ft_error(int erreur)
 {
 	ft_putstr("error\n");
+	ft_putnbr(erreur);
 	return (erreur);
+}
+
+static void		ft_print_result(char **group, int len)
+{
+	int		i;
+	int		j;
+
+	j = -1;
+	while (++j < len)
+	{
+		i = -1;
+		while (++i < len)
+			ft_putchar(group[j][i]);
+		ft_putchar('\n');
+	}
+}
+
+static char		**ft_create_square(int len)
+{
+	char	**square;
+	int		i;
+
+	if (!(square = (char **)malloc(sizeof(char *) * len)))
+		return (NULL);
+	i = -1;
+	while (++i < len)
+	{
+		if (!(square[i] = (char *)malloc(sizeof(char) * len)))
+			return (NULL);
+		ft_memset(square[i], '.', len);
+	}
+	return (square);
 }
 
 int				main(int ac, char **av)
 {
 	char	*tab;
-	char	**group;
-	int		i;
 	int		**id;
-	int		j;
+	int		len;
+	char	**grid;
+	int		i;
 
 	if (ac > 2)
 		write(2, "Too many arguments.\n", 20);
 	else if (ac < 2)
 		write(2, "tab name missing.\n", 19);
-	if (!(tab = ft_stock_file(av[1])))
+	if (!(tab = ft_stock_and_check_file(av[1])))
 		return (ft_error(-1));
-	if (!ft_check_norme(tab))
-		return (ft_error(1));
-	if (!(group = ft_split_tetri(tab)))
-		return (ft_error(2));
-	if (!(id = ft_register_tetri(tab, group)))
+	if (!(id = ft_split_rec_tetri(tab)))
 		return (ft_error(3));
-	j = -1;
-	while (++j < ft_nb_tetri(tab))
+	i = 0;
+	len = ft_sqrt(ft_nb_tetri(tab) * 4);
+	while (i < ft_nb_tetri(tab))
 	{
-		i = -1;
-		while (++i < 4)
+		if (!(grid = ft_create_square(len)))
+			return (ft_error(4));
+		if ((i = ft_solve_grid(id, tab, len, grid)) < ft_nb_tetri(tab))
 		{
-			ft_putchar('|');
-			if (i == 0)
-				ft_putchar(id[j][i] + 'A');
-			else
-				ft_putchar(id[j][i] + '0');
-			ft_putchar('|');
-			if (i < 3)
-				ft_putstr(" - ");
+			free(grid);
+			len += 1;
 		}
-		ft_putstr("\n");
 	}
+	ft_print_result(grid, len);
+	free(grid);
 	free(id);
-	free(group);
 	free(tab);
 	return (0);
 }

@@ -6,19 +6,19 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 10:49:24 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/24 10:30:51 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/11/26 09:32:14 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "fillit.h"
 
-int		ft_sr(int nb)
+int		ft_sqrt(int nb)
 {
 	int i;
 
 	i = 0;
-	while ((i * i) < (nb * 4))
+	while (i <= 46340 && (i * i) < nb)
 		++i;
 	return (i);
 }

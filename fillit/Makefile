@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/11/24 15:49:43 by lguiller         ###   ########.fr        #
+#    Updated: 2017/11/26 10:14:02 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME_EXE = fillit
 
 NAME_H = fillit.a
 
-SRC = srcs/main.c srcs/ft_stock_file.c srcs/ft_check_norme.c \
-	  srcs/ft_register_tetri.c srcs/ft_split_tetri.c srcs/ft_nb.c \
+SRC = srcs/main.c srcs/ft_stock_and_check_file.c \
+	  srcs/ft_split_rec_tetri.c srcs/ft_nb.c \
+	  srcs/ft_solve_grid.c
 
 OBJ = $(SRC:.c=.o)
 
