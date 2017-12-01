@@ -6,19 +6,20 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 08:31:00 by manki             #+#    #+#             */
-/*   Updated: 2017/11/27 16:00:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/01 13:32:21 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fillit.h"
 #include <stdlib.h>
 
-static void		ft_decrypt(int *id, t_coord **c, t_coord *g)
+static void		ft_decrypt(t_list *tetris, t_coord **c, t_coord *g)
 {
 	int		i;
+	int		*id;
 
 	i = 0;
+	id = tetris->content;
 	c[i]->x = g->x;
 	c[i]->y = g->y;
 	while (++i < 4)
@@ -47,11 +48,11 @@ static t_coord	**ft_coord_alloc(int nb)
 	t_coord		**c;
 	int			i;
 
-	if (!(c = ft_memalloc(sizeof(t_coord *) * nb)))
+	if (!(c = (t_coord **)ft_memalloc(sizeof(t_coord *) * nb)))
 		return (NULL);
 	i = -1;
 	while (++i < 4)
-		if (!(c[i] = ft_memalloc(sizeof(t_coord) * 4)))
+		if (!(c[i] = (t_coord *)ft_memalloc(sizeof(t_coord) * 4)))
 			return (NULL);
 	return (c);
 }
@@ -62,19 +63,20 @@ static void		ft_free_c(t_coord **c)
 
 	i = -1;
 	while (++i < 4)
-		ft_memdel((void *)&c[i]);
-	ft_memdel((void *)&c);
+		ft_memdel((void *)&(c[i]));
+	ft_memdel((void **)&c);
 	c = NULL;
 }
 
-static t_bool	ft_fill_one(int *id, char **grid, t_coord *g, char *tab, int len)
+static t_bool	ft_fill_one(t_list *tetris, char **grid, t_coord *g, int len)
 {
 	t_coord		**c;
 	int			i;
+	int			*id;
 
-	if (!(c = ft_coord_alloc(ft_nb_tetri(tab))))
+	if (!(c = ft_coord_alloc(ft_listlen(tetris))))
 		return (0);
-	ft_decrypt(id, c, g);
+	ft_decrypt(tetris, c, g);
 	i = -1;
 	while (++i < 4)
 		if (c[i]->x >= len || c[i]->y >= len || grid[c[i]->y][c[i]->x] != '.')
@@ -82,6 +84,7 @@ static t_bool	ft_fill_one(int *id, char **grid, t_coord *g, char *tab, int len)
 			ft_free_c(c);
 			return (0);
 		}
+	id = tetris->content;
 	i = -1;
 	while (++i < 4)
 		grid[c[i]->y][c[i]->x] = id[0] + 'A';
@@ -89,27 +92,103 @@ static t_bool	ft_fill_one(int *id, char **grid, t_coord *g, char *tab, int len)
 	return (1);
 }
 
-t_bool			ft_solve_grid(int **id, char *tab, int len, char **grid)
+static t_bool		ft_increment_g(t_coord *g, int grid_len)
+{
+	if (g->y + 1 < grid_len)
+	{
+		if (g->x + 1 < grid_len)
+			g->x++;
+		else
+		{
+			g->x = 0;
+			g->y++;
+		}
+		return (1);
+	}
+	else
+		return (0);
+}
+
+static void		ft_remove_last(char **grid, int len, int index, t_coord *g)
 {
 	int		i;
-	t_coord g;
 
 	i = 0;
-	g.y = 0;
-	while (i < ft_nb_tetri(tab) && g.y < len)
+	g->y = len - 1;
+	while (i < 4 && g->y >= 0)
 	{
-		g.x = 0;
-		while (i < ft_nb_tetri(tab) && g.x < len)
+		g->x = len - 1;
+		while (i < 4 && g->x >= 0)
 		{
-			if (i < ft_nb_tetri(tab) && ft_fill_one(id[i], grid, &g, tab, len))
+			if (grid[g->y][g->x] == 'A' + index)
 			{
-				g.y = 0;
-				g.x = 0;
+				grid[g->y][g->x] = '.';
 				i++;
 			}
-			g.x++;
+			g->x--;
 		}
-		g.y++;
+		g->y--;
 	}
-	return (i);
+	g->y++;
+	g->x++;
+	ft_increment_g(g, len);
+}
+
+static int			ft_resolve_grid(t_list *tetris, char **grid, int len, t_coord *g)
+{
+	int		*id;
+
+	if (!tetris)
+	{
+		ft_memdel((void *)&id);
+		return (1);
+	}
+	if ((g->y < len) && (g->x < len))
+	{
+		if (ft_fill_one(tetris, grid, g, len))
+		{
+			g->x = 0;
+			g->y = 0;
+			ft_print_result(grid, len);
+			ft_putchar('\n');
+			if (ft_resolve_grid(tetris->next, grid, len, g))
+				return (1);
+			else
+			{
+				id = tetris->content;
+				ft_remove_last(grid, len, id[0], g);
+				ft_print_result(grid, len);
+				ft_putchar('\n');
+				return (ft_resolve_grid(tetris, grid, len, g));
+			}
+		}
+		else
+		{
+			if (!ft_increment_g(g, len))
+				return (0);
+			return (ft_resolve_grid(tetris, grid, len, g));
+		}
+	}
+	return (0);
+}
+
+t_list				*ft_solve_grid(t_list *tetris, char **grid, int len)
+{
+	t_coord		g;
+	t_list		*tmp;
+	int			i;
+
+	g.x = 0;
+	g.y = 0;
+	tmp = tetris;
+	while (ft_resolve_grid(tmp, grid, len, &g) == 0)
+	{
+		++len;
+		i = -1;
+		while (grid[i])
+			ft_memdel((void *)&(grid[i]));
+		ft_memdel((void **)&(grid));
+		grid = ft_create_square(len);
+	}
+	return (tmp);
 }

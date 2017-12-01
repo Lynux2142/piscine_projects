@@ -6,11 +6,10 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 16:43:09 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/27 14:50:18 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/01 14:20:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fillit.h"
 #include <unistd.h>
 #include <stdlib.h>
@@ -21,10 +20,10 @@ static int		ft_error(int erreur)
 	return (erreur);
 }
 
-static void		ft_print_result(char **group, int len)
+void			ft_print_result(char **group, int len)
 {
-	int		i;
-	int		j;
+	int	i = -1;
+	int	j = -1;
 
 	j = -1;
 	while (++j < len)
@@ -36,17 +35,17 @@ static void		ft_print_result(char **group, int len)
 	}
 }
 
-static char		**ft_create_square(int len)
+char			**ft_create_square(int len)
 {
 	char	**square;
 	int		i;
 
-	if (!(square = (char **)malloc(sizeof(char *) * len)))
+	if (!(square = (char **)ft_memalloc(sizeof(char *) * len)))
 		return (NULL);
 	i = -1;
 	while (++i < len)
 	{
-		if (!(square[i] = (char *)malloc(sizeof(char) * len)))
+		if (!(square[i] = (char *)ft_memalloc(sizeof(char) * len)))
 			return (NULL);
 		ft_memset(square[i], '.', len);
 	}
@@ -56,48 +55,42 @@ static char		**ft_create_square(int len)
 int				main(int ac, char **av)
 {
 	char	*tab;
-	int		**id;
+	t_list	*tetris;
+	t_list	*tmp;
 	int		len;
 	char	**grid;
 	int		i;
-	int		j;
 
 	if (ac > 2)
+	{
 		write(2, "Too many arguments.\n", 20);
+		return (0);
+	}
 	else if (ac < 2)
-		write(2, "tab name missing.\n", 19);
+	{
+		write(2, "File name missing.\n", 19);
+		return (0);
+	}
 	if (!(tab = ft_stock_and_check_file(av[1])))
 		return (ft_error(-1));
-	if (!(id = ft_split_rec_tetri(tab)))
+	if (!(tetris = ft_split_rec_tetri(tab)))
 		return (ft_error(3));
-	i = 0;
-	len = ft_sqrt(ft_nb_tetri(tab) * 4);
-	while (i < ft_nb_tetri(tab))
-	{
-		if (!(grid = ft_create_square(len)))
-			return (ft_error(4));
-		if ((i = ft_solve_grid(id, tab, len, grid)) < ft_nb_tetri(tab))
-		{
-			j = -1;
-			if (grid != NULL)
-			{
-			while (++j < len)
-				ft_memdel((void *)&grid[j]);
-			ft_memdel((void *)&grid);
-			}
-			len += 1;
-		}
-	}
-	if (grid)
+	len = ft_sqrt(ft_listlen(tetris) * 4);
+	grid = ft_create_square(len);
+	if (ft_solve_grid(tetris, grid, len))
 		ft_print_result(grid, len);
 	i = -1;
 	while (++i < len)
-		ft_memdel((void *)&grid[i]);
-	ft_memdel((void *)&grid);
-	i = -1;
-	while (++i < ft_nb_tetri(tab))
-		ft_memdel((void *)&id[i]);
-	ft_memdel((void *)&id);
+		ft_memdel((void *)&(grid[i]));
+	ft_memdel((void **)&grid);
 	ft_memdel((void *)&tab);
+	while (tetris)
+	{
+		tmp = tetris;
+		tetris = tetris->next;
+		ft_memdel((void *)&tmp->content);
+		ft_memdel((void *)&tmp);
+	}
+	ft_memdel((void *)&tetris);
 	return (0);
 }

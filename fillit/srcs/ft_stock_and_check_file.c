@@ -6,11 +6,10 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 11:46:25 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/26 09:57:46 by manki            ###   ########.fr       */
+/*   Updated: 2017/11/28 08:14:48 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fillit.h"
 #include <unistd.h>
 #include <fcntl.h>

@@ -6,11 +6,10 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 14:07:29 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/27 14:51:46 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/01 12:32:56 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fillit.h"
 #include <stdlib.h>
 
@@ -27,13 +26,12 @@ static int		ft_check_one(char *tab)
 		{
 			if (tab[i + 1] == '#' && tab[i + 2] == '#' && tab[i + 5] == '#')
 				return (1);
-			if (tab[i + 1] != '#' && tab[i + 3] != '#'
-					&& tab[i + 4] != '#' && tab[i + 5] != '#')
+			if (tab[i + 1] != '#' && tab[i + 3] != '#' && tab[i + 4] != '#'
+			&& tab[i + 5] != '#')
+				return (0);
+			if (tab[i + 1] != '#' && tab[i + 4] != '#' && tab[i + 5] != '#')
 				return (0);
 			++count;
-			if (tab[i + 1] != '#' && tab[i + 4] != '#'
-					&& tab[i + 5] != '#')
-				return (0);
 		}
 		++i;
 	}
@@ -61,7 +59,6 @@ static void		ft_split(char *tab, char **group, int len)
 		group[i][j] = '\0';
 		++k;
 	}
-	group[i] = 0;
 }
 
 static char		**ft_split_tetri(char *tab)
@@ -72,33 +69,37 @@ static char		**ft_split_tetri(char *tab)
 
 	if ((len = ft_nb_tetri(tab)) > 26)
 		return (NULL);
-	if (!(group = (char **)malloc(sizeof(char *) * len + 1)))
+	if (!(group = (char **)ft_memalloc(sizeof(char *) * len)))
 		return (NULL);
 	ft_split(tab, group, len);
 	i = -1;
-	while (group[++i])
+	while (++i < len)
 		if (!ft_check_one(group[i]))
 		{
-			len = -1;
 			if (group != NULL)
 			{
+				len = -1;
 				while (++len <= i)
-					ft_memdel((void *)&group[len]);
-				ft_memdel((void *)&group);
+					ft_memdel((void *)&(group[len]));
+				ft_memdel((void **)&group);
 			}
 			return (NULL);
 		}
 	return (group);
 }
 
-static void		ft_id_one_tetri(char *tab, int *id, int index)
+static t_list	*ft_id_one_tetri(char *tab, int index)
 {
 	int		i;
 	int		q;
+	int		*id;
 	int		count;
+	t_list	*tetris;
 
 	i = -1;
 	count = 1;
+	if (!(id = (int *)ft_memalloc(sizeof(int) * 4)))
+		return (NULL);
 	id[0] = index;
 	while (tab[++i] && count < 4)
 	{
@@ -111,33 +112,33 @@ static void		ft_id_one_tetri(char *tab, int *id, int index)
 			count++;
 		}
 	}
+	if (index == 0)
+		tetris = ft_create_elem(id, 4);
+	else
+		ft_list_push_back(&tetris, id, 4);
+	return (tetris);
 }
 
-int				**ft_split_rec_tetri(char *tab)
+t_list			*ft_split_rec_tetri(char *tab)
 {
 	char	**group;
-	int		**id;
+	t_list	*tetris;
 	int		i;
 	int		len;
 
 	len = ft_nb_tetri(tab);
-	if (!(id = (int **)malloc(sizeof(int *) * len)))
-		return (NULL);
 	if (!(group = ft_split_tetri(tab)))
 		return (NULL);
 	i = -1;
 	while (++i < len)
-		if (!(id[i] = (int *)malloc(sizeof(int) * 4)))
+		if (!(tetris = ft_id_one_tetri(group[i], i)))
 			return (NULL);
-	i = -1;
-	while (++i < len)
-		ft_id_one_tetri(group[i], id[i], i);
-	i = -1;
 	if (group != NULL)
 	{
+		i = -1;
 		while (++i < len)
-			ft_memdel((void *)&group[i]);
-		ft_memdel((void *)&group);
+			ft_memdel((void *)&(group[i]));
+		ft_memdel((void **)&group);
 	}
-	return (id);
+	return (tetris);
 }
