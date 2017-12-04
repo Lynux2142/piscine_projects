@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/11/30 17:53:36 by lguiller         ###   ########.fr        #
+#    Updated: 2017/12/04 19:11:15 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@
 
 NAME	= fillit
 
-SRC 	= srcs/main.c srcs/ft_stock_and_check_file.c \
-		  srcs/ft_split_rec_tetri.c srcs/ft_nb.c \
-		  srcs/ft_solve_grid.c srcs/ft_list.c
+SRC 	= srcs/fillit.c srcs/ft_stock_and_check_file.c srcs/ft_list_function.c \
+		  srcs/ft_record_tetris.c srcs/ft_resolve_grid.c srcs/ft_sqrt.c \
+		  srcs/ft_recursive_solve_grid.c \
 
-FLAGS 	= -Wall -Wextra -Werror -g
+FLAGS 	= -Wall -Wextra -Werror
 
 ##################
 ##    COLORS    ##
