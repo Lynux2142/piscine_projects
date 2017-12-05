@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/12/05 15:31:53 by lguiller         ###   ########.fr        #
+#    Updated: 2017/12/05 15:44:44 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC 	= srcs/fillit.c srcs/ft_stock_and_check_file.c srcs/ft_list_function.c \
 		  srcs/ft_record_tetris.c srcs/ft_resolve_grid.c srcs/ft_sqrt.c \
 		  srcs/ft_recursive_solve_grid.c \
 
-FLAGS 	= -Wall -Wextra -Werror -g
+FLAGS 	= -Wall -Wextra -Werror
 
 ##################
 ##    COLORS    ##
