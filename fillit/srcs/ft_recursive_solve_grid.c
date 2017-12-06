@@ -6,16 +6,17 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 14:49:09 by manki             #+#    #+#             */
-/*   Updated: 2017/12/05 15:14:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/06 10:49:44 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static t_bool	ft_increment_g(t_coord *g, int len)
 {
-	if (g->y + 1 < len)
+	if (g->y + 1 <= len)
 	{
 		if (g->x + 1 < len)
 			g->x++;
@@ -97,7 +98,7 @@ t_bool			ft_fill_one(t_tetris *tetris, char **grid, int l, t_coord *g)
 	while (++i < 4)
 	{
 		if (c[i].x >= l || c[i].y >= l || c[i].x < 0 || c[i].y < 0
-			|| grid[c[i].y][c[i].x] != '.')
+				|| grid[c[i].y][c[i].x] != '.')
 		{
 			free(c);
 			return (0);
