@@ -6,9 +6,13 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/11/23 12:20:41 by lguiller         ###   ########.fr        #
+#    Updated: 2017/12/06 17:45:23 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+##################
+##  VARIABLES   ##
+##################
 
 NAME = libft.a
 
@@ -28,22 +32,42 @@ OBJ = $(SRC:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
+##################
+##    COLORS    ##
+##################
+
+_GREY	=$ \033[30m
+_RED	=$ \033[31m
+_GREEN	=$ \033[32m
+_YELLOW	=$ \033[33m
+_BLUE	=$ \033[34m
+_PURPLE	=$ \033[35m
+_CYAN	=$ \033[36m
+_WHITE	=$ \033[37m
+_END	=$ \033[0m
+
+##################
+##   TARGETS    ##
+##################
+
+.PHONY: all clean
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "Creation de libft.a"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@echo "$(_GREEN)[OK]	$(_YELLOW)all done.$(_END)"
 
 %.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
 
 clean:
-	@echo "Suppression des fichiers *.o"
 	@/bin/rm -f $(OBJ)
+	@echo "$(_GREEN)[OK]	$(_YELLOW)clean done.$(_END)"
 
 fclean: clean
-	@echo "Suppression de libft.a"
 	@/bin/rm -f $(NAME)
+	@echo "$(_GREEN)[OK]	$(_YELLOW)fclean done.$(_END)"
 
 re: fclean all
