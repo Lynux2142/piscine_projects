@@ -1,0 +1,17 @@
+bonjour
+gfdgfd
+total 64
+drwxr-xr-x    9 lguiller  2017_paris   306B Dec  7 11:56 .
+
+drwx------   12 lguiller  2017_paris   408B Dec  6 15:15 ..
+-rwxr-xr-x    1 lguiller  2017_paris   8.6K Dec  7 11:56 a.out
+-rw-r--r--    1 lguiller  2017_paris     9B Nov 28 11:06 auteur
+
+
+-rw-r--r--    1 lguiller  2017_paris   1.3K Dec  7 11:56 get_next_line.c
+-rw-r--r--    1 lguiller  2017_paris   1.0K Dec  4 15:12 get_next_line.h
+drwxr-xr-x  122 lguiller  2017_paris   4.1K Dec  7 11:54 libft
+-rw-r--r--    1 lguiller  2017_paris   1.4K Dec  7 11:56 main.c
+-rw-r--r--    1 lguiller  2017_paris    15B Dec  4 12:43 soft
+
+
