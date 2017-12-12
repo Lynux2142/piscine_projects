@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/12 14:27:19 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/12 16:49:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ void				ft_putaddr(void *str);
 void				ft_putaddr_fd(void *str, int fd);
 
 char				*ft_itoa_base(int value, int base);
+
+int					ft_brackets(char *str);
 
 #endif
