@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2017/12/12 12:33:09 by lguiller         ###   ########.fr        #
+#    Updated: 2017/12/12 13:02:57 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 	  ft_strsplit.c ft_itoa.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	  ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 	  ft_lstmap.c ft_itoa_base.c
+
 OBJ = $(SRC:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
@@ -55,19 +56,19 @@ _END	=$ \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo "$(_GREEN)[OK]	$(_YELLOW)all done.$(_END)"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "$(_GREEN)[OK]	$(_YELLOW)all done.$(_END)"
 
 %.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
 
 clean:
-	@/bin/rm -f $(OBJ)
 	@echo "$(_GREEN)[OK]	$(_YELLOW)clean done.$(_END)"
+	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
 	@echo "$(_GREEN)[OK]	$(_YELLOW)fclean done.$(_END)"
+	@/bin/rm -f $(NAME)
 
 re: fclean all

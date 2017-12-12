@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:44:00 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/07 11:24:17 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/12 12:49:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,5 @@
 
 void	ft_putstr(char *str)
 {
-	int len;
-
-	len = ft_strlen(str);
-	write(1, str, len);
+	ft_putstr_fd(str, 1);
 }
