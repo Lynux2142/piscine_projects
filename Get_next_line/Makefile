@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 13:10:49 by lguiller          #+#    #+#              #
-#    Updated: 2017/12/12 14:48:04 by lguiller         ###   ########.fr        #
+#    Updated: 2017/12/12 17:20:51 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,6 @@ clean:
 fclean:
 	@echo "[OK]	fclean done."
 	@make -C libft fclean
-	@/bin/rm $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
