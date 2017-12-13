@@ -6,13 +6,13 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 10:42:56 by exam              #+#    #+#             */
-/*   Updated: 2017/12/12 12:32:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:32:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		nb_count(int value, int base)
+static int		nb_count(int value, int base)
 {
 	int nb;
 
@@ -25,13 +25,13 @@ int		nb_count(int value, int base)
 	return (nb);
 }
 
-int		ft_abs(int nb)
+static int		ft_abs(int nb)
 {
 	nb < 0 ? nb *= -1 : nb;
 	return (nb);
 }
 
-char	*ft_calc_pos(char *nb, int value, int base)
+static char		*ft_calc_pos(char *nb, int value, int base)
 {
 	int i;
 
@@ -49,7 +49,7 @@ char	*ft_calc_pos(char *nb, int value, int base)
 	return (nb);
 }
 
-char	*ft_calc_neg(char *nb, int value, int base)
+static char		*ft_calc_neg(char *nb, int value, int base)
 {
 	int i;
 
@@ -68,7 +68,7 @@ char	*ft_calc_neg(char *nb, int value, int base)
 	return (nb);
 }
 
-char	*ft_itoa_base(int value, int base)
+char			*ft_itoa_base(int value, int base)
 {
 	char *nb;
 

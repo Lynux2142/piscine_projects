@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 11:17:10 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/12 09:39:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:07:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 int		main(int ac, char **av)
 {
-	int		i;
 	int		fd;
 	char	*line;
 
@@ -29,10 +28,13 @@ int		main(int ac, char **av)
 		return (2);
 	get_next_line(fd, &line);
 	ft_putendl(line);
-	i = -1;
-	while (line[++i])
-		ft_memdel((void *)&(line[i]));
-	ft_memdel((void **)&line);
+	get_next_line(fd, &line);
+	ft_putendl(line);
+	get_next_line(fd, &line);
+	ft_putendl(line);
+	get_next_line(fd, &line);
+	ft_putendl(line);
+	free(line);
 	close(fd);
 	return (1);
 }

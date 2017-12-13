@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 11:09:46 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/12 14:54:21 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:22:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int		get_next_line(const int fd, char **line)
 	int			i;
 	int			save;
 
-	*line = NULL;
+	ft_memdel((void *)&(*line));
 	read(fd, buff, BUFF_SIZE);
 	if (curs != 0)
 		++curs;
 	save = curs;
-	while (buff[curs] != '\n')
+	while (buff[curs] && buff[curs] != '\n')
 		++curs;
-	if (!(*line = (char *)ft_memalloc(sizeof(char) * (curs - save))))
+	if (!(*line = (char *)ft_memalloc(sizeof(char) * ((curs - save) + 1))))
 		return (-1);
 	i = -1;
 	while ((++i + save) < curs)
-		**(line + i) = buff[save + i];
-	**(line + i) = '\0';
+		*(*line + i) = buff[save + i];
+	*(*line + i) = '\0';
 	return (0);
 }

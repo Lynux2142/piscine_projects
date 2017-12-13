@@ -6,23 +6,14 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:48:23 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/12 16:48:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:31:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <unistd.h>
 
-int		ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		++len;
-	return (len);
-}
-
-void	ft_point(char *str)
+static void	ft_point(char *str)
 {
 	int		i;
 
@@ -36,7 +27,7 @@ void	ft_point(char *str)
 	}
 }
 
-void	ft_cut(char *str)
+static void	ft_cut(char *str)
 {
 	int	i;
 	int	j;
@@ -65,7 +56,7 @@ void	ft_cut(char *str)
 	}
 }
 
-int		ft_check(char *str)
+static int	ft_check(char *str)
 {
 	int	secu;
 	int	i;
@@ -91,7 +82,7 @@ int		ft_check(char *str)
 	return (1);
 }
 
-int		ft_brackets(char *str)
+int			ft_brackets(char *str)
 {
 	ft_point(str);
 	ft_cut(str);
