@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 11:09:46 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/13 11:22:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:04:33 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 int		get_next_line(const int fd, char **line)
 {

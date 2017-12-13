@@ -3,90 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 10:42:56 by exam              #+#    #+#             */
-/*   Updated: 2017/12/12 12:32:54 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/13 17:40:11 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/13 17:49:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		nb_count(int value, int base)
+static int		count_digits(int nbr, int base)
 {
-	int nb;
+	int result;
 
-	nb = 0;
-	while (value)
+	if (nbr == 0)
+		return (1);
+	result = 0;
+	while (nbr)
 	{
-		value /= base;
-		++nb;
+		nbr /= base;
+		++result;
 	}
-	return (nb);
+	return (result);
 }
 
-int		ft_abs(int nb)
+static int		ft_abs(int nbr)
 {
-	nb < 0 ? nb *= -1 : nb;
-	return (nb);
+	if (nbr < 0)
+		return (-nbr);
+	else
+		return (nbr);
 }
 
-char	*ft_calc_pos(char *nb, int value, int base)
+static void		ft_calc(int nbr, char *nb, int size, int base)
 {
 	int i;
 
-	i = nb_count(value, base) - 1;
-	nb[i + 1] = '\0';
-	while (value)
+	i = 0;
+	if (nbr < 0 && base == 10)
 	{
-		if (ft_abs(value % base) > 9)
-			nb[i] = (ft_abs(value % base) + 'A') - 10;
-		else
-			nb[i] = ft_abs(value % base) + '0';
-		value /= base;
-		--i;
+		nb[i] = '-';
+		++i;
+		++size;
 	}
-	return (nb);
+	nb[size] = '\0';
+	--size;
+	while (i <= size)
+	{
+		if (ft_abs(nbr % base) > 9)
+			nb[size] = ft_abs(nbr % base) + 'A' - 10;
+		else
+			nb[size] = ft_abs(nbr % base) + '0';
+		nbr /= base;
+		--size;
+	}
 }
 
-char	*ft_calc_neg(char *nb, int value, int base)
-{
-	int i;
-
-	i = nb_count(value, base);
-	nb[i + 1] = '\0';
-	nb[0] = '-';
-	while (value)
-	{
-		if (ft_abs(value % base) > 9)
-			nb[i] = (ft_abs(value % base) + 'A') - 10;
-		else
-			nb[i] = ft_abs(value % base) + '0';
-		value /= base;
-		--i;
-	}
-	return (nb);
-}
-
-char	*ft_itoa_base(int value, int base)
+char			*ft_itoa_base(int value, int base)
 {
 	char *nb;
 
 	if (base < 2 || base > 16)
 		return (NULL);
-	if (base != 10)
-		value = ft_abs(value);
-	if (value < 0 && (value != -2147483648 || base == 10))
-	{
-		if (!(nb = (char *)malloc(sizeof(char) * (nb_count(value, base) + 1))))
-			return (NULL);
-		ft_calc_neg(nb, value, base);
-	}
-	else
-	{
-		if (!(nb = (char *)malloc(sizeof(char) * (nb_count(value, base) + 2))))
-			return (NULL);
-		ft_calc_pos(nb, value, base);
-	}
+	if (!(nb = (char *)malloc(sizeof(char) * count_digits(value, base))))
+		return (NULL);
+	ft_calc(value, nb, count_digits(value, base), base);
 	return (nb);
 }

@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 11:17:10 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/13 11:07:43 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 12:50:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ int		main(int ac, char **av)
 		return (-1);
 	if (!(fd = open(av[1], O_RDONLY)))
 		return (2);
-	get_next_line(fd, &line);
-	ft_putendl(line);
-	get_next_line(fd, &line);
-	ft_putendl(line);
 	get_next_line(fd, &line);
 	ft_putendl(line);
 	get_next_line(fd, &line);
