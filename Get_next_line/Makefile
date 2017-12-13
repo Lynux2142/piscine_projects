@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 13:10:49 by lguiller          #+#    #+#              #
-#    Updated: 2017/12/12 17:20:51 by lguiller         ###   ########.fr        #
+#    Updated: 2017/12/12 17:33:14 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,13 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@echo "[OK]	all done."
 	@make -C libft all
 	@clang $(FLAGS) $(SRCS) $(INC) -o $(NAME)
 
 clean:
-	@echo "[OK]	clean done."
 	@make -C libft clean
 
 fclean:
-	@echo "[OK]	fclean done."
 	@make -C libft fclean
 	@/bin/rm -f $(NAME)
 
