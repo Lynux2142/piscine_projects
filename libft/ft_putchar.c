@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:26:36 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/07 11:33:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:32:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void	ft_print(char c)
+static void	ft_print(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putchar(int c)
+void		ft_putchar(int c)
 {
 	if (c >= 16777215)
 	{

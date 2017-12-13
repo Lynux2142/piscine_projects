@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:44:00 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/12 12:49:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:35:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 void	ft_putstr(char *str)
 {
-	ft_putstr_fd(str, 1);
+	if (str != NULL)
+		ft_putstr_fd(str, 1);
 }
