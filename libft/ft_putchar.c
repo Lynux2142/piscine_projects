@@ -6,13 +6,12 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:26:36 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/13 11:32:53 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/15 10:50:44 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
-#include <stdio.h>
 
 static void	ft_print(char c)
 {
