@@ -6,13 +6,13 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/15 10:34:25 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/15 12:36:02 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/15 12:40:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_check(char *base)
+static int		ft_check(char *base)
 {
 	int i;
 
@@ -25,7 +25,7 @@ int		ft_check(char *base)
 	return (1);
 }
 
-void	ft_calc(int nbr, char *base, int i)
+static void		ft_calc(int nbr, char *base, int i)
 {
 	if (nbr >= i || nbr <= -i)
 	{
@@ -38,7 +38,7 @@ void	ft_calc(int nbr, char *base, int i)
 		ft_putchar(base[-nbr]);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+void			ft_putnbr_base(int nbr, char *base)
 {
 	if (!ft_check(base))
 		return ;
