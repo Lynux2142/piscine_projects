@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/12 16:49:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/15 13:35:14 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,9 @@ void				ft_putaddr_fd(void *str, int fd);
 char				*ft_itoa_base(int value, int base);
 
 int					ft_brackets(char *str);
+
+void				ft_putnbr_base(int nb, char *base);
+
+int					ft_isprime(unsigned int nb);
 
 #endif
