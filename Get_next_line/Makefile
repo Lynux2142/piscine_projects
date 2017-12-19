@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 13:10:49 by lguiller          #+#    #+#              #
-#    Updated: 2017/12/19 14:46:39 by lguiller         ###   ########.fr        #
+#    Updated: 2017/12/19 17:02:26 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = ./get_next_line.c ./main.c
 
 INC = ./libft/libft.a
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean
 
