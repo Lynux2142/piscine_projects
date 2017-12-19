@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:40:11 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/13 17:49:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/19 12:22:44 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ static int		count_digits(int nbr, int base)
 
 static int		ft_abs(int nbr)
 {
-	if (nbr < 0)
-		return (-nbr);
-	else
-		return (nbr);
+	return (nbr = (nbr < 0) ? -nbr : nbr);
 }
 
 static void		ft_calc(int nbr, char *nb, int size, int base)
