@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:48:23 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/13 11:31:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/18 18:08:06 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ static void	ft_cut(char *str)
 	int	j;
 	int	tmp;
 
-	j = 0;
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		j = i;
 		tmp = i;
@@ -52,7 +51,6 @@ static void	ft_cut(char *str)
 			str[tmp] = '\0';
 			++tmp;
 		}
-		++i;
 	}
 }
 
@@ -64,8 +62,8 @@ static int	ft_check(char *str)
 	secu = ft_strlen(str);
 	while (secu > 0)
 	{
-		i = 0;
-		while (str[i])
+		i = -1;
+		while (str[++i])
 		{
 			if ((str[i] == '(' && str[i + 1] == ')')
 					|| (str[i] == '{' && str[i + 1] == '}')
@@ -75,7 +73,6 @@ static int	ft_check(char *str)
 				str[i + 1] = '.';
 				ft_cut(str);
 			}
-			++i;
 		}
 		--secu;
 	}

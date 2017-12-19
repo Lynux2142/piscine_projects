@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 11:17:10 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/14 13:28:35 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/18 16:44:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,21 @@ int		main(int ac, char **av)
 {
 	int		fd;
 	char	*line;
+	int		nb;
 
+	nb = ft_atoi(av[2]);
 	line = NULL;
-	if (ac != 2)
+	if (ac != 3)
 		return (-1);
 	if (!(fd = open(av[1], O_RDONLY)))
 		return (2);
-	get_next_line(fd, &line);
-	ft_putendl(line);
-	get_next_line(fd, &line);
-	ft_putendl(line);
-	free(line);
+	while (nb > 0)
+	{
+		get_next_line(fd, &line);
+		ft_putendl(line);
+		ft_memdel((void *)&line);
+		--nb;
+	}
 	close(fd);
 	return (1);
 }
