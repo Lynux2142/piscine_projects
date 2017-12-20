@@ -6,10 +6,11 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:40:11 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/19 12:10:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/20 10:49:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
 
 static int		count_digits(int nbr, int base)
@@ -25,11 +26,6 @@ static int		count_digits(int nbr, int base)
 		++result;
 	}
 	return (result);
-}
-
-static int		ft_abs(int nbr)
-{
-	return (nbr = (nbr < 0) ? -nbr : nbr);
 }
 
 static void		ft_calc(int nbr, char *nb, int size, int base)
