@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:10:43 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 13:18:29 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/20 11:18:20 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/20 13:30:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "./libft/libft.h"
 
-# define BUFF_SIZE 2
+char		*ft_realloc(void *s1, int len)
+{
+	char	*s2;
+	int		len_s1;
 
-int		get_next_line(const int fd, char **line);
-
-#endif
+	if (s1)
+	{
+		len_s1 = ft_strlen((char *)s1);
+		if (!(s2 = ft_memalloc((len_s1 + len))))
+			return (NULL);
+		s2 = (char *)ft_memcpy(s2, s1, len_s1);
+	}
+	else
+	{
+		if (!(s2 = ft_memalloc(len)))
+			return (NULL);
+	}
+	return ((char *)s2);
+}

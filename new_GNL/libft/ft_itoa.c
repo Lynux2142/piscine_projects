@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:10:43 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 13:18:29 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/13 17:13:39 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/14 18:44:18 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
+#include <stdlib.h>
 
-# define BUFF_SIZE 2
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+char			*ft_itoa(int nbr)
+{
+	return (ft_itoa_base(nbr, 10));
+}

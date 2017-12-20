@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_isprime.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:10:43 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 13:18:29 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/15 13:19:29 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/15 13:35:22 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 2
+int		ft_isprime(unsigned int nb)
+{
+	unsigned int i;
 
-int		get_next_line(const int fd, char **line);
-
-#endif
+	if (nb == 0 || nb == 1)
+		return (0);
+	i = 2;
+	while ((i * i) <= nb)
+	{
+		if (i != nb && (nb % i) == 0)
+			return (0);
+		++i;
+	}
+	return (1);
+}

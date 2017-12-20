@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_pgcd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:10:43 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 13:18:29 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/15 16:34:53 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/15 16:36:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 2
+unsigned int	ft_pgcd(unsigned int a, unsigned int b)
+{
+	int i;
 
-int		get_next_line(const int fd, char **line);
-
-#endif
+	i = (a <= b) ? a : b;
+	while (i > 0)
+	{
+		if ((a % i) == 0 && (b % i) == 0)
+			return (i);
+		--i;
+	}
+	return (0);
+}

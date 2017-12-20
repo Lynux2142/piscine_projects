@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:10:43 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 13:18:29 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/15 14:32:54 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/15 14:50:30 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <string.h>
 
-# define BUFF_SIZE 2
+size_t		ft_strcspn(const char *s1, const char *s2)
+{
+	int i;
+	int j;
 
-int		get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	while (s1[i])
+	{
+		j = -1;
+		while (s2[++j])
+			if (s1[i] == s2[j])
+				return (i);
+		++i;
+	}
+	return (i);
+}
