@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 12:04:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 14:55:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/11/17 13:58:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list *elem;
 
-	if (!(elem = (t_list *)malloc(sizeof(t_list))))
+	if (!(elem = malloc(sizeof(t_list))))
 		return (NULL);
 	if (content == NULL)
 	{
@@ -29,5 +29,6 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 		elem->content = ft_strdup(content);
 		elem->content_size = content_size;
 	}
+	elem->next = NULL;
 	return (elem);
 }

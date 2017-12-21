@@ -1,0 +1,9 @@
+total 48
+drwxr-xr-x    8 lguiller  2017_paris   272B Dec 21 16:25 .
+drwxr-xr-x   10 lguiller  2017_paris   340B Dec 21 11:08 ..
+-rwxr-xr-x    1 lguiller  2017_paris   9.0K Dec 21 16:24 a.out
+-rw-r--r--    1 lguiller  2017_paris     0B Dec 21 16:25 bonjour
+-rw-r--r--    1 lguiller  2017_paris   1.9K Dec 21 15:45 get_next_line.c
+-rw-r--r--    1 lguiller  2017_paris   995B Dec 21 11:17 get_next_line.h
+drwxr-xr-x  143 lguiller  2017_paris   4.7K Dec 21 15:25 libft
+-rw-r--r--    1 lguiller  2017_paris   1.7K Dec 21 16:24 test1.c

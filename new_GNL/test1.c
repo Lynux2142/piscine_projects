@@ -1,50 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   test1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/21 11:17:52 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/21 17:13:23 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/21 15:47:32 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/21 16:57:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
 #include "get_next_line.h"
+#include "libft/libft.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-#define BUFF_SIZE 3
+#define BUFF_SIZE 1
 
 int		get_next_line(const int fd, char **line)
 {
-	static char	*buff;
-	char		*tmp;
-	int			curs;
-	int			i;
+	static char *buff;
+	int			value;
 
-	buff = ft_strnew(BUFF_SIZE);
-	ft_bzero(buff, BUFF_SIZE);
-	tmp = ft_strnew(BUFF_SIZE);
-	if (read(fd, buff, BUFF_SIZE) == -1 || read(fd, buff, BUFF_SIZE) == 0)
-		return (read(fd, buff, BUFF_SIZE));
-	while (read(fd, buff, BUFF_SIZE))
+	buff = ft_strnew(BUFF_SIZE / BUFF_SIZE);
+	*line = ft_strnew(BUFF_SIZE / BUFF_SIZE);
+	ft_bzero(*line, BUFF_SIZE / BUFF_SIZE);
+	while ((value = read(fd, buff, BUFF_SIZE / BUFF_SIZE)))
 	{
-		curs = 0;
-		i = 0;
-		ft_bzero(tmp, BUFF_SIZE);
-		while (*buff && *buff != '\n')
+		if (value == -1 || value == 0)
+			return (value);
+		if (*buff == '\n')
 		{
-			tmp[i] = *(buff + curs);
-			++i;
-			++curs;
+			ft_memdel((void *)&buff);
+			return (1);
 		}
-		*line = ft_strjoin(tmp, buff);
-		if (*buff == '\n' && *(buff + 1) != '\0')
-			buff = ft_strchr(buff, '\n');
+		*line = ft_strjoin(*line, buff);
+		ft_bzero(buff, BUFF_SIZE / BUFF_SIZE);
 	}
-	return (1);
+	return (0);
 }
 
 int		main(int ac, char **av)
@@ -58,12 +52,10 @@ int		main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	while (nb > 0)
 	{
-		ft_putnbr(get_next_line(fd, &line));
-		ft_putchar('\n');
 		get_next_line(fd, &line);
-		ft_putendl(line);
-		ft_memdel((void *)line);
 		--nb;
 	}
+	ft_putendl(line);
+	ft_memdel((void *)&line);
 	return (0);
 }

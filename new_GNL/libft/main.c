@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_add_end.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/20 15:34:51 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 15:41:09 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/18 18:08:14 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/18 18:09:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*lst_add_end(t_list *lst, void *s, size_t len)
+int		main(int ac, char **av)
 {
-	t_list *elem;
-	t_list		 *curs;
-
-	if (!(elem = (t_list *)ft_memalloc(sizeof(t_list))))
-		return (NULL);
-	elem->content = s;
-	elem->content_size = len;
-	elem->next = NULL;
-	if (!lst)
-		return (elem);
+	(void)ac;
+	if (ft_brackets(av[1]))
+		ft_putstr("OK\n");
 	else
-	{
-		curs = lst;
-		while (curs->next)
-			curs = curs->next;
-		curs->next = elem;
-		return (lst);
-	}
+		ft_putstr("Error\n");
+	return (0);
 }
