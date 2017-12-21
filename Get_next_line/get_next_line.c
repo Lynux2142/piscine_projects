@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 11:09:46 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 13:34:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/21 17:18:06 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,12 @@ static char		*ft_memrealloc(void *s1, int len)
 	if (s1)
 	{
 		len_s1 = ft_strlen((char *)s1);
-		if (!(s2 = ft_memalloc((len_s1 + len))))
-			return (NULL);
+		s2 = ft_strnew(len_s1 + len);
 		s2 = (char *)ft_memcpy(s2, s1, len_s1);
 		ft_memdel(&s1);
 	}
 	else
-	{
-		if (!(s2 = ft_memalloc(len)))
-			return (NULL);
-	}
+		s2 = ft_strnew(len);
 	return ((char *)s2);
 }
 
@@ -57,8 +53,7 @@ int				get_next_line(const int fd, char **line)
 			++curs;
 		if (buff[curs] == '\n')
 		{
-			if (!(*line = (char *)ft_memrealloc(*line, sizeof(char) * ((curs - save) + 1))))
-				return (0);
+			*line = ft_strnew(curs - save);
 			while ((++i + save) < curs)
 				*(*line + i) = buff[save + i];
 			*(*line + i) = '\0';
@@ -70,7 +65,7 @@ int				get_next_line(const int fd, char **line)
 		}
 		else
 		{
-			if (!(*line = (char *)ft_memrealloc(*line, sizeof(char) * ((curs - save) + 1))))
+			*line = ft_strnew(curs - save);
 				return (0);
 			while ((++i + save) < curs)
 				*(*line + i) = buff[save + i];
