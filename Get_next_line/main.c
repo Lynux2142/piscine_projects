@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:16:24 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/22 15:55:21 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/22 16:21:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	while (len > 0)
 	{
-		printf("%d\n", get_next_line(fd, &line));
+		get_next_line(fd, &line);
 		ft_putendl(line);
 		ft_memdel((void *)&line);
 		--len;
