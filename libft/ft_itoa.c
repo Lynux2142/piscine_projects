@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/13 17:13:39 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/14 18:44:18 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/14 09:54:14 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/22 11:26:22 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char			*ft_itoa(int nbr)
+char		*ft_itoa(int n)
 {
-	return (ft_itoa_base(nbr, 10));
+	return (ft_itoa_base(n, 10));
 }

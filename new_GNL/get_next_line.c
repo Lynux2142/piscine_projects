@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 11:17:52 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/21 17:13:23 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/21 17:34:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ int		get_next_line(const int fd, char **line)
 	buff = ft_strnew(BUFF_SIZE);
 	ft_bzero(buff, BUFF_SIZE);
 	tmp = ft_strnew(BUFF_SIZE);
+	*line = ft_strnew(BUFF_SIZE);
 	if (read(fd, buff, BUFF_SIZE) == -1 || read(fd, buff, BUFF_SIZE) == 0)
 		return (read(fd, buff, BUFF_SIZE));
 	while (read(fd, buff, BUFF_SIZE))
 	{
 		curs = 0;
-		i = 0;
+		i = ft_strlen(*line);
 		ft_bzero(tmp, BUFF_SIZE);
 		while (*buff && *buff != '\n')
 		{
-			tmp[i] = *(buff + curs);
+			tmp[i] = *buff + curs;
 			++i;
 			++curs;
 		}

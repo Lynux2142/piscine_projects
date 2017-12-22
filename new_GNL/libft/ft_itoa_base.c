@@ -5,61 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/13 17:40:11 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/20 10:49:35 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/22 10:52:48 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/22 11:24:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static int		count_digits(int nbr, int base)
+static int	count_nb(int value, int base)
 {
-	int result;
+	int len;
 
-	if (nbr == 0)
+	if (value == 0)
 		return (1);
-	result = 0;
-	while (nbr)
+	len = (value < 0 && base == 10) ? 1 : 0;
+	while (value)
 	{
-		nbr /= base;
-		++result;
+		value /= base;
+		++len;
 	}
-	return (result);
+	return (len);
 }
 
-static void		ft_calc(int nbr, char *nb, int size, int base)
+static void	ft_calc(char *nbr, int value, int base, int len)
 {
-	int i;
+	int	stop;
 
-	i = 0;
-	if (nbr < 0 && base == 10)
+	stop = (value < 0 && base == 10) ? 1 : 0;
+	nbr[0] = (value < 0 && base == 10) ? '-' : '\0';
+	while (len >= stop)
 	{
-		nb[i] = '-';
-		++i;
-		++size;
-	}
-	nb[size] = '\0';
-	--size;
-	while (i <= size)
-	{
-		if (ft_abs(nbr % base) > 9)
-			nb[size] = ft_abs(nbr % base) + 'A' - 10;
+		if (ft_abs(value % base) > 9)
+			nbr[len] = ft_abs(value % base) - 10 + 'A';
 		else
-			nb[size] = ft_abs(nbr % base) + '0';
-		nbr /= base;
-		--size;
+			nbr[len] = ft_abs(value % base) + '0';
+		value /= base;
+		--len;
 	}
 }
 
-char			*ft_itoa_base(int value, int base)
+char		*ft_itoa_base(int value, int base)
 {
-	char *nb;
+	int		len;
+	char	*nbr;
 
 	if (base < 2 || base > 16)
 		return (NULL);
-	if (!(nb = (char *)malloc(sizeof(char) * count_digits(value, base))))
-		return (NULL);
-	ft_calc(value, nb, count_digits(value, base), base);
-	return (nb);
+	len = count_nb(value, base);
+	nbr = ft_strnew(len);
+	ft_bzero(nbr, len);
+	ft_calc(nbr, value, base, len - 1);
+	return (nbr);
 }
