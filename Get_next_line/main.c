@@ -5,36 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:17:10 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/19 16:16:49 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/22 15:16:24 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/22 15:55:21 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
+#include "libft/libft.h"
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
 
 int		main(int ac, char **av)
 {
+	int		len;
 	int		fd;
 	char	*line;
-	int		nb;
 
-	nb = ft_atoi(av[2]);
-	line = NULL;
-	if (ac != 3)
-		return (-1);
-	if (!(fd = open(av[1], O_RDONLY)))
-		return (2);
-	while (nb > 0)
+	(void)ac;
+	len = ft_atoi(av[2]);
+	fd = open(av[1], O_RDONLY);
+	while (len > 0)
 	{
-		get_next_line(fd, &line);
+		printf("%d\n", get_next_line(fd, &line));
 		ft_putendl(line);
 		ft_memdel((void *)&line);
-		--nb;
+		--len;
 	}
 	close(fd);
-	return (1);
+	return (0);
 }
