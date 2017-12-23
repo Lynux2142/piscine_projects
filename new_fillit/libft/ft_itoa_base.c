@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 10:52:48 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/22 11:24:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/23 14:57:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ char		*ft_itoa_base(int value, int base)
 	if (base < 2 || base > 16)
 		return (NULL);
 	len = count_nb(value, base);
-	nbr = ft_strnew(len);
+	if (!(nbr = ft_strnew(len)))
+		return (NULL);
 	ft_bzero(nbr, len);
 	ft_calc(nbr, value, base, len - 1);
 	return (nbr);
