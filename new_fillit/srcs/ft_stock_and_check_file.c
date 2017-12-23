@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:33:51 by manki             #+#    #+#             */
-/*   Updated: 2017/12/14 17:34:30 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/23 15:04:48 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char			*ft_checkfile(char *file)
 	len = 0;
 	while (read(fd, &buf, 1) > 0)
 		len++;
-	if (!(tab = (char *)ft_memalloc(sizeof(char) * (len + 1))))
+	if (!(tab = ft_strnew(len)))
 		return (NULL);
 	if (!(tab = ft_writetab(file, tab)))
 		return (NULL);

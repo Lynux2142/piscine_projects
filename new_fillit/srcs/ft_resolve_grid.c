@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 13:50:30 by manki             #+#    #+#             */
-/*   Updated: 2017/12/14 17:33:25 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/23 15:06:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char		**ft_create_square(int len)
 	i = -1;
 	while (++i < len)
 	{
-		if (!(square[i] = (char *)ft_memalloc(sizeof(char) * (len + 1))))
+		if (!(square[i] = ft_strnew(len)))
 			return (NULL);
 		ft_memset(square[i], '.', len);
 		square[i][len] = '\0';

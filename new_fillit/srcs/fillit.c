@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 14:00:21 by manki             #+#    #+#             */
-/*   Updated: 2017/12/15 10:54:37 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/23 17:04:47 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int				main(int ac, char **av)
 		ft_resolve_grid(tetris);
 		ft_free_tetris(tetris);
 	}
-	else if (ac < 1)
-		write(2, "File name missing.\n", 19);
 	else
-		write(2, "Too many arguments.\n", 20);
+		ft_error();
 	return (0);
 }
