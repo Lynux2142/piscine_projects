@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:24:31 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/22 15:58:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/23 11:29:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ static char	ft_getchar(const int fd)
 
 	if (len == 0)
 	{
-		len = read(fd, buff, BUFF_SIZE);
-		str = (char *)&buff;
-		if (len == 0 || len == -1)
+		if ((len = read(fd, buff, BUFF_SIZE)) <= 0)
 			return (len);
+		str = (char *)&buff;
 	}
 	c = *str;
 	++str;
@@ -39,25 +38,22 @@ int			get_next_line(const int fd, char **line)
 	char	c;
 	int		len;
 
-	if (line == NULL)
+	if (line == NULL || fd < 0)
 		return (-1);
 	len = 0;
-	*line = ft_strnew(BUFF_SIZE);
-	if (*line == NULL)
+	if (!(*line = ft_strnew((size_t)BUFF_SIZE)))
 		return (0);
 	c = ft_getchar(fd);
-	while (c != '\n' && c != '\0' && c != 0 && c != -1)
+	while (c != '\n' && c != '\0' && c != -1)
 	{
 		line[0][len] = c;
 		c = ft_getchar(fd);
 		++len;
-		if ((len % BUFF_SIZE + 1) == 0)
-			*line = ft_memrealloc(*line, len + BUFF_SIZE + 1);
+		if ((len % BUFF_SIZE) == 0)
+			*line = ft_memrealloc(*line, len + BUFF_SIZE);
 	}
 	line[0][len] = '\0';
 	if (c == -1)
-		return (c);
-	if (line[0][0] == '\0')
-		return (0);
-	return (1);
+		return (-1);
+	return ((line[0][0] == '\0' && c != '\n') ? 0 : 1);
 }

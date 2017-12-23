@@ -6,14 +6,14 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 11:16:50 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/22 15:32:28 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/23 12:11:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 1
 
 int		get_next_line(const int fd, char **line);
 
