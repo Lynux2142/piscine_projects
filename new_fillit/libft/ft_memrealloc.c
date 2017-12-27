@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/22 15:16:24 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/26 10:49:11 by lguiller         ###   ########.fr       */
+/*   Created: 2017/12/22 13:29:00 by lguiller          #+#    #+#             */
+/*   Updated: 2017/12/23 11:23:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "get_next_line.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	*ft_memrealloc(void *str, size_t size)
 {
-	int		fd;
-	char	*line;
+	void	*tmp;
+	int		i;
 
-	(void)ac;
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-		return (-1);
-	while (get_next_line((const int)fd, &line))
-	{
-		ft_putendl(line);
-		ft_memdel((void *)&line);
-	}
-	close(fd);
-	return (0);
+	tmp = str;
+	if (!(str = ft_memalloc(size + 1)))
+		return (NULL);
+	i = -1;
+	while (*(char *)&tmp[++i])
+		*(char *)&str[i] = *(char *)&tmp[i];
+	ft_memdel(&tmp);
+	return (str);
 }
