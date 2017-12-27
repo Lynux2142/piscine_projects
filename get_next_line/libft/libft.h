@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/15 16:37:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/27 11:37:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void				ft_putaddr_fd(void *str, int fd);
 int					ft_brackets(char *str);
 
 int					ft_abs(int nb);
+int					ft_sqrt(int nb);
 
 unsigned int		ft_pgcd(unsigned int a, unsigned int b);
 unsigned int		ft_ppcm(unsigned int a, unsigned int b);
