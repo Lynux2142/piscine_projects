@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:24:31 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/26 11:15:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/26 11:15:41 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			get_next_line(const int fd, char **line)
 	if (line == NULL || fd < 0)
 		return (-1);
 	len = 0;
-	if (!(*line = ft_strnew((size_t)BUFF_SIZE)))
+	if (!(line[0] = ft_strnew((size_t)BUFF_SIZE)))
 		return (0);
 	c = ft_getchar(fd);
 	while (c != '\n' && c != '\0' && c != -1)
@@ -50,7 +50,7 @@ int			get_next_line(const int fd, char **line)
 		c = ft_getchar(fd);
 		++len;
 		if ((len % BUFF_SIZE) == 0)
-			*line = ft_memrealloc(*line, len + BUFF_SIZE);
+			line[0] = ft_memrealloc(line[0], len + BUFF_SIZE);
 	}
 	line[0][len] = '\0';
 	if (c == -1)
