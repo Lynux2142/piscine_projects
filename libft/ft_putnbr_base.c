@@ -6,13 +6,13 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/15 10:34:25 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/15 12:40:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/29 10:19:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_check(char *base)
+static int		ft_check_alnum(char *base)
 {
 	int i;
 
@@ -22,6 +22,24 @@ static int		ft_check(char *base)
 	while (base[++i])
 		if (!ft_isalnum(base[i]))
 			return (0);
+	return (1);
+}
+
+static int		ft_check_double(char *base)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (base[++i])
+	{
+		j = -1;
+		while (base[++j])
+		{
+			if ((i != j) && (base[i] == base[j]))
+				return (0);
+		}
+	}
 	return (1);
 }
 
@@ -40,7 +58,7 @@ static void		ft_calc(int nbr, char *base, int i)
 
 void			ft_putnbr_base(int nbr, char *base)
 {
-	if (!ft_check(base))
+	if (!ft_check_alnum(base) || !ft_check_double(base))
 		return ;
 	if (nbr < 0 && ft_strlen(base) == 10)
 		ft_putchar('-');
