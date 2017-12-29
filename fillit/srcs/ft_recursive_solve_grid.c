@@ -6,13 +6,12 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 14:49:09 by manki             #+#    #+#             */
-/*   Updated: 2017/12/14 17:32:53 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/29 12:39:15 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static t_bool	ft_increment_g(t_coord *g, int len)
 {
