@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/27 16:24:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/29 10:54:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,7 @@ int					ft_sqrt(int nb);
 
 unsigned int		ft_pgcd(unsigned int a, unsigned int b);
 unsigned int		ft_ppcm(unsigned int a, unsigned int b);
+
+void				*ft_memrealloc(void *str, size_t size);
 
 #endif
