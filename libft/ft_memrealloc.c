@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 13:29:00 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/29 11:51:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/30 10:28:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	*ft_memrealloc(void *str, size_t size)
 		if (tmp)
 		{
 			i = -1;
-			while (*(char *)&tmp[++i])
-				*(char *)&str[i] = *(char *)&tmp[i];
+			while (*(char *)(tmp + (++i)))
+				*(char *)(str + i) = *(char *)(tmp + i);
 			ft_memdel(&tmp);
 		}
 	}
