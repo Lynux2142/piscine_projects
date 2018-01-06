@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:54:44 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/23 17:50:22 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/06 11:56:45 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int		ft_atoi(const char *str)
 		nb = nb * 10 + (str[i++] - '0');
 	if ((i - j) > 19)
 		return ((negativ == 1) ? 0 : -1);
-	nb = (negativ == 1) ? -nb : nb;
-	return (nb);
+	return ((negativ == 1) ? -nb : nb);
 }
