@@ -6,14 +6,14 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 10:10:33 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/09 12:07:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/09 12:16:00 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
 
-void	ft_puthex(unsigned char c)
+static void	ft_puthex(unsigned char c)
 {
 	char *tab;
 
@@ -22,12 +22,12 @@ void	ft_puthex(unsigned char c)
 	ft_putchar(tab[c % 16]);
 }
 
-void	ft_print(unsigned char c)
+static void	ft_print(unsigned char c)
 {
 	ft_putchar(ft_isprint(c) ? c : '.');
 }
 
-void	print_line(unsigned char *str, size_t start, size_t max)
+static void	print_line(unsigned char *str, size_t start, size_t max)
 {
 	size_t i;
 
@@ -52,7 +52,7 @@ void	print_line(unsigned char *str, size_t start, size_t max)
 	ft_putchar('\n');
 }
 
-void	print_memory(const void *addr, size_t size)
+void		print_memory(const void *addr, size_t size)
 {
 	unsigned char	*str;
 	size_t			c;
