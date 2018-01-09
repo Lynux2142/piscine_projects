@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:58:30 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/15 10:50:55 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/06 10:39:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,5 @@ size_t		ft_strlcat(char *dst, const char *src, size_t size)
 		++i;
 	}
 	dst[j + i] = '\0';
-	if (j > size)
-		return (ft_strlen((char *)src) + size);
 	return (ft_strlen((char *)src) + j);
 }

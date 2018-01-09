@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:48:23 by lguiller          #+#    #+#             */
-/*   Updated: 2017/12/26 09:39:49 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/05 17:37:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,5 @@ int			ft_brackets(char *str)
 	ft_point(str);
 	ft_cut(str);
 	ft_check(str);
-	if (str[0] != '\0')
-		return (0);
-	else
-		return (1);
+	return ((str[0] != '\0') ? 0 : 1);
 }
