@@ -5,23 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/22 13:29:00 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/09 12:36:22 by lguiller         ###   ########.fr       */
+/*   Created: 2018/01/10 15:04:12 by lguiller          #+#    #+#             */
+/*   Updated: 2018/01/10 15:52:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-void	*ft_memrealloc(void *str, size_t size)
+void		*ft_realloc(void *str, size_t size)
 {
 	void	*tmp;
 
 	if (size == 0 && str)
 	{
 		ft_memdel(&str);
-		if (!(tmp = ft_memalloc(1)))
+		if (!(str = ft_memalloc(1)))
 			return (NULL);
-		return (tmp);
 	}
 	else if (size > 0)
 	{
@@ -30,8 +30,8 @@ void	*ft_memrealloc(void *str, size_t size)
 			return (NULL);
 		if (tmp)
 		{
-			ft_memcpy(str, tmp, size);
-			ft_memdel(&tmp);
+			ft_strncpy(str, tmp, size);
+			ft_memdel((void **)&tmp);
 		}
 	}
 	return (str);

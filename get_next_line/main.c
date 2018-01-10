@@ -6,12 +6,11 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:16:24 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/03 16:22:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/10 16:01:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
-#include "get_next_line.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>

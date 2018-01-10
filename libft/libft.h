@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/09 12:04:07 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/10 16:02:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <string.h>
 
-# define BUFF_SIZE 1
+#define BUFF_SIZE 42
 # define CHECK_ERROR(value) if (!value) return (-1);
 
 typedef struct		s_list
@@ -102,7 +102,7 @@ int					ft_sqrt(int nb);
 unsigned int		ft_pgcd(unsigned int a, unsigned int b);
 unsigned int		ft_ppcm(unsigned int a, unsigned int b);
 
-void				*ft_memrealloc(void *str, size_t size);
+void				*ft_realloc(void *str, size_t size);
 int					get_next_line(int fd, char **line);
 
 void				print_memory(const void *addr, size_t size);
