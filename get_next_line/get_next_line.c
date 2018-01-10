@@ -6,12 +6,16 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:24:31 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/10 16:30:15 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/10 17:36:15 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
-#include "get_next_line.h"
+
+/*
+** #include "get_next_line.h"
+*/
+
 #include <unistd.h>
 
 static char	ft_getchar(const int fd, int *rd_len, t_struct *var)
