@@ -6,14 +6,14 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 11:16:50 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/10 16:39:32 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/11 14:53:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 12
+# define BUFF_SIZE 10000000
 
 typedef struct	s_struct
 {
