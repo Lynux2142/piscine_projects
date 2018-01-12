@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/10 17:34:13 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:16:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <string.h>
 
-#define BUFF_SIZE 42
-# define CHECK_ERROR(value) if (!value) return (-1);
+# define BUFF_SIZE 42
+# define GNL_CAR '\n'
 
 typedef struct		s_list
 {

@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:24:31 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/11 17:55:05 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:14:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				get_next_line(const int fd, char **line)
 	if (ptr->rd_len < 0)
 		return (-1);
 	len = 0;
-	while (c != '\n' && ptr->rd_len > 0)
+	while (c != GNL_CAR && ptr->rd_len > 0)
 	{
 		line[0][len] = c;
 		c = ft_getchar(link->content_size, &ptr->rd_len, ptr);
@@ -82,5 +82,5 @@ int				get_next_line(const int fd, char **line)
 			*line = ft_realloc(*line, len + BUFF_SIZE + 1);
 	}
 	line[0][len] = '\0';
-	return ((**line == '\0' && c != '\n') ? 0 : 1);
+	return ((**line == '\0' && c != GNL_CAR) ? 0 : 1);
 }
