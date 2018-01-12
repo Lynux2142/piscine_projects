@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 15:04:12 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/10 15:52:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/12 13:02:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		*ft_realloc(void *str, size_t size)
 		if (tmp)
 		{
 			ft_strncpy(str, tmp, size);
-			ft_memdel((void **)&tmp);
+			ft_memdel(&tmp);
 		}
 	}
 	return (str);
