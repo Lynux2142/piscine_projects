@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:24:31 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/15 09:36:13 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/18 10:05:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ static t_list	*ft_check(t_list **list, size_t fd)
 	return (elem);
 }
 
-static char		ft_getchar(const int fd, int *rd_len, t_struct *var)
+static char		ft_getchar(t_list *link, int *rd_len)
 {
+	t_struct	*var;
+	size_t		fd;
 	char		c;
 
+	fd = link->content_size;
+	var = ((t_struct *)link->content);
 	if (var->len == 0)
 	{
 		if ((*rd_len = read(fd, var->buff, BUFF_SIZE)) <= 0)
@@ -62,16 +66,14 @@ int				get_next_line(const int fd, char **line)
 	if (line == NULL || fd < 0 || !BUFF_SIZE || !(*line = ft_strnew(BUFF_SIZE)))
 		return (-1);
 	link = (t_list *)ft_check(&list, (size_t)fd);
-	c = ft_getchar(link->content_size,
-		&(((t_struct *)link->content)->rd_len), (t_struct *)link->content);
+	c = ft_getchar(link, &(((t_struct *)link->content)->rd_len));
 	if (((t_struct *)link->content)->rd_len < 0)
 		return (-1);
 	len = 0;
 	while (c != GNL_CAR && (((t_struct *)link->content))->rd_len > 0)
 	{
 		line[0][len] = c;
-		c = ft_getchar(link->content_size,
-			&(((t_struct *)link->content)->rd_len), (t_struct *)link->content);
+		c = ft_getchar(link, &(((t_struct *)link->content)->rd_len));
 		++len;
 		if ((len % BUFF_SIZE) == 0)
 			*line = ft_realloc(*line, len + BUFF_SIZE + 1);
