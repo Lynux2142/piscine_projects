@@ -3,20 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/22 15:16:24 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/17 14:56:48 by lguiller         ###   ########.fr       */
+/*   Created: 2018/01/18 09:48:14 by lguiller          #+#    #+#             */
+/*   Updated: 2018/01/18 10:02:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
+
+/*
+** #include "get_next_line.h"
+*/
+
 #include <unistd.h>
 #include <fcntl.h>
 
-#define NB 50
+#define NB 1
 
-int		main(int ac, char **av)
+static void	close_fd(int *fd)
+{
+	int i;
+
+	i = -1;
+	while (++i < NB)
+		close(fd[i]);
+}
+
+static void	open_file(int *fd, char *file)
+{
+	int i;
+
+	i = -1;
+	while (++i < NB)
+		fd[i] = open(file, O_RDONLY);
+}
+
+int			main(int ac, char **av)
 {
 	int		fd[NB];
 	char	*line;
@@ -24,10 +47,7 @@ int		main(int ac, char **av)
 	int		i;
 
 	(void)ac;
-	i = -1;
-	while (++i < NB)
-		if ((fd[i] = open(av[1], O_RDONLY)) == -1)
-			return (-1);
+	open_file(fd, av[1]);
 	i = 0;
 	while ((result = get_next_line((const int)fd[i], &line)) > 0)
 	{
@@ -38,9 +58,6 @@ int		main(int ac, char **av)
 			i = 0;
 	}
 	ft_memdel((void *)&line);
-	i = -1;
-	while (++i < NB)
-		if (close(fd[0]))
-			return (-1);
+	close_fd(fd);
 	return (0);
 }
