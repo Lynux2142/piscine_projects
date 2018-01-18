@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/17 15:08:35 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/18 15:17:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t				ft_strcspn(const char *s1, const char *s2);
 int					ft_atoi(const char *str);
+int					ft_atoi_base(const char *str, int base);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -65,6 +66,7 @@ int					ft_isspace(int c);
 int					ft_isprime(unsigned int nb);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_power(int nbr, int power);
 
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
