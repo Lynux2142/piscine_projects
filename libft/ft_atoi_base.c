@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:16:40 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/18 15:18:09 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/20 09:41:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static int	ft_check_nb(const char *nb, int base)
 	int		j;
 	char	*tab;
 
-	if (!(tab = ft_strnew(16)))
-		return (-1);
 	tab = "0123456789abcdef";
 	i = (nb[0] == '0' && (nb[1] == 'x' || nb[1] == 'X') && base == 16) ? 1 : -1;
 	while (nb[++i])
@@ -28,19 +26,20 @@ static int	ft_check_nb(const char *nb, int base)
 		while (j < base && nb[i] != tab[j])
 			++j;
 		if (j == base && nb[i] != tab[i])
-			return (0);
+			break ;
 	}
 	return (1);
 }
 
-static void	ft_tab_tolower(char *nb)
+static char	*ft_tab_tolower(char *nb)
 {
 	int i;
 
 	i = -1;
 	while (nb[++i])
 		if (nb[i] >= 'A' && nb[i] <= 'Z')
-			nb[i] = ft_tolower((int)nb[i]);
+			nb[i] += 32;
+	return (nb);
 }
 
 int			ft_atoi_base(const char *str, int base)
@@ -50,7 +49,7 @@ int			ft_atoi_base(const char *str, int base)
 	int		i;
 	int		stop;
 
-	ft_tab_tolower((char *)str);
+	str = ft_tab_tolower((char *)str);
 	if (str == NULL || base < 2 || base > 16 || !ft_check_nb(str, base))
 		return (0);
 	nb_len = ft_strlen(str) - 1;

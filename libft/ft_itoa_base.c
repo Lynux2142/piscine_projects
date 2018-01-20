@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 15:58:41 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/16 15:58:44 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/19 16:39:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_calc(char *nbr, int value, int base, int len)
 	while (len >= stop)
 	{
 		if (ft_abs(value % base) > 9)
-			nbr[len] = ft_abs(value % base) - 10 + 'A';
+			nbr[len] = ft_abs(value % base) - 10 + 'a';
 		else
 			nbr[len] = ft_abs(value % base) + '0';
 		value /= base;
