@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 10:10:33 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/21 16:27:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/21 16:42:13 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ void		print_memory(const void *addr, size_t size)
 	size_t			c;
 
 	str = (unsigned char *)addr;
-	c = 0;
-	while (c < size)
-	{
+	c = -16;
+	while ((c += 16) < size)
 		print_line(str, c, size);
-		c += 16;
-	}
 }
