@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/20 18:01:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/22 17:26:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 #include "mlx.h"
 #include "math.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void		fill_pixel(t_shape *ptr, int x, int y, int color)
 {
-	((char *)(ptr->data))[(x * 4) + (y * ptr->win_y * 4)] =
+	((char *)(ptr->data))[(x * 4) + (y * ptr->img_y * 4)] =
 		(char)color;
-	((char *)(ptr->data))[((x * 4) + (y * ptr->win_y * 4)) + 1] =
+	((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 1] =
 		(char)(color >> 8);
-	((char *)(ptr->data))[((x * 4) + (y * ptr->win_y * 4)) + 2] =
+	((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 2] =
 		(char)(color >> 16);
+	((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 3] =
+		(char)0;
 }
 
 int			ft_couleur(int red, int green, int blue)
@@ -31,92 +34,90 @@ int			ft_couleur(int red, int green, int blue)
 	return ((red << 16) | (green << 8) | (blue));
 }
 
-void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int couleur)
+void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 {
-	int	x1;
-	int	x2;
-	int	y1;
-	int	y2;
-	int	dx;
-	int	dy;
-	int	e;
+	t_draw	val;
 
-	x1 = xy1->u;
-	y1 = xy1->v;
-	x2 = xy2->u;
-	y2 = xy2->v;
-	if ((dx = x2 - x1) != 0)
+	val.x1 = xy1->u;
+	val.y1 = xy1->v;
+	val.x2 = xy2->u;
+	val.y2 = xy2->v;
+	if ((val.dx = val.x2 - val.x1) != 0)
 	{
-		if (dx > 0)
+		if (val.dx > 0)
 		{
-			if ((dy = y2 - y1) != 0)
+			if ((val.dy = val.y2 - val.y1) != 0)
 			{
-				if (dy > 0)
+				if (val.dy > 0)
 				{
-					if (dx >= dy)
+					if (val.dx >= val.dy)
 					{
-						e = dx;
-						dx = dx * 2;
-						dy = dy * 2;
-						while (x1++ != x2)
+						val.e = val.dx;
+						val.dx = val.dx * 2;
+						val.dy = val.dy * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e - dy) < 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.x1 = val.x1 + 1) == val.x2)
+								break ;
+							if ((val.e = val.e - val.dy) < 0)
 							{
-								y1++;
-								e = e + dx;
+								val.y1++;
+								val.e = val.e + val.dx;
 							}
 						}
 					}
 					else
 					{
-						e = dy;
-						dy = dy * 2;
-						dx = dx * 2;
-						while (y1++ != y2)
+						val.e = val.dy;
+						val.dy = val.dy * 2;
+						val.dx = val.dx * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e - dx) < 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.y1 = val.y1 + 1) == val.y2)
+								break ;
+							if ((val.e = val.e - val.dx) < 0)
 							{
-								x1++;
-								e = e + dy;
+								val.x1++;
+								val.e = val.e + val.dy;
 							}
 						}
 					}
 				}
 				else
 				{
-					if (dx >= (-dy))
+					if (val.dx >= (-val.dy))
 					{
-						e = dx;
-						dx = dx * 2;
-						dy = dy * 2;
-						while (x1++ != x2)
+						val.e = val.dx;
+						val.dx = val.dx * 2;
+						val.dy = val.dy * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e + dy) < 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.x1 = val.x1 + 1) == val.x2)
+								break ;
+							if ((val.e = val.e + val.dy) < 0)
 							{
-								y1--;
-								e = e + dy;
+								val.y1--;
+								val.e = val.e + val.dx;
 							}
 						}
 					}
 					else
 					{
-						e = dy;
-						dy = dy * 2;
-						dx = dx * 2;
-						while (y1-- != y2)
+						val.e = val.dy;
+						val.dy = val.dy * 2;
+						val.dx = val.dx * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e + dy) > 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.y1 = val.y1 - 1) == val.y2)
+								break ;
+							if ((val.e = val.e + val.dx) > 0)
 							{
-								x1++;
-								e = e + dy;
+								val.x1++;
+								val.e = val.e + val.dy;
 							}
 						}
 					}
@@ -124,81 +125,88 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int couleur)
 			}
 			else
 			{
-				while (x1++ != x2)
-//					mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-					fill_pixel(shape, x1, y1, couleur);
+				while (1)
+				{
+					fill_pixel(shape, val.x1, val.y1, col);
+					if ((val.x1 = val.x1 + 1) == val.x2)
+						break ;
+				}
 			}
 		}
 		else
 		{
-			if ((dy = y2 - y1) != 0)
+			if ((val.dy = val.y2 - val.y1) != 0)
 			{
-				if (dy > 0)
+				if (val.dy > 0)
 				{
-					if ((-dx) >= dy)
+					if ((-val.dx) >= val.dy)
 					{
-						e = dx;
-						dx = dx * 2;
-						dy = dy * 2;
-						while (x1-- != x2)
+						val.e = val.dx;
+						val.dx = val.dx * 2;
+						val.dy = val.dy * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e + dy) >= 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.x1 = val.x1 - 1) == val.x2)
+								break ;
+							if ((val.e = val.e + val.dy) >= 0)
 							{
-								y1++;
-								e = e + dx;
+								val.y1++;
+								val.e = val.e + val.dx;
 							}
 						}
 					}
 					else
 					{
-						e = dy;
-						dy = dy * 2;
-						dx = dx * 2;
-						while (y1++ != y2)
+						val.e = val.dy;
+						val.dy = val.dy * 2;
+						val.dx = val.dx * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e + dx) <= 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.y1 = val.y1 + 1) == val.y2)
+								break ;
+							if ((val.e = val.e + val.dx) <= 0)
 							{
-								x1--;
-								e = e + dy;
+								val.x1--;
+								val.e = val.e + val.dy;
 							}
 						}
 					}
 				}
 				else
 				{
-					if (dx <= dy)
+					if (val.dx <= val.dy)
 					{
-						e = dx;
-						dx = dx * 2;
-						dy = dy * 2;
-						while (x1-- != x2)
+						val.e = val.dx;
+						val.dx = val.dx * 2;
+						val.dy = val.dy * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e - dy) >= 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.x1 = val.x1 - 1) == val.x2)
+								break ;
+							if ((val.e = val.e - val.dy) >= 0)
 							{
-								y1--;
-								e = e + dx;
+								val.y1--;
+								val.e = val.e + val.dx;
 							}
 						}
 					}
 					else
 					{
-						e = dy;
-						dy = dy * 2;
-						dx = dx * 2;
-						while (y1-- != y2)
+						val.e = val.dy;
+						val.dy = val.dy * 2;
+						val.dx = val.dx * 2;
+						while (1)
 						{
-//							mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-							fill_pixel(shape, x1, y1, couleur);
-							if ((e = e - dx) >= 0)
+							fill_pixel(shape, val.x1, val.y1, col);
+							if ((val.y1 = val.y1 - 1) == val.y2)
+								break ;
+							if ((val.e = val.e - val.dx) >= 0)
 							{
-								x1--;
-								e = e + dy;
+								val.x1--;
+								val.e = val.e + val.dy;
 							}
 						}
 					}
@@ -206,45 +214,51 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int couleur)
 			}
 			else
 			{
-				while (x1-- != x2)
-//					mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-					fill_pixel(shape, x1, y1, couleur);
+				while (1)
+				{
+					fill_pixel(shape, val.x1, val.y1, col);
+					if ((val.x1 = val.x1 - 1) == val.x2)
+						break ;
+				}
 			}
 		}
 	}
 	else
 	{
-		if ((dy = y2 - y1) != 0)
+		if ((val.dy = val.y2 - val.y1) != 0)
 		{
-			if (dy > 0)
+			if (val.dy > 0)
 			{
-				while (y1++ != y2)
-//					mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-					fill_pixel(shape, x1, y1, couleur);
+				while (1)
+				{
+					fill_pixel(shape, val.x1, val.y1, col);
+					if ((val.y1 = val.y1 + 1) == val.y2)
+						break ;
+				}
 			}
 			else
 			{
-				while (y1-- != y2)
-//					mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-					fill_pixel(shape, x1, y1, couleur);
+				while (1)
+				{
+					fill_pixel(shape, val.x1, val.y1, col);
+					if ((val.y1 = val.y1 - 1) == val.y2)
+						break ;
+				}
 			}
 		}
 	}
-//	mlx_pixel_put(shape->mlx, shape->win, x1, y1, couleur);
-	fill_pixel(shape, x1, y1, couleur);
+	fill_pixel(shape, val.x2, val.y2, col);
 }
 
 void		ft_draw_funct(t_shape *shape)
 {
 	t_slist		*current;
 	t_slist		*current2;
-	t_slist		*prev_y;
-	t_slist		*prev_x;
 	t_link		*ptr;
 	int			color;
 
-	prev_y = NULL;
-	prev_x = NULL;
+	shape->prev_y = NULL;
+	shape->prev_x = NULL;
 	current = shape->list;
 	while (current)
 	{
@@ -252,24 +266,25 @@ void		ft_draw_funct(t_shape *shape)
 		while (current2)
 		{
 			ptr = (t_link *)current2->link;
-			color = (ptr->color) ? ptr->color : ft_couleur(ptr->x * 10, ptr->y * 20, 100);
-			if (prev_y)
+			color = (ptr->color) ? ptr->color :
+				ft_couleur(ptr->x * 10, ptr->y * 20, 200);
+			if (shape->prev_y)
 			{
 				ft_draw_segment(shape, (t_link *)current2->link,
-					(t_link *)prev_y->link, color);
-				prev_y = prev_y->next_x;
+						(t_link *)shape->prev_y->link, color);
+				shape->prev_y = shape->prev_y->next_x;
 			}
-			if (prev_x)
+			if (shape->prev_x)
 			{
 				ft_draw_segment(shape, (t_link *)current2->link,
-						(t_link *)prev_x->link, color);
-				prev_x = prev_x->next_x;
+						(t_link *)shape->prev_x->link, color);
+				shape->prev_x = shape->prev_x->next_x;
 			}
-			prev_x = current2;
+			shape->prev_x = current2;
 			current2 = current2->next_x;
 		}
-		prev_x = NULL;
-		prev_y = current;
+		shape->prev_x = NULL;
+		shape->prev_y = current;
 		current = current->next_y;
 	}
 }
@@ -284,14 +299,14 @@ void		ft_projection(t_shape *shape)
 
 	current = shape->list;
 	dec = 50;
-	agr = 2;
+	agr = 20;
 	while (current)
 	{
 		current2 = current;
 		while (current2)
 		{
 			ptr = (t_link *)current2->link;
-			ptr->u = dec + agr * (((ptr->x) 
+			ptr->u = (dec) + agr * (((ptr->x)
 						* cos(shape->coef_a + shape->coef_x)) + ((ptr->y)
 						* cos(shape->coef_a + shape->coef_y)) + ((ptr->z)
 						* cos(shape->coef_a - shape->coef_z)));
@@ -303,6 +318,8 @@ void		ft_projection(t_shape *shape)
 		}
 		current = current->next_y;
 	}
+	shape->img_x = shape->win_x;
+	shape->img_y = shape->win_y;
 	ft_draw_funct(shape);
 }
 
@@ -353,30 +370,34 @@ int			ft_key_funct(int key, t_shape *shape)
 		exit(1);
 	mlx_clear_window(shape->mlx, shape->win);
 	mlx_destroy_image(shape->mlx, shape->img);
-	shape->img = mlx_new_image(shape->mlx, shape->win_x, shape->win_y);
-	shape->data = mlx_get_data_addr(shape->img, &shape->bpp, &shape->sizeline, &shape->endian);
+	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
+	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
+			&shape->sizeline, &shape->endian);
 	ft_projection(shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 	return (0);
 }
 
-void		ft_draw(t_slist **list)
+void		ft_draw(t_shape *shape)
 {
-	t_shape		shape;
+	t_shape	*var;
 
-	shape.mlx = mlx_init();
-	shape.win_x = 2000;
-	shape.win_y = 1000;
-	shape.win = mlx_new_window(shape.mlx, shape.win_x, shape.win_y, "test");
-	shape.img = mlx_new_image(shape.mlx, shape.win_x, shape.win_y);
-	shape.data = mlx_get_data_addr(shape.img, &shape.bpp, &shape.sizeline, &shape.endian);
-	shape.list = *list;
-	shape.coef_x = 31;
-	shape.coef_y = 13;
-	shape.coef_z = 33;
-	shape.coef_a = 0;
-	ft_projection(&shape);
-	mlx_put_image_to_window(shape.mlx, shape.win, shape.img, 0, 0);
-	mlx_key_hook(shape.win, ft_key_funct, &shape);
-	mlx_loop(shape.mlx);
+	var = shape;
+	var->mlx = mlx_init();
+	var->win_x = 1500;
+	var->win_y = 1500;
+	var->img_x = var->win_x;
+	var->img_y = var->win_y;
+	var->win = mlx_new_window(var->mlx, var->win_x, var->win_y, "test");
+	var->img = mlx_new_image(var->mlx, var->img_x, var->img_y);
+	var->data = mlx_get_data_addr(var->img, &var->bpp,
+			&var->sizeline, &var->endian);
+	var->coef_x = 31;
+	var->coef_y = 13;
+	var->coef_z = 33;
+	var->coef_a = 0;
+	ft_projection(var);
+	mlx_put_image_to_window(var->mlx, var->win, var->img, 0, 0);
+	mlx_key_hook(var->win, ft_key_funct, var);
+	mlx_loop(var->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 17:47:21 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/20 16:30:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/22 15:26:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ void		ft_print_list(t_slist *list)
 
 int			main(int ac, char **av)
 {
-	t_slist	*list;
+	t_shape	shape;
 	int		fd;
 
 	if ((fd = open(av[1], O_RDONLY)) <= 0)
 		return (-1);
 	if (ac == 2 && fd > 0)
 	{
-		if (!(list = (t_slist *)ft_memalloc(sizeof(t_slist))))
+		if (!(shape.list = (t_slist *)ft_memalloc(sizeof(t_slist))))
 			return (-1);
-		if (!(list->link = (t_link *)ft_memalloc(sizeof(t_link))))
+		if (!(((t_slist *)shape.list)->link =
+		(t_link *)ft_memalloc(sizeof(t_link))))
 			return (-1);
-		((t_link *)list->link)->x = 0;
-		((t_link *)list->link)->y = 0;
-		ft_check_stock(fd, &list);
-//		ft_print_list(list);
-		ft_draw(&list);
-		ft_clear_list(&list);
+		((t_link *)((t_slist *)shape.list)->link)->x = 0;
+		((t_link *)((t_slist *)shape.list)->link)->y = 0;
+		ft_check_stock(fd, &shape);
+		ft_draw(&shape);
+		ft_clear_list(&shape.list);
 	}
 	if (!close(fd))
 		return (-1);

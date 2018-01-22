@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/20 17:45:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/22 17:16:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 typedef struct				s_shape
 {
 	struct s_slist			*list;
+	struct s_slist			*current;
+	struct s_slist			*previous;
+	struct s_slist			*temp;
+	struct s_slist			*prev_y;
+	struct s_slist			*prev_x;
 	void					*mlx;
 	void					*win;
 	void					*img;
@@ -23,8 +28,14 @@ typedef struct				s_shape
 	int						bpp;
 	int						sizeline;
 	int						endian;
+	int						max_l;
+	int						max_w;
+	int						*max_h;
+	int						*min_h;
 	int						win_x;
 	int						win_y;
+	int						img_x;
+	int						img_y;
 	int						coef_x;
 	int						coef_y;
 	int						coef_z;
@@ -48,13 +59,25 @@ typedef struct				s_link
 	int						v;
 }							t_link;
 
-void						ft_check_stock(int fd, t_slist **list);
+typedef struct				s_draw
+{
+	int						x1;
+	int						y1;
+	int						x2;
+	int						y2;
+	int						dy;
+	int						dx;
+	int						e;
+}							t_draw;
+
+void						ft_check_stock(int fd, t_shape *shape);
 void						ft_clear_list(t_slist **list);
 void						ft_print_list(t_slist *list);
-t_slist						*ft_add_first_line(t_slist *current,
-							char *line, int y);
-t_slist						*ft_add_next_line(t_slist *current,
-							t_slist *previous, char *line, int y);
-void						ft_draw(t_slist **list);
+t_slist						*ft_add_first_line(t_shape *shape,
+								char *line, int y);
+t_slist						*ft_add_next_line(t_shape *shape,
+								char *line, int y);
+void						ft_draw(t_shape *shape);
+int							ft_couleur(int red, int green, int blue);
 
 #endif

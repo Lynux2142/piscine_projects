@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/01/20 10:31:49 by lguiller         ###   ########.fr        #
+#    Updated: 2018/01/22 11:45:37 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,16 @@ FLAGS = -Wall -Wextra -Werror -g
 ##    COLORS    ##
 ##################
 
-_GREY	=$ \033[30m
+_BLACK	=$ \033[30m
 _RED	=$ \033[31m
 _GREEN	=$ \033[32m
 _YELLOW	=$ \033[33m
 _BLUE	=$ \033[34m
-_PURPLE	=$ \033[35m
+_VIOLET	=$ \033[35m
 _CYAN	=$ \033[36m
 _WHITE	=$ \033[37m
 _END	=$ \033[0m
+_CLEAR	=$ \033[2K
 
 ##################
 ##   TARGETS    ##
@@ -50,7 +51,10 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
-	@echo $@
+	@printf "$(_YELLOW) building - $(_END)"
+	@printf "$(_GREEN)"
+	@printf $@ | cut -c6- | cut -d'.' -f1
+	@printf "$(_END)"
 
 clean:
 	@make clean -C libft
@@ -61,3 +65,9 @@ fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
+
+lynux:
+	@make -C libft lynux
+
+booh: 
+	@make -C libft booh
