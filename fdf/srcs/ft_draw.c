@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/22 17:26:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/24 17:56:49 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,28 @@
 
 void		fill_pixel(t_shape *ptr, int x, int y, int color)
 {
-	((char *)(ptr->data))[(x * 4) + (y * ptr->img_y * 4)] =
-		(char)color;
-	((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 1] =
-		(char)(color >> 8);
-	((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 2] =
-		(char)(color >> 16);
-	((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 3] =
-		(char)0;
+	if (ptr->endian == 0)
+	{
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4))] =
+			(char)color;
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 1] =
+			(char)(color >> 8);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 2] =
+			(char)(color >> 16);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 3] =
+			(char)0;
+	}
+	else if (ptr->endian == 1)
+	{
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4))] =
+			(char)0;
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 1] =
+			(char)(color >> 16);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 2] =
+			(char)(color >> 8);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 3] =
+			(char)color;
+	}
 }
 
 int			ft_couleur(int red, int green, int blue)
@@ -57,7 +71,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dy = val.dy * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.x1 = val.x1 + 1) == val.x2)
 								break ;
 							if ((val.e = val.e - val.dy) < 0)
@@ -74,7 +89,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dx = val.dx * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.y1 = val.y1 + 1) == val.y2)
 								break ;
 							if ((val.e = val.e - val.dx) < 0)
@@ -94,7 +110,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dy = val.dy * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.x1 = val.x1 + 1) == val.x2)
 								break ;
 							if ((val.e = val.e + val.dy) < 0)
@@ -111,7 +128,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dx = val.dx * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.y1 = val.y1 - 1) == val.y2)
 								break ;
 							if ((val.e = val.e + val.dx) > 0)
@@ -127,7 +145,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 			{
 				while (1)
 				{
-					fill_pixel(shape, val.x1, val.y1, col);
+					fill_pixel(shape, val.x1 - *shape->min_x + 100,
+					val.y1 + (shape->img_y - *shape->max_y - 100), col);
 					if ((val.x1 = val.x1 + 1) == val.x2)
 						break ;
 				}
@@ -146,7 +165,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dy = val.dy * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.x1 = val.x1 - 1) == val.x2)
 								break ;
 							if ((val.e = val.e + val.dy) >= 0)
@@ -163,7 +183,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dx = val.dx * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.y1 = val.y1 + 1) == val.y2)
 								break ;
 							if ((val.e = val.e + val.dx) <= 0)
@@ -183,7 +204,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dy = val.dy * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.x1 = val.x1 - 1) == val.x2)
 								break ;
 							if ((val.e = val.e - val.dy) >= 0)
@@ -200,7 +222,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 						val.dx = val.dx * 2;
 						while (1)
 						{
-							fill_pixel(shape, val.x1, val.y1, col);
+							fill_pixel(shape, val.x1 - *shape->min_x + 100,
+							val.y1 + (shape->img_y - *shape->max_y - 100), col);
 							if ((val.y1 = val.y1 - 1) == val.y2)
 								break ;
 							if ((val.e = val.e - val.dx) >= 0)
@@ -216,7 +239,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 			{
 				while (1)
 				{
-					fill_pixel(shape, val.x1, val.y1, col);
+					fill_pixel(shape, val.x1 - *shape->min_x + 100,
+					val.y1 + (shape->img_y - *shape->max_y - 100), col);
 					if ((val.x1 = val.x1 - 1) == val.x2)
 						break ;
 				}
@@ -231,7 +255,8 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 			{
 				while (1)
 				{
-					fill_pixel(shape, val.x1, val.y1, col);
+					fill_pixel(shape, val.x1 - *shape->min_x + 100,
+					val.y1 + (shape->img_y - *shape->max_y - 100), col);
 					if ((val.y1 = val.y1 + 1) == val.y2)
 						break ;
 				}
@@ -240,14 +265,16 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 			{
 				while (1)
 				{
-					fill_pixel(shape, val.x1, val.y1, col);
+					fill_pixel(shape, val.x1 - *shape->min_x + 100,
+					val.y1 + (shape->img_y - *shape->max_y - 100), col);
 					if ((val.y1 = val.y1 - 1) == val.y2)
 						break ;
 				}
 			}
 		}
 	}
-	fill_pixel(shape, val.x2, val.y2, col);
+	fill_pixel(shape, val.x1 - *shape->min_x + 100,
+	val.y1 + (shape->img_y - *shape->max_y - 100), col);
 }
 
 void		ft_draw_funct(t_shape *shape)
@@ -257,8 +284,6 @@ void		ft_draw_funct(t_shape *shape)
 	t_link		*ptr;
 	int			color;
 
-	shape->prev_y = NULL;
-	shape->prev_x = NULL;
 	current = shape->list;
 	while (current)
 	{
@@ -268,23 +293,14 @@ void		ft_draw_funct(t_shape *shape)
 			ptr = (t_link *)current2->link;
 			color = (ptr->color) ? ptr->color :
 				ft_couleur(ptr->x * 10, ptr->y * 20, 200);
-			if (shape->prev_y)
-			{
+			if (current2->next_y)
 				ft_draw_segment(shape, (t_link *)current2->link,
-						(t_link *)shape->prev_y->link, color);
-				shape->prev_y = shape->prev_y->next_x;
-			}
-			if (shape->prev_x)
-			{
+						(t_link *)current2->next_y->link, color);
+			if (current2->next_x)
 				ft_draw_segment(shape, (t_link *)current2->link,
-						(t_link *)shape->prev_x->link, color);
-				shape->prev_x = shape->prev_x->next_x;
-			}
-			shape->prev_x = current2;
+						(t_link *)current2->next_x->link, color);
 			current2 = current2->next_x;
 		}
-		shape->prev_x = NULL;
-		shape->prev_y = current;
 		current = current->next_y;
 	}
 }
@@ -294,48 +310,63 @@ void		ft_projection(t_shape *shape)
 	t_slist		*current;
 	t_slist		*current2;
 	t_link		*ptr;
-	int			agr;
-	int			dec;
 
 	current = shape->list;
-	dec = 50;
-	agr = 20;
 	while (current)
 	{
 		current2 = current;
 		while (current2)
 		{
 			ptr = (t_link *)current2->link;
-			ptr->u = (dec) + agr * (((ptr->x)
+			ptr->u = shape->agr * (((ptr->x)
 						* cos(shape->coef_a + shape->coef_x)) + ((ptr->y)
 						* cos(shape->coef_a + shape->coef_y)) + ((ptr->z)
 						* cos(shape->coef_a - shape->coef_z)));
-			ptr->v = (dec * 10) + agr * (((ptr->x)
+			ptr->v = shape->agr * (((ptr->x)
 						* sin(shape->coef_a + shape->coef_x)) + ((ptr->y)
 						* sin(shape->coef_a + shape->coef_y)) + ((ptr->z)
 						* sin(shape->coef_a - shape->coef_z)));
+			if (shape->first == 0)
+			{
+				if (!shape->max_y || *shape->max_y < ptr->v)
+					*shape->max_y = ptr->v;
+				if (!shape->max_x || *shape->max_x < ptr->u)
+					*shape->max_x = ptr->u;
+				if (!shape->min_y || *shape->min_y > ptr->v)
+					*shape->min_y = ptr->v;
+				if (!shape->min_x || *shape->min_x > ptr->u)
+					*shape->min_x = ptr->u;
+			}
 			current2 = current2->next_x;
 		}
 		current = current->next_y;
 	}
-	shape->img_x = shape->win_x;
-	shape->img_y = shape->win_y;
+	shape->first = 1;
 	ft_draw_funct(shape);
 }
 
 int			ft_key_funct(int key, t_shape *shape)
 {
-	ft_putstr("keycode : ");
-	ft_putnbr(key);
-	ft_putchar('\n');
 	if (key == 12)
+	{
 		shape->coef_x += 1;
+		shape->coef_z -= 1;
+	}
 	if (key == 0)
+	{
 		shape->coef_x -= 1;
+		shape->coef_z += 1;
+	}
 	if (key == 13)
+	{
 		shape->coef_y += 1;
+		shape->coef_z -= 1;
+	}
 	if (key == 1)
+	{
 		shape->coef_y -= 1;
+		shape->coef_z += 1;
+	}
 	if (key == 14)
 		shape->coef_z += 1;
 	if (key == 2)
@@ -344,25 +375,30 @@ int			ft_key_funct(int key, t_shape *shape)
 		shape->coef_a += 1;
 	if (key == 3)
 		shape->coef_a -= 1;
+	if (key == 126)
+		shape->agr += 1;
+	if (key == 125)
+		shape->agr -= 1;
 	if (key == 49)
 	{
 		shape->coef_x = 31;
 		shape->coef_y = 13;
 		shape->coef_z = 33;
 		shape->coef_a = 0;
+		shape->agr = 1;
 	}
 	if (key == 36)
 	{
-		ft_putstr("coef_x : ");
+		ft_putstr("		coef_x : ");
 		ft_putnbr(shape->coef_x);
 		ft_putchar('\n');
-		ft_putstr("coef_y : ");
+		ft_putstr("		coef_y : ");
 		ft_putnbr(shape->coef_y);
 		ft_putchar('\n');
-		ft_putstr("coef_z : ");
+		ft_putstr("		coef_z : ");
 		ft_putnbr(shape->coef_z);
 		ft_putchar('\n');
-		ft_putstr("coef_a : ");
+		ft_putstr("		coef_a : ");
 		ft_putnbr(shape->coef_a);
 		ft_putchar('\n');
 	}
@@ -384,10 +420,11 @@ void		ft_draw(t_shape *shape)
 
 	var = shape;
 	var->mlx = mlx_init();
-	var->win_x = 1500;
-	var->win_y = 1500;
+	var->win_x = 800;
+	var->win_y = 800;
 	var->img_x = var->win_x;
 	var->img_y = var->win_y;
+	shape->agr = 1;
 	var->win = mlx_new_window(var->mlx, var->win_x, var->win_y, "test");
 	var->img = mlx_new_image(var->mlx, var->img_x, var->img_y);
 	var->data = mlx_get_data_addr(var->img, &var->bpp,

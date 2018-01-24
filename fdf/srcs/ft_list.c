@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/22 17:22:48 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:18:44 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ static void		ft_register(t_shape *shape, int x, int y, char *z_col)
 	data->x = x;
 	data->y = y;
 	data->z = ft_atoi(tmp[0]);
-	if (!shape->max_h || *shape->max_h < ft_atoi(tmp[0]))
-		*shape->max_h = ft_atoi(tmp[0]);
-	if (!shape->min_h || *shape->min_h > ft_atoi(tmp[0]))
-		*shape->min_h = ft_atoi(tmp[0]);
 	if (tmp[1] != NULL)
 		data->color = ft_atoi_base(tmp[1], 16);
 	ft_clear_tmp(tmp);
@@ -80,7 +76,6 @@ t_slist			*ft_add_first_line(t_shape *shape, char *line, int y)
 		shape->temp = ((t_slist *)shape->temp)->next_x;
 		ft_register(shape, x, y, tmp[x]);
 	}
-	shape->max_w = x;
 	ft_clear_tmp(tmp);
 	return ((t_slist *)shape->list);
 }
