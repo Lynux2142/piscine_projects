@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/24 17:56:49 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/25 14:42:49 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,31 @@
 
 void		fill_pixel(t_shape *ptr, int x, int y, int color)
 {
-	if (ptr->endian == 0)
+	if ((((x * 4) + (y * ptr->img_y * 4)) + 3) <= (ptr->img_x * 4) + (ptr->img_y * ptr->sizeline * 4)
+			&& (((x * 4) + (y * ptr->img_y * 4)) + 3) >= 0)
 	{
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4))] =
-			(char)color;
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 1] =
-			(char)(color >> 8);
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 2] =
-			(char)(color >> 16);
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 3] =
-			(char)0;
-	}
-	else if (ptr->endian == 1)
-	{
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4))] =
-			(char)0;
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 1] =
-			(char)(color >> 16);
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 2] =
-			(char)(color >> 8);
-		((char *)(ptr->data))[((x * 4) + (y * ptr->img_y * 4)) + 3] =
-			(char)color;
+		if (ptr->endian == 0)
+		{
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline))] =
+				(char)color;
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline)) + 1] =
+				(char)(color >> 8);
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline)) + 2] =
+				(char)(color >> 16);
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline)) + 3] =
+				(char)0;
+		}
+		else if (ptr->endian == 1)
+		{
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline))] =
+				(char)0;
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline)) + 1] =
+				(char)(color >> 16);
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline)) + 2] =
+				(char)(color >> 8);
+			((char *)(ptr->data))[((x * 4) + (y * ptr->sizeline)) + 3] =
+				(char)color;
+		}
 	}
 }
 

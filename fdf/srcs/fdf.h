@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/24 17:56:52 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/25 14:12:42 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct				s_shape
 	int						*min_x;
 	int						*max_x;
 	int						agr;
+	int						width;
 	int						win_x;
 	int						win_y;
 	int						img_x;
