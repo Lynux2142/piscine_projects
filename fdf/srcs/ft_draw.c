@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/25 14:42:49 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/25 14:49:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -379,9 +379,9 @@ int			ft_key_funct(int key, t_shape *shape)
 		shape->coef_a += 1;
 	if (key == 3)
 		shape->coef_a -= 1;
-	if (key == 126)
+	if (key == 69)
 		shape->agr += 1;
-	if (key == 125)
+	if (key == 78)
 		shape->agr -= 1;
 	if (key == 49)
 	{
