@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:25:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/26 16:55:33 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/26 18:27:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,20 @@ void		projection_calcul_v(t_shape *shape, t_link *ptr)
 				* sin(shape->coef_a + shape->coef_x)) + ((ptr->y)
 				* sin(shape->coef_a + shape->coef_y)) + ((ptr->z)
 				* sin(shape->coef_a - shape->coef_z)));
+}
+
+int			ft_calcul_color(t_slist *first, t_slist *second)
+{
+	t_link	*ptr;
+
+	ptr = (t_link *)first->link;
+	if (first->link->color && second->link->color)
+	{
+		if (((t_link *)first->link)->z < ((t_link *)second->link)->z)
+			return (((t_link *)second->link)->color);
+		else
+			return (((t_link *)first->link)->color);
+	}
+	else
+		return (ft_couleur(ptr->x * 10, ptr->y * 20, 200));
 }

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/26 17:07:21 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/26 18:27:30 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,29 +243,29 @@ void		ft_draw_segment(t_shape *shape, t_link *xy1, t_link *xy2, int col)
 
 void		ft_draw_funct(t_shape *shape)
 {
-	t_slist		*current;
-	t_slist		*current2;
-	t_link		*ptr;
+	t_slist		*i;
+	t_slist		*j;
 	int			color;
 
-	current = shape->list;
-	while (current)
+	i = shape->list;
+	while (i)
 	{
-		current2 = current;
-		while (current2)
+		j = i;
+		while (j)
 		{
-			ptr = (t_link *)current2->link;
-			color = (ptr->color) ? ptr->color :
-				ft_couleur(ptr->x * 10, ptr->y * 20, 200);
-			if (current2->next_y)
-				ft_draw_segment(shape, (t_link *)current2->link,
-						(t_link *)current2->next_y->link, color);
-			if (current2->next_x)
-				ft_draw_segment(shape, (t_link *)current2->link,
-						(t_link *)current2->next_x->link, color);
-			current2 = current2->next_x;
+			if (j->next_y)
+				color = ft_calcul_color(j, j->next_y);
+			if (j->next_y)
+				ft_draw_segment(shape, (t_link *)j->link,
+						(t_link *)j->next_y->link, color);
+			if (j->next_x)
+				color = ft_calcul_color(j, j->next_x);
+			if (j->next_x)
+				ft_draw_segment(shape, (t_link *)j->link,
+						(t_link *)j->next_x->link, color);
+			j = j->next_x;
 		}
-		current = current->next_y;
+		i = i->next_y;
 	}
 }
 
@@ -283,24 +283,24 @@ void		ft_xtrem_values(t_shape *shape, t_link *ptr)
 
 void		ft_projection(t_shape *shape)
 {
-	t_slist		*current;
-	t_slist		*current2;
+	t_slist		*i;
+	t_slist		*j;
 	t_link		*ptr;
 
-	current = shape->list;
-	while (current)
+	i = shape->list;
+	while (i)
 	{
-		current2 = current;
-		while (current2)
+		j = i;
+		while (j)
 		{
-			ptr = (t_link *)current2->link;
+			ptr = (t_link *)j->link;
 			projection_calcul_u(shape, ptr);
 			projection_calcul_v(shape, ptr);
 			if (shape->first == 0)
 				ft_xtrem_values(shape, ptr);
-			current2 = current2->next_x;
+			j = j->next_x;
 		}
-		current = current->next_y;
+		i = i->next_y;
 	}
 	shape->first = 1;
 	ft_draw_funct(shape);
