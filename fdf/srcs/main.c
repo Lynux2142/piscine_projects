@@ -6,11 +6,10 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 17:47:21 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/25 16:20:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:23:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fdf.h"
 #include <fcntl.h>
 #include <unistd.h>
@@ -49,11 +48,13 @@ int			main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		if ((fd = open(av[1], O_RDONLY)) <= 0)
-			return (-1);
-		if (!(shape.list = (t_slist *)ft_memalloc(sizeof(t_slist))))
-			return (-1);
-		if (!(((t_slist *)shape.list)->link =
+		if (!(shape.max_y = (int *)ft_memalloc(sizeof(int)))
+		|| !(shape.max_x = (int *)ft_memalloc(sizeof(int)))
+		|| !(shape.min_y = (int *)ft_memalloc(sizeof(int)))
+		|| !(shape.min_x = (int *)ft_memalloc(sizeof(int)))
+		|| ((fd = open(av[1], O_RDONLY)) == -1)
+		|| !(shape.list = (t_slist *)ft_memalloc(sizeof(t_slist)))
+		|| !(((t_slist *)shape.list)->link =
 		(t_link *)ft_memalloc(sizeof(t_link))))
 			return (-1);
 		((t_link *)((t_slist *)shape.list)->link)->x = 0;
@@ -61,7 +62,7 @@ int			main(int ac, char **av)
 		ft_check_stock(fd, &shape);
 		ft_draw(&shape);
 		ft_clear_list(&shape.list);
-		if (!close(fd))
+		if (close(fd) == -1)
 			return (-1);
 	}
 	else

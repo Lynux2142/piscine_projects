@@ -6,13 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/25 14:17:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:23:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fdf.h"
-#include <stdlib.h>
 
 static void		ft_clear_tmp(char **tmp)
 {
@@ -65,7 +63,7 @@ t_slist			*ft_add_first_line(t_shape *shape, char *line, int y)
 	char		**tmp;
 
 	shape->temp = ((t_slist *)shape->current);
-	tmp = ft_strsplit(line, ' ');
+	tmp = ft_split_whitespaces(line);
 	shape->width = 0;
 	ft_register(shape, shape->width, y, tmp[shape->width]);
 	while (tmp[++shape->width])
@@ -86,7 +84,7 @@ t_slist			*ft_add_next_line(t_shape *shape, char *line, int y)
 	char		**tmp;
 
 	shape->temp = ((t_slist *)shape->current);
-	tmp = ft_strsplit(line, ' ');
+	tmp = ft_split_whitespaces(line);
 	x = 0;
 	ft_register(shape, x, y, tmp[x]);
 	while (tmp[++x])

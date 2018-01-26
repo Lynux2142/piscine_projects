@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/01/22 11:45:37 by lguiller         ###   ########.fr        #
+#    Updated: 2018/01/26 16:55:41 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@
 
 NAME = fdf
 
-SRCS = srcs/main.c srcs/ft_check_stock.c srcs/ft_list.c srcs/ft_draw.c
+SRCS = srcs/main.c srcs/ft_check_stock.c srcs/ft_list.c srcs/ft_draw.c \
+	   srcs/event_functions.c srcs/ft_pixels.c
 
 OBJ = $(SRCS:.c=.o)
 

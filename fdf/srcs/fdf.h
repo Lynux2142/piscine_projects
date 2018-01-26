@@ -6,12 +6,17 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/25 14:12:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:55:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+# include "../libft/libft.h"
+# include <mlx.h>
+# include <math.h>
+# include <stdlib.h>
 
 typedef struct				s_shape
 {
@@ -82,5 +87,13 @@ t_slist						*ft_add_next_line(t_shape *shape,
 								char *line, int y);
 void						ft_draw(t_shape *shape);
 int							ft_couleur(int red, int green, int blue);
+void						ft_projection(t_shape *shape);
+int							ft_mouse_funct(int mouse, int x, int y,
+								t_shape *shape);
+int							ft_key_funct(int key, t_shape *shape);
+int							ft_couleur(int red, int green, int blue);
+void						fill_pixel(t_shape *shape, int x, int y, int color);
+void						projection_calcul_u(t_shape *shape, t_link *ptr);
+void						projection_calcul_v(t_shape *shape, t_link *ptr);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2018/01/23 10:32:12 by lguiller         ###   ########.fr        #
+#    Updated: 2018/01/26 11:30:24 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 	  ft_lstmap.c ft_putaddr.c ft_putaddr_fd.c ft_itoa_base.c ft_brackets.c \
 	  ft_putnbr_base.c ft_isprime.c ft_abs.c ft_strcspn.c ft_pgcd.c ft_ppcm.c \
 	  ft_realloc.c ft_sqrt.c print_memory.c get_next_line.c ft_isspace.c \
-	  ft_atoi_base.c ft_power.c
-
+	  ft_atoi_base.c ft_power.c ft_split_whitespaces.c
 OBJ = $(SRC:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror -g
@@ -40,19 +39,19 @@ FLAGS = -Wall -Wextra -Werror -g
 ##    COLORS    ##
 ##################
 
-_GREY	=$ \033[30m
-_RED	=$ \033[31m
-_GREEN	=$ \033[32m
-_YELLOW	=$ \033[33m
-_BLUE	=$ \033[34m
-_PURPLE	=$ \033[35m
-_CYAN	=$ \033[36m
-_WHITE	=$ \033[37m
-_END	=$ \033[0m
-_BOLD	=$ \033[1m
-_CLEAR	=$ \033[2K
-_SAVE	=$ \033[7
-_BACK	=$ \033[8
+_GREY		=$ \033[30m
+_RED		=$ \033[31m
+_GREEN		=$ \033[32m
+_YELLOW		=$ \033[33m
+_BLUE		=$ \033[34m
+_PURPLE		=$ \033[35m
+_CYAN		=$ \033[36m
+_WHITE		=$ \033[37m
+_END		=$ \033[0m
+_BOLD		=$ \033[1m
+_CLEAR		=$ \033[2K
+_SAVE		=$ \033[7
+_BACK		=$ \033[8
 _HIDE_CURS	=$ \033[?25l
 _SHOW_CURS	=$ \033[?25h
 
@@ -74,7 +73,7 @@ $(NAME): $(OBJ)
 	@gcc $(FLAGS) -c $^ -o $@
 	@printf "$(_CLEAR)$(_YELLOW) building - $(_END)"
 	@printf "$(_GREEN)$@$(_END)"
-	@printf "$(_HIDE_CURS)\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+	@printf "$(_HIDE_CURS)\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
 
 clean:
 	@/bin/rm -f $(OBJ)
