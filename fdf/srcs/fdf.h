@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/26 18:27:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 11:07:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <stdlib.h>
+# include <string.h>
 
 typedef struct				s_shape
 {
@@ -96,5 +97,31 @@ void						fill_pixel(t_shape *shape, int x, int y, int color);
 void						projection_calcul_u(t_shape *shape, t_link *ptr);
 void						projection_calcul_v(t_shape *shape, t_link *ptr);
 int							ft_calcul_color(t_slist *first, t_slist *second);
+void						ft_draw_segment(t_shape *shape,
+								t_link *xy1, t_link *xy2, int col);
+void						draw_octan_one(t_shape *shape,
+								t_draw *val, int col);
+void						draw_octan_two(t_shape *shape,
+								t_draw *val, int col);
+void						draw_octan_three(t_shape *shape,
+								t_draw *val, int col);
+void						draw_octan_four(t_shape *shape,
+								t_draw *val, int col);
+void						draw_octan_five(t_shape *shape,
+								t_draw *val, int col);
+void						draw_octan_six(t_shape *shape,
+								t_draw *val, int col);
+void						draw_octan_seven(t_shape *shape,
+								t_draw *val, int col);
+void						draw_octan_eight(t_shape *shape,
+								t_draw *val, int col);
+void						draw_horizontal_right(t_shape *shape,
+								t_draw *val, int col);
+void						draw_horizontal_left(t_shape *shape,
+								t_draw *val, int col);
+void						draw_vertical_increasing(t_shape *shape,
+								t_draw *val, int col);
+void						draw_vertical_decreasing(t_shape *shape,
+								t_draw *val, int col);
 
 #endif

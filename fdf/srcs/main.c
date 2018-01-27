@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 17:47:21 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/26 16:23:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 11:10:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			main(int ac, char **av)
 		|| ((fd = open(av[1], O_RDONLY)) == -1)
 		|| !(shape.list = (t_slist *)ft_memalloc(sizeof(t_slist)))
 		|| !(((t_slist *)shape.list)->link =
-		(t_link *)ft_memalloc(sizeof(t_link))))
+			(t_link *)ft_memalloc(sizeof(t_link))))
 			return (-1);
 		((t_link *)((t_slist *)shape.list)->link)->x = 0;
 		((t_link *)((t_slist *)shape.list)->link)->y = 0;

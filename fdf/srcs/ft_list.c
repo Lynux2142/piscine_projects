@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/26 16:23:43 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 12:09:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static void		ft_register(t_shape *shape, int x, int y, char *z_col)
 	tmp = ft_strsplit(z_col, ',');
 	data->x = x;
 	data->y = y;
+	if (!tmp)
+	{
+		ft_putendl_fd("error: Not valid file. Exiting.", 2);
+		exit(-1);
+	}
 	data->z = ft_atoi(tmp[0]);
 	if (tmp[1] != NULL)
 		data->color = ft_atoi_base(tmp[1], 16);
@@ -99,7 +104,7 @@ t_slist			*ft_add_next_line(t_shape *shape, char *line, int y)
 	}
 	if (x != shape->width)
 	{
-		ft_putendl("Found wrong line length. Exiting.");
+		ft_putendl("error: Found wrong line length. Exiting.");
 		exit(-1);
 	}
 	shape->previous->next_y = ((t_slist *)shape->temp);

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:16:40 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/21 09:58:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 12:52:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*ft_tab_tolower(char *nb)
 	i = -1;
 	while (nb[++i])
 		if (nb[i] >= 'A' && nb[i] <= 'Z')
-			nb[i] += 32;
+			nb[i] = ft_tolower(nb[i]);
 	return (nb);
 }
 
