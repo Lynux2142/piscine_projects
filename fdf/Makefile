@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/01/27 12:13:24 by lguiller         ###   ########.fr        #
+#    Updated: 2018/01/27 12:58:22 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,5 +71,5 @@ re: fclean all
 lynux:
 	@make -C libft lynux
 
-booh: 
+booh:
 	@make -C libft booh
