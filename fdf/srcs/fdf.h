@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 11:07:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 15:19:15 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ typedef struct				s_draw
 	int						e;
 }							t_draw;
 
+void						ft_error(char *str);
 void						ft_check_stock(int fd, t_shape *shape);
 void						ft_clear_list(t_slist **list);
-void						ft_print_list(t_slist *list);
 t_slist						*ft_add_first_line(t_shape *shape,
 								char *line, int y);
 t_slist						*ft_add_next_line(t_shape *shape,

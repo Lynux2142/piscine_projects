@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/26 17:07:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 15:20:22 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
+int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 {
 	(void)x;
 	(void)y;
@@ -33,7 +33,7 @@ int			ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 	return (0);
 }
 
-void		move_axe_x(int key, t_shape *shape)
+static void		move_axe_x(int key, t_shape *shape)
 {
 	if (key == 12)
 	{
@@ -47,7 +47,7 @@ void		move_axe_x(int key, t_shape *shape)
 	}
 }
 
-void		move_axe_y(int key, t_shape *shape)
+static void		move_axe_y(int key, t_shape *shape)
 {
 	if (key == 13)
 	{
@@ -61,7 +61,7 @@ void		move_axe_y(int key, t_shape *shape)
 	}
 }
 
-void		move_others(int key, t_shape *shape)
+static void		move_others(int key, t_shape *shape)
 {
 	if (key == 15)
 		shape->coef_a += 1;
@@ -80,7 +80,7 @@ void		move_others(int key, t_shape *shape)
 	}
 }
 
-int			ft_key_funct(int key, t_shape *shape)
+int				ft_key_funct(int key, t_shape *shape)
 {
 	mlx_clear_window(shape->mlx, shape->win);
 	mlx_destroy_image(shape->mlx, shape->img);

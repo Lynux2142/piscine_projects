@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 11:01:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 15:20:44 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		ft_draw_funct(t_shape *shape)
+static void		ft_draw_funct(t_shape *shape)
 {
 	t_slist		*i;
 	t_slist		*j;
@@ -40,7 +40,7 @@ void		ft_draw_funct(t_shape *shape)
 	}
 }
 
-void		ft_xtrem_values(t_shape *shape, t_link *ptr)
+static void		ft_xtrem_values(t_shape *shape, t_link *ptr)
 {
 	if (!shape->max_y || *shape->max_y < ptr->v)
 		*shape->max_y = ptr->v;
@@ -52,7 +52,7 @@ void		ft_xtrem_values(t_shape *shape, t_link *ptr)
 		*shape->min_x = ptr->u;
 }
 
-void		ft_projection(t_shape *shape)
+void			ft_projection(t_shape *shape)
 {
 	t_slist		*i;
 	t_slist		*j;
@@ -77,7 +77,7 @@ void		ft_projection(t_shape *shape)
 	ft_draw_funct(shape);
 }
 
-void		ft_draw(t_shape *shape)
+void			ft_draw(t_shape *shape)
 {
 	shape->mlx = mlx_init();
 	shape->win_x = 1200;

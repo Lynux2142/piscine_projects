@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 12:09:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/27 15:13:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ static void		ft_register(t_shape *shape, int x, int y, char *z_col)
 	data->x = x;
 	data->y = y;
 	if (!tmp)
-	{
-		ft_putendl_fd("error: Not valid file. Exiting.", 2);
-		exit(-1);
-	}
+		ft_error("error: Not valid file. Exiting.");
 	data->z = ft_atoi(tmp[0]);
 	if (tmp[1] != NULL)
 		data->color = ft_atoi_base(tmp[1], 16);
@@ -94,6 +91,8 @@ t_slist			*ft_add_next_line(t_shape *shape, char *line, int y)
 	ft_register(shape, x, y, tmp[x]);
 	while (tmp[++x])
 	{
+		if (x > shape->width)
+			ft_error("error: Found wrong line length. Exiting.");
 		if (!(shape->temp->next_x = (t_slist *)ft_memalloc(sizeof(t_slist)))
 		|| !(shape->temp->next_x->link = (t_link *)ft_memalloc(sizeof(t_link))))
 			return (NULL);
@@ -103,10 +102,7 @@ t_slist			*ft_add_next_line(t_shape *shape, char *line, int y)
 		ft_register(shape, x, y, tmp[x]);
 	}
 	if (x != shape->width)
-	{
-		ft_putendl("error: Found wrong line length. Exiting.");
-		exit(-1);
-	}
+		ft_error("error: Found wrong line length. Exiting.");
 	shape->previous->next_y = ((t_slist *)shape->temp);
 	ft_clear_tmp(tmp);
 	return ((t_slist *)shape->current);
