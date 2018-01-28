@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:48:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/05 17:37:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/28 12:48:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,16 @@ static int	ft_check(char *str)
 
 int			ft_brackets(char *str)
 {
-	ft_point(str);
-	ft_cut(str);
-	ft_check(str);
-	return ((str[0] != '\0') ? 0 : 1);
+	int		return_value;
+	char	*cpy;
+
+	if (!(cpy = ft_strnew(ft_strlen(str))))
+		return (-1);
+	cpy = ft_strcpy(cpy, str);
+	ft_point(cpy);
+	ft_cut(cpy);
+	ft_check(cpy);
+	return_value = (cpy[0] != '\0') ? 1 : 0;
+	ft_memdel((void **)&cpy);
+	return (return_value);
 }
