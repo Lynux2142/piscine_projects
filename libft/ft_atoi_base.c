@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:16:40 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 12:52:25 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/29 10:49:56 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,19 @@ static int	ft_check_nb(const char *nb, int base)
 	char	*tab;
 
 	tab = "0123456789abcdef";
-	i = (nb[0] == '0' && nb[1] == 'x' && base == 16) ? 1 : -1;
+	if (nb[0] == '0')
+		if ((nb[1] == 'x' && base != 16)
+		|| (nb[1] != 'x' && base != 8))
+			return (0);
+	i = (nb[0] == '0') ? 0 : -1;
+	i = (nb[1] == 'x' && base == 16) ? 1 : i;
 	while (nb[++i])
 	{
 		j = 0;
 		while (j < base && nb[i] != tab[j])
 			++j;
 		if (j == base && nb[i] != tab[i])
-			break ;
+			return (0);
 	}
 	return (1);
 }
@@ -55,15 +60,14 @@ int			ft_atoi_base(const char *str, int base)
 	nb_len = ft_strlen(str) - 1;
 	value = 0;
 	i = 0;
-	stop = (str[0] == '0' && str[1] == 'x' && base == 16) ? 2 : 0;
+	stop = (str[0] == '0') ? 1 : 0;
+	stop = (str[1] == 'x' && base == 16) ? 2 : stop;
 	while (nb_len >= stop)
 	{
 		if (str[nb_len] >= 'a' && str[nb_len] <= 'z')
-			value += (((str[nb_len] - 'a') + 10) * ft_power(base, i));
+			value += (((str[nb_len--] - 'a') + 10) * ft_power(base, i++));
 		if (str[nb_len] >= '0' && str[nb_len] <= '9')
-			value += ((str[nb_len] - '0') * ft_power(base, i));
-		--nb_len;
-		++i;
+			value += ((str[nb_len--] - '0') * ft_power(base, i++));
 	}
 	return (value);
 }
