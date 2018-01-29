@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:16:40 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/29 10:49:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/29 16:22:18 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_check_nb(const char *nb, int base)
 		|| (nb[1] != 'x' && base != 8))
 			return (0);
 	i = (nb[0] == '0') ? 0 : -1;
-	i = (nb[1] == 'x' && base == 16) ? 1 : i;
+	i = (nb[1] == 'x' && base == 16) ? i++ : i;
 	while (nb[++i])
 	{
 		j = 0;
@@ -55,6 +55,8 @@ int			ft_atoi_base(const char *str, int base)
 	int		stop;
 
 	str = ft_tab_tolower((char *)str);
+	if (base == 10)
+		return (ft_atoi(str));
 	if (str == NULL || base < 2 || base > 16 || !ft_check_nb(str, base))
 		return (0);
 	nb_len = ft_strlen(str) - 1;
