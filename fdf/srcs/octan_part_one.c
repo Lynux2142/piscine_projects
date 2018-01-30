@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 09:40:51 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 12:48:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:54:06 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void			ft_draw_segment(t_shape *shape, t_link *xy1,
 		else if (val.dy < 0)
 			draw_vertical_decreasing(shape, &val, col);
 	}
-	fill_pixel(shape, val.x2 - *shape->min_x + 100,
-			val.y2 + (shape->img_y / 2 - *shape->max_y), col);
+	fill_pixel(shape, val.x2 - shape->start_x,
+			val.y2 + shape->start_y, col);
 }

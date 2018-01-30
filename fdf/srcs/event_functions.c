@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 15:20:22 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:56:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ static void		move_others(int key, t_shape *shape)
 		shape->agr += 1;
 	if (key == 78)
 		shape->agr -= 1;
+	if (key == 124)
+		shape->start_x -= 10;
+	if (key == 123)
+		shape->start_x += 10;
+	if (key == 125)
+		shape->start_y += 10;
+	if (key == 126)
+		shape->start_y -= 10;
 	if (key == 49)
 	{
 		shape->coef_x = 31;
@@ -91,7 +99,8 @@ int				ft_key_funct(int key, t_shape *shape)
 		move_axe_x(key, shape);
 	if (key == 13 || key == 1)
 		move_axe_y(key, shape);
-	if (key == 15 || key == 3 || key == 69 || key == 78 || key == 49)
+	if (key == 15 || key == 3 || key == 69 || key == 78 || key == 49
+			|| (key >= 123 && key <= 126))
 		move_others(key, shape);
 	if (key == 53)
 		exit(1);

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:25:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 09:32:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/30 10:12:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void		fill_pixel(t_shape *shape, int x, int y, int color)
 {
-	if ((((x * 4) + (y * shape->img_y * 4)) + 3) <=
+	if (((((x * 4) + (y * shape->img_y * 4)) + 3) <=
 	(shape->img_x * 4) + (shape->img_y * shape->sizeline * 4)
 	&& (((x * 4) + (y * shape->img_y * 4)) + 3) >= 0)
+	&& (x > 0 && x < shape->img_x))
 	{
 		if (shape->endian == 0)
 		{

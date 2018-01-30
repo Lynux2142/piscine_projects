@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 15:20:44 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:44:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void			ft_draw(t_shape *shape)
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 			&shape->sizeline, &shape->endian);
+	shape->start_x = (*shape->min_x - 100);
+	shape->start_y = (shape->img_y / 2 - *shape->max_y);
 	shape->coef_x = 31;
 	shape->coef_y = 13;
 	shape->coef_z = 33;
