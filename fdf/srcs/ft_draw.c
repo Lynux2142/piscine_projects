@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/30 14:44:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:41:00 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void			ft_draw(t_shape *shape)
 			&shape->sizeline, &shape->endian);
 	shape->start_x = (*shape->min_x - 100);
 	shape->start_y = (shape->img_y / 2 - *shape->max_y);
+	shape->speed = 10;
 	shape->coef_x = 31;
 	shape->coef_y = 13;
 	shape->coef_z = 33;

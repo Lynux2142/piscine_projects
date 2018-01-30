@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/30 14:17:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:32:19 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct				s_shape
 	int						coef_a;
 	int						start_x;
 	int						start_y;
+	int						speed;
 }							t_shape;
 
 typedef struct				s_slist

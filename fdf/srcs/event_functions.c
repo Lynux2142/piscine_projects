@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/30 14:56:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:53:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 		shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 				&shape->sizeline, &shape->endian);
 		if (mouse == 5)
+		{
 			shape->agr += 1;
+			shape->speed += 2;
+		}
 		if (mouse == 4)
+		{
 			shape->agr -= 1;
+			shape->speed -= 2;
+		}
 		ft_projection(shape);
 		mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 	}
@@ -72,13 +78,13 @@ static void		move_others(int key, t_shape *shape)
 	if (key == 78)
 		shape->agr -= 1;
 	if (key == 124)
-		shape->start_x -= 10;
+		shape->start_x += shape->speed;
 	if (key == 123)
-		shape->start_x += 10;
+		shape->start_x -= shape->speed;
 	if (key == 125)
-		shape->start_y += 10;
+		shape->start_y -= shape->speed;
 	if (key == 126)
-		shape->start_y -= 10;
+		shape->start_y += shape->speed;
 	if (key == 49)
 	{
 		shape->coef_x = 31;
