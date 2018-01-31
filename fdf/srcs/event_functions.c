@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/31 11:57:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/31 12:12:49 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 	return (0);
 }
 
-static void		move(int key, t_shape *shape)
+static void		ft_rotate(int key, t_shape *shape)
 {
-	if (key == 14)
+	if (key == 88)
 		shape->rot += 30 * 0.0174533;
-	if (key == 2)
+	if (key == 86)
 		shape->rot -= 30 * 0.0174533;
 }
 
@@ -78,8 +78,8 @@ int				ft_key_funct(int key, t_shape *shape)
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 			&shape->sizeline, &shape->endian);
-	if (key == 14 || key == 2)
-		move(key, shape);
+	if (key == 86 || key == 88)
+		ft_rotate(key, shape);
 	if (key == 15 || key == 3 || key == 69 || key == 78 || key == 49
 			|| (key >= 123 && key <= 126))
 		move_others(key, shape);
