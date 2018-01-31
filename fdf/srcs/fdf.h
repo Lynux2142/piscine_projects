@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/30 16:32:19 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/31 11:53:20 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,16 @@ typedef struct				s_shape
 	int						win_y;
 	int						img_x;
 	int						img_y;
-	int						coef_x;
-	int						coef_y;
-	int						coef_z;
-	int						coef_a;
+	double					coef_x;
+	double					coef_y;
+	double					coef_z;
+	double					coef_a;
 	int						start_x;
 	int						start_y;
 	int						speed;
+	double					rot;
+	int						x_max;
+	int						y_max;
 }							t_shape;
 
 typedef struct				s_slist
@@ -97,8 +100,7 @@ int							ft_mouse_funct(int mouse, int x, int y,
 int							ft_key_funct(int key, t_shape *shape);
 int							ft_couleur(int red, int green, int blue);
 void						fill_pixel(t_shape *shape, int x, int y, int color);
-void						projection_calcul_u(t_shape *shape, t_link *ptr);
-void						projection_calcul_v(t_shape *shape, t_link *ptr);
+void						projection_calcul(t_shape *shape, t_link *ptr);
 int							ft_calcul_color(t_slist *first, t_slist *second);
 void						ft_draw_segment(t_shape *shape,
 								t_link *xy1, t_link *xy2, int col);

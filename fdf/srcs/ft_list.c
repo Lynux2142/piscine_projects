@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/30 10:31:49 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/31 10:15:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void			ft_clear_list(t_slist **list)
 t_slist			*ft_add_first_line(t_shape *shape, char *line, int y)
 {
 	char		**tmp;
+	int			x;
 
+	x = 0;
 	shape->temp = ((t_slist *)shape->current);
 	tmp = ft_split_whitespaces(line);
 	shape->width = 0;
@@ -75,7 +77,9 @@ t_slist			*ft_add_first_line(t_shape *shape, char *line, int y)
 			return (NULL);
 		shape->temp = ((t_slist *)shape->temp)->next_x;
 		ft_register(shape, shape->width, y, tmp[shape->width]);
+		++x;
 	}
+	shape->x_max = x;
 	ft_clear_tmp(tmp);
 	return ((t_slist *)shape->list);
 }

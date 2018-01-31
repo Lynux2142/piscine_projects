@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/30 16:41:00 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/31 11:55:49 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void			ft_projection(t_shape *shape)
 		while (j)
 		{
 			ptr = (t_link *)j->link;
-			projection_calcul_u(shape, ptr);
-			projection_calcul_v(shape, ptr);
+			projection_calcul(shape, ptr);
 			if (shape->first == 0)
 				ft_xtrem_values(shape, ptr);
 			j = j->next_x;
@@ -89,13 +88,14 @@ void			ft_draw(t_shape *shape)
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 			&shape->sizeline, &shape->endian);
-	shape->start_x = (*shape->min_x - 100);
-	shape->start_y = (shape->img_y / 2 - *shape->max_y);
+	shape->start_x = (*shape->min_x - (shape->win_x / 2));
+	shape->start_y = (*shape->max_y + (shape->img_y / 2));
 	shape->speed = 10;
-	shape->coef_x = 31;
-	shape->coef_y = 13;
-	shape->coef_z = 33;
-	shape->coef_a = 0;
+	shape->rot = 270 * 0.0174533;
+	shape->coef_x = 120 * 0.0174533;
+	shape->coef_y = 120 * 0.0174533;
+	shape->coef_z = 120 * 0.0174533;
+	shape->coef_a = 30 * 0.0174533;
 	ft_projection(shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 	mlx_key_hook(shape->win, ft_key_funct, shape);

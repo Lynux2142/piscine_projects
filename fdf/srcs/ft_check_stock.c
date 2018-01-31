@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:52:41 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/27 15:13:09 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/31 10:14:47 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void		ft_check_stock(int fd, t_shape *shape)
 		shape->previous = ft_add_next_line(shape, line, ++y);
 		ft_memdel((void *)&line);
 	}
+	shape->y_max = y;
 	ft_memdel((void *)&line);
 }

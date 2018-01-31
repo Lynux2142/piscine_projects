@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/30 16:53:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/01/31 11:57:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,16 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 	return (0);
 }
 
-static void		move_axe_x(int key, t_shape *shape)
+static void		move(int key, t_shape *shape)
 {
-	if (key == 12)
-	{
-		shape->coef_x += 1;
-		shape->coef_z -= 1;
-	}
-	if (key == 0)
-	{
-		shape->coef_x -= 1;
-		shape->coef_z += 1;
-	}
-}
-
-static void		move_axe_y(int key, t_shape *shape)
-{
-	if (key == 13)
-	{
-		shape->coef_y += 1;
-		shape->coef_z -= 1;
-	}
-	if (key == 1)
-	{
-		shape->coef_y -= 1;
-		shape->coef_z += 1;
-	}
+	if (key == 14)
+		shape->rot += 30 * 0.0174533;
+	if (key == 2)
+		shape->rot -= 30 * 0.0174533;
 }
 
 static void		move_others(int key, t_shape *shape)
 {
-	if (key == 15)
-		shape->coef_a += 1;
-	if (key == 3)
-		shape->coef_a -= 1;
 	if (key == 69)
 		shape->agr += 1;
 	if (key == 78)
@@ -87,10 +63,11 @@ static void		move_others(int key, t_shape *shape)
 		shape->start_y += shape->speed;
 	if (key == 49)
 	{
-		shape->coef_x = 31;
-		shape->coef_y = 13;
-		shape->coef_z = 33;
-		shape->coef_a = 0;
+		shape->coef_x = 120 * 0.0174533;
+		shape->coef_y = 120 * 0.0174533;
+		shape->coef_z = 121 * 0.0174533;
+		shape->coef_a = 30 * 0.0174533;
+		shape->rot = 270 * 0.0174533;
 	}
 }
 
@@ -101,10 +78,8 @@ int				ft_key_funct(int key, t_shape *shape)
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 			&shape->sizeline, &shape->endian);
-	if (key == 12 || key == 0)
-		move_axe_x(key, shape);
-	if (key == 13 || key == 1)
-		move_axe_y(key, shape);
+	if (key == 14 || key == 2)
+		move(key, shape);
 	if (key == 15 || key == 3 || key == 69 || key == 78 || key == 49
 			|| (key >= 123 && key <= 126))
 		move_others(key, shape);
