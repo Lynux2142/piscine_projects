@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/31 11:55:49 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/01 14:40:04 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,44 @@ static void		ft_draw_funct(t_shape *shape)
 	}
 }
 
+static void		ft_draw_funct_end(t_shape *shape)
+{
+	t_slist		*i;
+	t_slist		*j;
+	int			color;
+
+	i = shape->end_list;
+	while (i)
+	{
+		j = i;
+		while (j)
+		{
+			if (j->prev_y)
+				color = ft_calcul_color(j, j->prev_y);
+			if (j->prev_y)
+				ft_draw_segment(shape, (t_link *)j->link,
+						(t_link *)j->prev_y->link, color);
+			if (j->prev_x)
+				color = ft_calcul_color(j, j->prev_x);
+			if (j->prev_x)
+				ft_draw_segment(shape, (t_link *)j->link,
+						(t_link *)j->prev_x->link, color);
+			j = j->prev_x;
+		}
+		i = i->prev_y;
+	}
+}
+
 static void		ft_xtrem_values(t_shape *shape, t_link *ptr)
 {
-	if (!shape->max_y || *shape->max_y < ptr->v)
-		*shape->max_y = ptr->v;
-	if (!shape->max_x || *shape->max_x < ptr->u)
-		*shape->max_x = ptr->u;
-	if (!shape->min_y || *shape->min_y > ptr->v)
-		*shape->min_y = ptr->v;
-	if (!shape->min_x || *shape->min_x > ptr->u)
-		*shape->min_x = ptr->u;
+	if (!shape->max_y || *shape->max_y < (int)ptr->v)
+		*shape->max_y = (int)ptr->v;
+	if (!shape->max_x || *shape->max_x < (int)ptr->u)
+		*shape->max_x = (int)ptr->u;
+	if (!shape->min_y || *shape->min_y > (int)ptr->v)
+		*shape->min_y = (int)ptr->v;
+	if (!shape->min_x || *shape->min_x > (int)ptr->u)
+		*shape->min_x = (int)ptr->u;
 }
 
 void			ft_projection(t_shape *shape)
@@ -73,17 +101,20 @@ void			ft_projection(t_shape *shape)
 		i = i->next_y;
 	}
 	shape->first = 1;
-	ft_draw_funct(shape);
+	if (shape->rot > 0.70 && shape->rot < 4.0)
+		ft_draw_funct_end(shape);
+	else
+		ft_draw_funct(shape);
 }
 
 void			ft_draw(t_shape *shape)
 {
 	shape->mlx = mlx_init();
-	shape->win_x = 1200;
+	shape->win_x = 1600;
 	shape->win_y = 1200;
 	shape->img_x = shape->win_x;
 	shape->img_y = shape->win_y;
-	shape->agr = 1;
+	shape->agr = 1.0;
 	shape->win = mlx_new_window(shape->mlx, shape->win_x, shape->win_y, "test");
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
@@ -91,11 +122,11 @@ void			ft_draw(t_shape *shape)
 	shape->start_x = (*shape->min_x - (shape->win_x / 2));
 	shape->start_y = (*shape->max_y + (shape->img_y / 2));
 	shape->speed = 10;
-	shape->rot = 270 * 0.0174533;
-	shape->coef_x = 120 * 0.0174533;
-	shape->coef_y = 120 * 0.0174533;
-	shape->coef_z = 120 * 0.0174533;
-	shape->coef_a = 30 * 0.0174533;
+	shape->rot = 0.0 * M_PI / 180;
+	shape->coef_x = 0.0 * M_PI / 180;
+	shape->coef_y = 120.0 * M_PI / 180;
+	shape->coef_z = 120.0 * M_PI / 180;
+	shape->coef_a = 30.0 * M_PI / 180;
 	ft_projection(shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 	mlx_key_hook(shape->win, ft_key_funct, shape);

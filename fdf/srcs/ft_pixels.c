@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:25:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/31 11:53:22 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/01 12:09:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,21 @@ void		projection_calcul(t_shape *shape, t_link *ptr)
 {
 	double x;
 	double y;
+	double z;
 
 	ptr->x -= ((shape->x_max) / 2);
 	ptr->y -= ((shape->y_max) / 2);
-	x = ((ptr->x) * cos(shape->rot) - (ptr->y) * sin(shape->rot));
-	y = ((ptr->x) * sin(shape->rot) + (ptr->y) * cos(shape->rot));
+	x = ((ptr->x) * cos(shape->rot)) - ((ptr->y) * sin(shape->rot));
+	y = ((ptr->x) * sin(shape->rot)) + ((ptr->y) * cos(shape->rot));
+	z = ptr->z;
+	ptr->u = shape->agr * (((x) * cos(shape->coef_a + shape->coef_x))
+			+ ((y) * cos(shape->coef_a + shape->coef_y))
+			+ ((z) * cos(shape->coef_a - shape->coef_z)));
+	ptr->v = shape->agr * (((x) * sin(shape->coef_a + shape->coef_x))
+			+ ((y) * sin(shape->coef_a + shape->coef_y))
+			+ ((z) * sin(shape->coef_a - shape->coef_z)));
 	ptr->x += ((shape->x_max) / 2);
 	ptr->y += ((shape->y_max) / 2);
-	ptr->u = shape->agr * (((x) * cos(shape->coef_a))
-			+ ((y) * cos(shape->coef_a + shape->coef_y))
-			+ ((ptr->z) * cos(shape->coef_a - shape->coef_z)));
-	ptr->v = shape->agr * (((x) * sin(shape->coef_a))
-			+ ((y) * sin(shape->coef_a + shape->coef_y))
-			+ ((ptr->z) * sin(shape->coef_a - shape->coef_z)));
 }
 
 int			ft_calcul_color(t_slist *first, t_slist *second)

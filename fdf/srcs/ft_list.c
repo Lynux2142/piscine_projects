@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/31 10:15:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/01 15:14:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		ft_clear_tmp(char **tmp)
+void			ft_clear_tmp(char **tmp)
 {
 	int i;
 
@@ -75,39 +75,39 @@ t_slist			*ft_add_first_line(t_shape *shape, char *line, int y)
 		if (!(shape->temp->next_x = (t_slist *)ft_memalloc(sizeof(t_slist)))
 		|| !(shape->temp->next_x->link = (t_link *)ft_memalloc(sizeof(t_link))))
 			return (NULL);
-		shape->temp = ((t_slist *)shape->temp)->next_x;
+		shape->temp->next_x->prev_x = shape->temp;
+		shape->temp = shape->temp->next_x;
 		ft_register(shape, shape->width, y, tmp[shape->width]);
 		++x;
 	}
 	shape->x_max = x;
 	ft_clear_tmp(tmp);
-	return ((t_slist *)shape->list);
+	return (shape->list);
 }
 
 t_slist			*ft_add_next_line(t_shape *shape, char *line, int y)
 {
 	int			x;
-	char		**tmp;
 
 	shape->temp = ((t_slist *)shape->current);
-	tmp = ft_split_whitespaces(line);
+	shape->tmp = ft_split_whitespaces(line);
 	x = 0;
-	ft_register(shape, x, y, tmp[x]);
-	while (tmp[++x])
+	ft_register(shape, x, y, shape->tmp[x]);
+	while (shape->tmp[++x])
 	{
-		if (x > shape->width)
-			ft_error("error: Found wrong line length. Exiting.");
 		if (!(shape->temp->next_x = (t_slist *)ft_memalloc(sizeof(t_slist)))
 		|| !(shape->temp->next_x->link = (t_link *)ft_memalloc(sizeof(t_link))))
 			return (NULL);
-		shape->previous->next_y = ((t_slist *)shape->temp);
-		shape->temp = ((t_slist *)shape->temp)->next_x;
-		shape->previous = ((t_slist *)shape->previous)->next_x;
-		ft_register(shape, x, y, tmp[x]);
+		shape->temp->next_x->prev_x = shape->temp;
+		shape->temp->prev_y = shape->previous;
+		shape->previous->next_y = shape->temp;
+		shape->temp = shape->temp->next_x;
+		shape->previous = shape->previous->next_x;
+		ft_register(shape, x, y, shape->tmp[x]);
 	}
-	if (x != shape->width)
-		ft_error("error: Found wrong line length. Exiting.");
-	shape->previous->next_y = ((t_slist *)shape->temp);
-	ft_clear_tmp(tmp);
-	return ((t_slist *)shape->current);
+	shape->temp->prev_y = shape->previous;
+	shape->previous->next_y = shape->temp;
+	shape->end_list = shape->temp;
+	ft_clear_tmp(shape->tmp);
+	return (shape->current);
 }

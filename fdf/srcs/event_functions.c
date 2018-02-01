@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/31 12:12:49 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/01 15:14:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 				&shape->sizeline, &shape->endian);
 		if (mouse == 5)
 		{
-			shape->agr += 1;
+			shape->agr += 1.0;
 			shape->speed += 2;
 		}
 		if (mouse == 4)
 		{
-			shape->agr -= 1;
-			shape->speed -= 2;
+			shape->agr -= 1.0;
+			shape->speed += 2;
 		}
 		ft_projection(shape);
 		mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
@@ -42,17 +42,27 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 static void		ft_rotate(int key, t_shape *shape)
 {
 	if (key == 88)
-		shape->rot += 30 * 0.0174533;
+	{
+		if (shape->rot < 350.0 * M_PI / 180)
+			shape->rot += 10.0 * M_PI / 180;
+		else
+			shape->rot = 0.0 * M_PI / 180;
+	}
 	if (key == 86)
-		shape->rot -= 30 * 0.0174533;
+	{
+		if (shape->rot > 0.0 * M_PI / 180)
+			shape->rot -= 10.0 * M_PI / 180;
+		else
+			shape->rot = 350.0 * M_PI / 180;
+	}
 }
 
 static void		move_others(int key, t_shape *shape)
 {
 	if (key == 69)
-		shape->agr += 1;
+		shape->agr += 1.0;
 	if (key == 78)
-		shape->agr -= 1;
+		shape->agr -= 1.0;
 	if (key == 124)
 		shape->start_x += shape->speed;
 	if (key == 123)
@@ -63,11 +73,11 @@ static void		move_others(int key, t_shape *shape)
 		shape->start_y += shape->speed;
 	if (key == 49)
 	{
-		shape->coef_x = 120 * 0.0174533;
-		shape->coef_y = 120 * 0.0174533;
-		shape->coef_z = 121 * 0.0174533;
-		shape->coef_a = 30 * 0.0174533;
-		shape->rot = 270 * 0.0174533;
+		shape->rot = 0.0 * M_PI / 180;
+		shape->coef_x = 0.0 * M_PI / 180;
+		shape->coef_y = 120.0 * M_PI / 180;
+		shape->coef_z = 120.0 * M_PI / 180;
+		shape->coef_a = 30.0 * M_PI / 180;
 	}
 }
 

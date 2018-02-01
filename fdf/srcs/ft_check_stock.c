@@ -6,11 +6,24 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:52:41 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/31 10:14:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/01 15:14:13 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int	ft_check_line_len(char *line)
+{
+	int		line_len;
+	char	**tmp;
+
+	tmp = ft_split_whitespaces(line);
+	line_len = 0;
+	while (tmp[line_len])
+		++line_len;
+	ft_clear_tmp(tmp);
+	return (line_len);
+}
 
 void		ft_check_stock(int fd, t_shape *shape)
 {
@@ -20,11 +33,14 @@ void		ft_check_stock(int fd, t_shape *shape)
 	shape->current = ((t_slist *)shape->list);
 	if (get_next_line(fd, &line) <= 0)
 		ft_error("error: Not valid file. Exiting.");
+	shape->line_len = ft_check_line_len(line);
 	shape->previous = ft_add_first_line(shape, line, 0);
 	ft_memdel((void *)&line);
 	y = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
+		if (ft_check_line_len(line) != shape->line_len)
+			ft_error("error: Found wrong line lenght. Exiting.");
 		if (!(((t_slist *)shape->current)->next_y =
 		(t_slist *)ft_memalloc(sizeof(t_slist)))
 		|| !(((t_slist *)shape->current)->next_y->link =

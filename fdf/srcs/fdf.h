@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/31 11:53:20 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/01 15:14:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct				s_shape
 {
 	int						first;
 	struct s_slist			*list;
+	struct s_slist			*end_list;
 	struct s_slist			*previous;
 	struct s_slist			*current;
 	struct s_slist			*temp;
@@ -39,7 +40,7 @@ typedef struct				s_shape
 	int						*max_y;
 	int						*min_x;
 	int						*max_x;
-	int						agr;
+	double					agr;
 	int						width;
 	int						win_x;
 	int						win_y;
@@ -49,18 +50,22 @@ typedef struct				s_shape
 	double					coef_y;
 	double					coef_z;
 	double					coef_a;
+	double					rot;
 	int						start_x;
 	int						start_y;
 	int						speed;
-	double					rot;
 	int						x_max;
 	int						y_max;
+	char					**tmp;
+	int						line_len;
 }							t_shape;
 
 typedef struct				s_slist
 {
 	struct s_slist			*next_x;
 	struct s_slist			*next_y;
+	struct s_slist			*prev_x;
+	struct s_slist			*prev_y;
 	struct s_link			*link;
 }							t_slist;
 
@@ -70,8 +75,8 @@ typedef struct				s_link
 	int						y;
 	int						z;
 	int						color;
-	int						u;
-	int						v;
+	double					u;
+	double					v;
 }							t_link;
 
 typedef struct				s_draw
@@ -128,5 +133,6 @@ void						draw_vertical_increasing(t_shape *shape,
 								t_draw *val, int col);
 void						draw_vertical_decreasing(t_shape *shape,
 								t_draw *val, int col);
+void						ft_clear_tmp(char **tmp);
 
 #endif
