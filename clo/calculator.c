@@ -34,6 +34,17 @@ void	ft_calc(int nb, float *list, char ope)
 	printf("resultat = %f\n", value);
 }
 
+int		check_ope(char ope)
+{
+	if (ope != '+' && ope != '-' && ope != '*' && ope != '/')
+	{
+		printf("Operateur non valide.\n");
+		printf("operateur: ");
+		return (0);
+	}
+	return (1);
+}
+
 int		main(void)
 {
 	int		nb;
@@ -56,6 +67,11 @@ int		main(void)
 	printf("operateur: ");
 	scanf("%c", &ope);
 	getchar();
+	while (!check_ope(ope))
+	{
+		scanf("%c", &ope);
+		getchar();
+	}
 	ft_calc(nb, list, ope);
 	return (0);
 }
