@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/01/30 14:57:54 by lguiller         ###   ########.fr        #
+#    Updated: 2018/02/05 12:22:03 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,13 +43,16 @@ _CLEAR	=$ \033[2K
 ##   TARGETS    ##
 ##################
 
-.PHONY: all clean
+.PHONY: all libft clean
 
-all: $(NAME)
+all: libft $(NAME)
+
+libft:
+	@make -C libft
 
 $(NAME): $(OBJ)
-	@make all -C libft
 	@gcc $(FLAGS) -lmlx -framework OpenGL -framework Appkit $(OBJ) ./libft/libft.a -o $(NAME)
+	@printf "$(_GREEN) Done.\n$(_END)"
 
 %.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
