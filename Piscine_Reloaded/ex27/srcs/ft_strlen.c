@@ -6,11 +6,11 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:47:38 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/08 16:39:55 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/11 12:43:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "mylib.h"
 
 int		ft_strlen(char *str)
 {
