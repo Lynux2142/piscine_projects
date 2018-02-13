@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ ! -f "/var/log/update_script.log" ]
+then
+	touch /var/log/update_script.log
+fi
+sudo apt-get update -y > /var/log/update_script.log
+sudo apt-get upgrade -y >> /var/log/update_script.log

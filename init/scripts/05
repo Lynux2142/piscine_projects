@@ -1,0 +1,16 @@
+#!/bin/sh
+
+_COLOR="\033[30m"
+_BACK="\033[47m"
+_END="\033[0m"
+first=0
+while [[ $first -ne 4 ]]
+do
+	((++first))
+done
+printf "$_BACK$_COLOR$first"
+while [[ $first -ne 2 ]]
+do
+	((--first))
+done
+printf "$first\n$_END"

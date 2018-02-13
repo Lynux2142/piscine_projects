@@ -1,0 +1,13 @@
+#!/bin/sh
+
+FICHIER=/home/lguiller/04
+LAST_MODIF=$(date -r ${FICHIER} '+%d/%m/%Y %H:%M:%S')
+MAIL_ADMIN=root
+DATE_MODIF=$(cat /home/lguiller/time)
+
+if [ "${LAST_MODIF}" != "${DATE_MODIF}" ];
+then
+	MESSAGE="le fichier $FICHIER a ete modifie le $(date -r ${FICHIER} '+%d/%m/%Y') a $(date -r ${FICHIER} '+%H:%M:%S')"
+	echo "$MESSAGE" | mail -s "Alerte surveillance" $MAIL_ADMIN
+	echo $(date -r ${FICHIER} '+%d/%m/%Y %H:%M:%S') > /home/lguiller/time
+fi
