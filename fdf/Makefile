@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/02/05 17:51:57 by lguiller         ###   ########.fr        #
+#    Updated: 2018/02/14 16:24:55 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,10 @@ NAME = fdf
 SRCS = srcs/main.c srcs/ft_check_stock.c srcs/ft_list.c srcs/ft_draw.c \
 	   srcs/event_functions.c srcs/ft_pixels.c srcs/octan_part_one.c \
 	   srcs/octan_part_two.c srcs/octan_part_three.c srcs/octan_part_four.c
+
+INCLUDES = ./includes/
+
+LIBFT = ./libft/libft.a
 
 OBJ = $(SRCS:.c=.o)
 
@@ -43,7 +47,7 @@ _CLEAR	=$ \033[2K
 ##   TARGETS    ##
 ##################
 
-.PHONY: all libft clean
+.PHONY: all libft clean fclean re
 
 all: libft $(NAME)
 
@@ -51,11 +55,11 @@ libft:
 	@make -C libft
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) -lmlx -framework OpenGL -framework Appkit $(OBJ) ./libft/libft.a -o $(NAME)
+	@gcc $(FLAGS) -lmlx -framework OpenGL -framework Appkit $(OBJ) $(LIBFT) -o $(NAME)
 	@printf "$(_GREEN) Done.\n$(_END)"
 
 %.o: %.c
-	@gcc $(FLAGS) -c $^ -o $@
+	@gcc $(FLAGS) -I $(INCLUDES) -c $^ -o $@
 	@printf "$(_YELLOW) building - $(_END)"
 	@printf "$(_GREEN)"
 	@printf $@ | cut -c6- | cut -d'.' -f1

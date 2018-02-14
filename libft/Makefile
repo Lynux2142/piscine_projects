@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2018/01/26 11:30:24 by lguiller         ###   ########.fr        #
+#    Updated: 2018/02/14 16:21:16 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ _SHOW_CURS	=$ \033[?25h
 ##   TARGETS    ##
 ##################
 
-.PHONY: all clean
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
