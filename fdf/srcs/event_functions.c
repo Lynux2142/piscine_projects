@@ -31,7 +31,7 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 		if (mouse == 4)
 		{
 			shape->agr -= 1.0;
-			shape->speed += 2;
+			shape->speed -= 2;
 		}
 		ft_projection(shape);
 		mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
@@ -41,14 +41,14 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 
 static void		ft_rotate(int key, t_shape *shape)
 {
-	if (key == 88)
+	if (key == 2)
 	{
 		if (shape->rot < 350.0 * M_PI / 180)
 			shape->rot += 10.0 * M_PI / 180;
 		else
 			shape->rot = 0.0 * M_PI / 180;
 	}
-	if (key == 86)
+	if (key == 0)
 	{
 		if (shape->rot > 0.0 * M_PI / 180)
 			shape->rot -= 10.0 * M_PI / 180;
@@ -88,7 +88,7 @@ int				ft_key_funct(int key, t_shape *shape)
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 			&shape->sizeline, &shape->endian);
-	if (key == 86 || key == 88)
+	if (key == 0 || key == 2)
 		ft_rotate(key, shape);
 	if (key == 15 || key == 3 || key == 69 || key == 78 || key == 49
 			|| (key >= 123 && key <= 126))
