@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/02/14 16:24:55 by lguiller         ###   ########.fr        #
+#    Updated: 2018/02/14 17:36:48 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,11 +66,11 @@ $(NAME): $(OBJ)
 	@printf "$(_END)"
 
 clean:
-	@make clean -C libft
+	@make -C libft clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	@make fclean -C libft
+	@make -C libft fclean
 	@/bin/rm -f $(NAME)
 
 re: fclean all

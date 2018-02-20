@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/01 15:14:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:56:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,7 @@ void						draw_vertical_increasing(t_shape *shape,
 void						draw_vertical_decreasing(t_shape *shape,
 								t_draw *val, int col);
 void						ft_clear_tmp(char **tmp);
+int							ft_rotate_auto(t_shape *shape);
+void						choose_color(t_shape *shape, t_slist *list);
 
 #endif

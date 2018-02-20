@@ -6,11 +6,29 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:25:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/07 15:38:12 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:51:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void		choose_color(t_shape *shape, t_slist *list)
+{
+	int	color;
+
+	if (list->next_y)
+	{
+		color = ft_calcul_color(list, list->next_y);
+		ft_draw_segment(shape, (t_link *)list->link,
+				(t_link *)list->next_y->link, color);
+	}
+	if (list->next_x)
+	{
+		color = ft_calcul_color(list, list->next_x);
+		ft_draw_segment(shape, (t_link *)list->link,
+				(t_link *)list->next_x->link, color);
+	}
+}
 
 void		fill_pixel(t_shape *shape, int x, int y, int color)
 {

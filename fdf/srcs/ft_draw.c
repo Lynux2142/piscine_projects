@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/01 14:40:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:56:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void		ft_draw_funct(t_shape *shape)
 {
 	t_slist		*i;
 	t_slist		*j;
-	int			color;
 
 	i = shape->list;
 	while (i)
@@ -24,16 +23,7 @@ static void		ft_draw_funct(t_shape *shape)
 		j = i;
 		while (j)
 		{
-			if (j->next_y)
-				color = ft_calcul_color(j, j->next_y);
-			if (j->next_y)
-				ft_draw_segment(shape, (t_link *)j->link,
-						(t_link *)j->next_y->link, color);
-			if (j->next_x)
-				color = ft_calcul_color(j, j->next_x);
-			if (j->next_x)
-				ft_draw_segment(shape, (t_link *)j->link,
-						(t_link *)j->next_x->link, color);
+			choose_color(shape, j);
 			j = j->next_x;
 		}
 		i = i->next_y;
@@ -44,7 +34,6 @@ static void		ft_draw_funct_end(t_shape *shape)
 {
 	t_slist		*i;
 	t_slist		*j;
-	int			color;
 
 	i = shape->end_list;
 	while (i)
@@ -52,16 +41,7 @@ static void		ft_draw_funct_end(t_shape *shape)
 		j = i;
 		while (j)
 		{
-			if (j->prev_y)
-				color = ft_calcul_color(j, j->prev_y);
-			if (j->prev_y)
-				ft_draw_segment(shape, (t_link *)j->link,
-						(t_link *)j->prev_y->link, color);
-			if (j->prev_x)
-				color = ft_calcul_color(j, j->prev_x);
-			if (j->prev_x)
-				ft_draw_segment(shape, (t_link *)j->link,
-						(t_link *)j->prev_x->link, color);
+			choose_color(shape, j);
 			j = j->prev_x;
 		}
 		i = i->prev_y;
@@ -101,7 +81,8 @@ void			ft_projection(t_shape *shape)
 		i = i->next_y;
 	}
 	shape->first = 1;
-	if (shape->rot > 0.70 && shape->rot < 4.0)
+	if (shape->rot > (46.0 * M_PI / 180.0)
+			&& shape->rot < (225.0 * M_PI / 180.0))
 		ft_draw_funct_end(shape);
 	else
 		ft_draw_funct(shape);
@@ -128,6 +109,7 @@ void			ft_draw(t_shape *shape)
 	shape->coef_z = 120.0 * M_PI / 180;
 	shape->coef_a = 30.0 * M_PI / 180;
 	ft_projection(shape);
+	mlx_loop_hook(shape->mlx, ft_rotate_auto, shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 	mlx_key_hook(shape->win, ft_key_funct, shape);
 	mlx_mouse_hook(shape->win, ft_mouse_funct, shape);
