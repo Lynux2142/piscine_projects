@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/19 17:56:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/21 09:16:30 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct				s_shape
 	int						y_max;
 	char					**tmp;
 	int						line_len;
+	char					ok;
 }							t_shape;
 
 typedef struct				s_slist

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/20 18:04:37 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/21 09:47:52 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 int				ft_rotate_auto(t_shape *shape)
 {
-	mlx_clear_window(shape->mlx, shape->win);
-	mlx_destroy_image(shape->mlx, shape->img);
-	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
-	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
-			&shape->sizeline, &shape->endian);
-	if (shape->rot <= 360.0 * M_PI / 180.0)
-		shape->rot += 1.0 * M_PI / 180.0;
-	else
-		shape->rot = 1.0 * M_PI / 180.0;
-	ft_projection(shape);
-	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
+	if (shape->ok == 1)
+	{
+		mlx_clear_window(shape->mlx, shape->win);
+		mlx_destroy_image(shape->mlx, shape->img);
+		shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
+		shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
+				&shape->sizeline, &shape->endian);
+		if (shape->rot <= 360.0 * M_PI / 180.0)
+			shape->rot += 1.0 * M_PI / 180.0;
+		else
+			shape->rot = 1.0 * M_PI / 180.0;
+		ft_projection(shape);
+		mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
+	}
 	return (0);
 }
 
@@ -47,7 +50,7 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 		if (mouse == 4)
 		{
 			shape->agr -= 1.0;
-			shape->speed += 2;
+			shape->speed -= 2;
 		}
 		ft_projection(shape);
 		mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
@@ -109,6 +112,13 @@ int				ft_key_funct(int key, t_shape *shape)
 	if (key == 15 || key == 3 || key == 69 || key == 78 || key == 49
 			|| (key >= 123 && key <= 126))
 		move_others(key, shape);
+	if (key == 36)
+	{
+		if (shape->ok != 1)
+			shape->ok = 1;
+		else
+			shape->ok = 0;
+	}
 	if (key == 53)
 	{
 		ft_clear_list(&shape->list);
