@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/21 09:16:30 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/22 08:55:20 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int							ft_key_funct(int key, t_shape *shape);
 int							ft_couleur(int red, int green, int blue);
 void						fill_pixel(t_shape *shape, int x, int y, int color);
 void						projection_calcul(t_shape *shape, t_link *ptr);
-int							ft_calcul_color(t_slist *first, t_slist *second);
 void						ft_draw_segment(t_shape *shape,
 								t_link *xy1, t_link *xy2, int col);
 void						draw_octan_one(t_shape *shape,
