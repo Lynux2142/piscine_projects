@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2018/02/20 11:16:34 by lguiller         ###   ########.fr        #
+#    Updated: 2018/02/22 14:34:43 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@
 ##################
 
 NAME = libft.a
-
 SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 	  ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c \
 	  ft_strncat.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strstr.c \
@@ -32,7 +31,6 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 	  ft_realloc.c ft_sqrt.c print_memory.c get_next_line.c ft_isspace.c \
 	  ft_atoi_base.c ft_power.c ft_split_whitespaces.c
 OBJ = $(SRC:.c=.o)
-
 FLAGS = -Wall -Wextra -Werror
 
 ##################
@@ -59,7 +57,7 @@ _SHOW_CURS	=$ \033[?25h
 ##   TARGETS    ##
 ##################
 
-.PHONY: all clean
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
