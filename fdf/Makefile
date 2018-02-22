@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/02/21 11:34:04 by lguiller         ###   ########.fr        #
+#    Updated: 2018/02/22 14:27:18 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,19 +14,15 @@
 ##  VARIABLES   ##
 ##################
 
-NAME = fdf
-
-SRCS = srcs/main.c srcs/ft_check_stock.c srcs/ft_list.c srcs/ft_draw.c \
-	   srcs/event_functions.c srcs/ft_pixels.c srcs/octan_part_one.c \
-	   srcs/octan_part_two.c srcs/octan_part_three.c srcs/octan_part_four.c
-
-INCLUDES = ./includes/
-
-LIBFT = ./libft/libft.a
-
-OBJ = $(SRCS:.c=.o)
-
-FLAGS = -Wall -Wextra -Werror -g
+NAME 		= fdf
+SRCS 		= srcs/main.c srcs/ft_check_stock.c srcs/ft_list.c srcs/ft_draw.c \
+			  srcs/event_functions.c srcs/ft_pixels.c srcs/octan_part_one.c \
+			  srcs/octan_part_two.c srcs/octan_part_three.c srcs/octan_part_four.c
+INCLUDES 	= ./includes/
+LIBFT 		= ./libft/libft.a
+MINILIBX 	= ./minilibx/libmlx.a
+OBJ 		= $(SRCS:.c=.o)
+FLAGS 		= -Wall -Wextra -Werror
 
 ##################
 ##    COLORS    ##
@@ -47,15 +43,18 @@ _CLEAR	=$ \033[2K
 ##   TARGETS    ##
 ##################
 
-.PHONY: all libft clean fclean re
+.PHONY: all libft minilibx clean fclean re
 
-all: libft $(NAME)
+all: libft minilibx $(NAME)
 
 libft:
 	@make -C libft
 
+minilibx:
+	@make -C minilibx
+
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) -lmlx -framework OpenGL -framework Appkit $(OBJ) $(LIBFT) -o $(NAME)
+	@gcc $(FLAGS) $(MINILIBX) -framework OpenGL -framework Appkit $(OBJ) $(LIBFT) -o $(NAME)
 	@printf "$(_GREEN) Done.\n$(_END)"
 
 %.o: %.c
@@ -67,6 +66,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@make -C libft clean
+	@make -C minilibx clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean

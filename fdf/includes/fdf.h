@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/22 08:55:20 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/02/22 14:25:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 # include "../libft/libft.h"
-# include <mlx.h>
+# include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
 # include <string.h>
