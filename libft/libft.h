@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/12 12:14:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:27:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ unsigned int		ft_ppcm(unsigned int a, unsigned int b);
 void				*ft_realloc(void *str, size_t size);
 int					get_next_line(int fd, char **line);
 
-char				**ft_split_whitespaces(const char *s);
 void				print_memory(const void *addr, size_t size);
+char				**ft_split_whitespaces(const char *s);
 
 void				ft_error(char *str, int error);
 

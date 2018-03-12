@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/12 10:23:00 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:03:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void		ft_register(t_shape *shape, int x, int y, char *z_col)
 {
 	t_link	*data;
 	char	**tmp;
+	char	*test_overflow;
 
 	data = ((t_link *)shape->temp->link);
 	tmp = ft_strsplit(z_col, ',');
@@ -33,8 +34,13 @@ static void		ft_register(t_shape *shape, int x, int y, char *z_col)
 	data->y = y;
 	if (!tmp)
 		ft_error("error: Not valid file", 3);
-	if (ft_strcmp(ft_itoa(ft_atoi(tmp[0])), tmp[0]))
+	test_overflow = ft_itoa(ft_atoi(tmp[0]));
+	if (!ft_strequ(test_overflow, tmp[0]))
+	{
+		ft_memdel((void **)&test_overflow);
 		ft_error("error: Overflow", 5);
+	}
+	ft_memdel((void **)&test_overflow);
 	data->z = ft_atoi(tmp[0]);
 	if (tmp[1] != NULL)
 		data->color = ft_atoi_base(tmp[1], 16);
