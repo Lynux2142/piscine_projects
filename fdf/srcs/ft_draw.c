@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/22 09:15:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/08 17:35:21 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,12 @@ void			ft_projection(t_shape *shape)
 void			ft_draw(t_shape *shape)
 {
 	shape->mlx = mlx_init();
-	shape->win_x = 1600;
+	shape->win_x = 1800;
 	shape->win_y = 1200;
 	shape->img_x = shape->win_x;
 	shape->img_y = shape->win_y;
-	shape->agr = 1.0;
+	shape->agr = 0.2;
+	shape->alpha = 1.0;
 	shape->win = mlx_new_window(shape->mlx, shape->win_x, shape->win_y, "test");
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
@@ -109,7 +110,7 @@ void			ft_draw(t_shape *shape)
 	shape->coef_z = 120.0 * M_PI / 180;
 	shape->coef_a = 30.0 * M_PI / 180;
 	ft_projection(shape);
-	mlx_loop_hook(shape->mlx, ft_rotate_auto, shape);
+	ft_start_auto_funct(shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 	mlx_key_hook(shape->win, ft_key_funct, shape);
 	mlx_mouse_hook(shape->win, ft_mouse_funct, shape);

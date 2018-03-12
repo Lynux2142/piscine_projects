@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/02/23 12:02:48 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/08 17:24:06 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@
 NAME			= fdf
 SRCS			= srcs/main.c srcs/ft_check_stock.c srcs/ft_list.c srcs/ft_draw.c \
 				  srcs/event_functions.c srcs/ft_pixels.c srcs/octan_part_one.c \
-				  srcs/octan_part_two.c srcs/octan_part_three.c srcs/octan_part_four.c
+				  srcs/octan_part_two.c srcs/octan_part_three.c srcs/octan_part_four.c \
+				  srcs/auto_function.c
 INCLUDES		= ./includes/
 LIBFT			= ./libft/libft.a
 MINILIBX		= ./minilibx/libmlx.a

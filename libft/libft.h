@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/01/26 10:43:13 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:27:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ int					get_next_line(int fd, char **line);
 
 void				print_memory(const void *addr, size_t size);
 char				**ft_split_whitespaces(const char *s);
+
+void				ft_error(char *str, int error);
 
 #endif

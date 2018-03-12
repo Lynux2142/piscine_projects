@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:25:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/22 09:15:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/08 17:05:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void		projection_calcul(t_shape *shape, t_link *ptr)
 	z = ptr->z;
 	ptr->u = shape->agr * (((x) * cos(shape->coef_a + shape->coef_x))
 			+ ((y) * cos(shape->coef_a + shape->coef_y))
-			+ ((z) * cos(shape->coef_a - shape->coef_z)));
+			+ ((z * shape->alpha) * cos(shape->coef_a - shape->coef_z)));
 	ptr->v = shape->agr * (((x) * sin(shape->coef_a + shape->coef_x))
 			+ ((y) * sin(shape->coef_a + shape->coef_y))
-			+ ((z) * sin(shape->coef_a - shape->coef_z)));
+			+ ((z * shape->alpha) * sin(shape->coef_a - shape->coef_z)));
 	ptr->x += ((shape->x_max) / 2);
 	ptr->y += ((shape->y_max) / 2);
 }

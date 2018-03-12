@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2018/02/23 12:09:40 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/06 13:27:07 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC		= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 		  ft_lstmap.c ft_putaddr.c ft_putaddr_fd.c ft_itoa_base.c ft_brackets.c \
 		  ft_putnbr_base.c ft_isprime.c ft_abs.c ft_strcspn.c ft_pgcd.c ft_ppcm.c \
 		  ft_realloc.c ft_sqrt.c print_memory.c get_next_line.c ft_isspace.c \
-		  ft_atoi_base.c ft_power.c ft_split_whitespaces.c
+		  ft_atoi_base.c ft_power.c ft_split_whitespaces.c ft_error.c
 OBJ		= $(SRC:.c=.o)
 FLAGS	= -Wall -Wextra -Werror
 
@@ -57,7 +57,7 @@ _SHOW_CURS	=$ \033[?25h
 ##   TARGETS    ##
 ##################
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re lynux booh
 
 all: $(NAME)
 
@@ -82,13 +82,20 @@ fclean: clean
 re: fclean all
 
 lynux:
-	@echo "     _/  _/    _/                                               "
-	@echo "  _/_/_/_/_/  _/       _/    _/  _/_/_/    _/    _/  _/    _/   "
-	@echo "   _/  _/    _/         _/_/_/  _/    _/  _/    _/    _/_/      "
-	@echo "_/_/_/_/_/  _/             _/  _/    _/  _/    _/    _/_/       "
-	@echo " _/  _/    _/_/_/_/   _/_/_/  _/    _/    _/_/_/  _/    _/      "
+	@echo "   /&& /&&   /&&                                              "
+	@echo "  / &&/ &&  | &&                                              "
+	@echo " /&&&&&&&&&&| &&       /&&   /&& /&&&&&&&  /&&   /&& /&&   /&&"
+	@echo "|   &&  &&_/| &&      | &&  | &&| &&__  &&| &&  | &&|  && /&&/"
+	@echo " /&&&&&&&&&&| &&      | &&  | &&| &&  \ &&| &&  | && \  &&&&/ "
+	@echo "|_  &&  &&_/| &&      | &&  | &&| &&  | &&| &&  | &&  >&&  && "
+	@echo "  | &&| &&  | &&&&&&&&|  &&&&&&&| &&  | &&|  &&&&&&/ /&&/\  &&"
+	@echo "  |__/|__/  |________/ \____  &&|__/  |__/ \______/ |__/  \__/"
+	@echo "                       /&&  | &&                              "
+	@echo "                      |  &&&&&&/                              "
+	@echo "                       \______/                               "
 
 booh:
+	@echo ""
 	@echo "                           oooo############oooo"
 	@echo "                       oo########################o"
 	@echo "                   oo##############################o         o#   ## o# "

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/22 14:25:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/08 17:34:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ typedef struct				s_shape
 	int						y_max;
 	char					**tmp;
 	int						line_len;
-	char					ok;
+	char					ok_rotate;
+	char					ok_z;
+	double					alpha;
 }							t_shape;
 
 typedef struct				s_slist
@@ -91,7 +93,6 @@ typedef struct				s_draw
 	int						e;
 }							t_draw;
 
-void						ft_error(char *str);
 void						ft_check_stock(int fd, t_shape *shape);
 void						ft_clear_list(t_slist **list);
 t_slist						*ft_add_first_line(t_shape *shape,
@@ -136,5 +137,7 @@ void						draw_vertical_decreasing(t_shape *shape,
 void						ft_clear_tmp(char **tmp);
 int							ft_rotate_auto(t_shape *shape);
 void						choose_color(t_shape *shape, t_slist *list);
+int							ft_change_z(int x, int y, t_shape *shape);
+void						ft_start_auto_funct(t_shape *shape);
 
 #endif

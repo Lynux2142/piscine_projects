@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 17:47:21 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/22 09:16:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/12 10:24:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-
-void			ft_error(char *str)
-{
-	ft_putendl_fd(str, 2);
-	exit(-1);
-}
 
 /*
 **static void		ft_print_list(t_slist *list)
@@ -55,26 +49,26 @@ int				main(int ac, char **av)
 	t_shape	shape;
 	int		fd;
 
-	if (ac == 2)
+	if (ac != 2)
+		ft_error("usage: ./fdf [file_name.fdf]", 4);
+	if (!(shape.max_y = (int *)ft_memalloc(sizeof(int)))
+	|| !(shape.max_x = (int *)ft_memalloc(sizeof(int)))
+	|| !(shape.min_y = (int *)ft_memalloc(sizeof(int)))
+	|| !(shape.min_x = (int *)ft_memalloc(sizeof(int)))
+	|| ((fd = open(av[1], O_RDONLY)) == -1)
+	|| !(shape.list = (t_slist *)ft_memalloc(sizeof(t_slist)))
+	|| !(((t_slist *)shape.list)->link =
+		(t_link *)ft_memalloc(sizeof(t_link))))
 	{
-		if (!(shape.max_y = (int *)ft_memalloc(sizeof(int)))
-		|| !(shape.max_x = (int *)ft_memalloc(sizeof(int)))
-		|| !(shape.min_y = (int *)ft_memalloc(sizeof(int)))
-		|| !(shape.min_x = (int *)ft_memalloc(sizeof(int)))
-		|| ((fd = open(av[1], O_RDONLY)) == -1)
-		|| !(shape.list = (t_slist *)ft_memalloc(sizeof(t_slist)))
-		|| !(((t_slist *)shape.list)->link =
-			(t_link *)ft_memalloc(sizeof(t_link))))
-			return (-1);
-		((t_link *)((t_slist *)shape.list)->link)->x = 0;
-		((t_link *)((t_slist *)shape.list)->link)->y = 0;
-		ft_check_stock(fd, &shape);
-		ft_draw(&shape);
-		ft_clear_list(&shape.list);
-		if (close(fd) == -1)
-			return (-1);
+		perror("error");
+		return (-1);
 	}
-	else
-		ft_error("usage: ./fdf [file_name.fdf]");
+	((t_link *)((t_slist *)shape.list)->link)->x = 0;
+	((t_link *)((t_slist *)shape.list)->link)->y = 0;
+	ft_check_stock(fd, &shape);
+	ft_draw(&shape);
+	ft_clear_list(&shape.list);
+	if (close(fd) == -1)
+		return (-1);
 	return (0);
 }
