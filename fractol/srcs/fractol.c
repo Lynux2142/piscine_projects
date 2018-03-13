@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:29:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 12:24:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:12:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(int ac, char **av)
 	draw_f = get_f_funct(av[1]);
 	draw_f(&shape);
 	mlx_put_image_to_window(shape.mlx, shape.win, shape.img, 0, 0);
-	if (ft_strcmp(shape.fract_name, "fract2") == 0)
+	if (ft_strequ(shape.fract_name, "fract2"))
 		mlx_hook(shape.win, 6, (1L << 6), ft_var_julia, &shape);
 	mlx_key_hook(shape.win, ft_key_funct, &shape);
 	mlx_mouse_hook(shape.win, ft_mouse_funct, &shape);
