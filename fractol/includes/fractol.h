@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 12:47:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:49:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@
 
 typedef struct		s_draw
 {
-	double			x;
-	double			y;
-	double			image_x;
-	double			image_y;
+	int				x;
+	int				y;
 	double			tmp;
 }					t_draw;
 

@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/13 10:18:50 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/13 14:18:57 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INCLUDES	= ./includes/
 LIBFT		= ./libft/libft.a
 MINILIBX	= ./minilibx/libmlx.a
 OBJ			= $(SRCS:.c=.o)
-FLAGS		= -Wall -Wextra -Werror -O -O1 -O2 -O3
+FLAGS		= -Wall -Wextra -Werror
 
 ##################
 ##    COLORS    ##

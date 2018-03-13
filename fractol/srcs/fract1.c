@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:12:30 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 09:39:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:50:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void		fract1(t_shape *shape)
 	t_fract	f;
 
 	ft_init(shape, &f.draw);
-	while (++f.draw.x < f.draw.image_x)
+	while (++f.draw.x < shape->img_x)
 	{
 		f.draw.y = -1.0;
-		while (++f.draw.y < f.draw.image_y)
+		while (++f.draw.y < shape->img_y)
 		{
 			ft_const_var_1(shape, &f.draw, &f);
 			while (((f.z_r * f.z_r) + (f.z_i * f.z_i)) < 4.0

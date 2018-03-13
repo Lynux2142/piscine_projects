@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 12:53:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:58:14 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void		fract2(t_shape *shape)
 	t_fract	f;
 
 	ft_init(shape, &f.draw);
-	while (++f.draw.x < f.draw.image_x)
+	while (++f.draw.x < shape->img_x)
 	{
 		f.draw.y = -1;
-		while (++f.draw.y < f.draw.image_y)
+		while (++f.draw.y < shape->img_y)
 		{
 			ft_const_var_2(shape, &f.draw, &f);
 			while (((f.z_r * f.z_r) + (f.z_i * f.z_i)) < 4.0
@@ -38,7 +38,7 @@ void		fract2(t_shape *shape)
 				f.draw.tmp = f.z_r;
 				f.z_r = (f.z_r * f.z_r) - (f.z_i * f.z_i) + f.c_r;
 				f.z_i = 2.0 * f.z_i * f.draw.tmp + f.c_i;
-				++f.i;
+				f.i += 1.0;
 			}
 			if (f.i == shape->iter)
 				fill_pixel(shape, f.draw.x, f.draw.y, 0x000000);
