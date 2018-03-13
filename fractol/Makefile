@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/02/20 11:16:27 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/13 10:18:50 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,14 @@
 ##  VARIABLES   ##
 ##################
 
-NAME = fractol
-SRCS = srcs/fractol.c srcs/event_functions.c srcs/fract1.c srcs/fract2.c \
+NAME		= fractol
+SRCS		= srcs/fractol.c srcs/event_functions.c srcs/fract1.c srcs/fract2.c \
 	   srcs/fract3.c srcs/pixel.c srcs/annex_funct.c
-INCLUDES = ./includes/
-LIBFT = ./libft/libft.a
-OBJ = $(SRCS:.c=.o)
-FLAGS = -Wall -Wextra -Werror
+INCLUDES	= ./includes/
+LIBFT		= ./libft/libft.a
+MINILIBX	= ./minilibx/libmlx.a
+OBJ			= $(SRCS:.c=.o)
+FLAGS		= -Wall -Wextra -Werror -O -O1 -O2 -O3
 
 ##################
 ##    COLORS    ##
@@ -41,15 +42,18 @@ _CLEAR	=$ \033[2K
 ##   TARGETS    ##
 ##################
 
-.PHONY: all libft clean fclean re
+.PHONY: all libft minilibx clean fclean re
 
-all: libft $(NAME)
+all: libft minilibx $(NAME)
 
 libft:
 	@make -C libft
 
+minilibx:
+	@make -C minilibx
+
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) -lmlx -framework OpenGL -framework Appkit $(OBJ) $(LIBFT) -o $(NAME)
+	@gcc $(FLAGS) -framework OpenGL -framework Appkit $(MINILIBX) $(OBJ) $(LIBFT) -o $(NAME)
 	@printf "$(_GREEN) Done.\n$(_END)"
 
 %.o: %.c
@@ -61,6 +65,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@make -C libft clean
+	@make -C minilibx clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean

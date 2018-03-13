@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:14:45 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/20 09:36:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 10:22:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 static int		ft_calc_color(int col)
 {
 	return (ft_couleur(col, col, col));
-}
-
-static double	ft_absolute(double nb)
-{
-	return ((nb < 0.0) ? -nb : nb);
 }
 
 static void		ft_const_var_3(t_shape *shape, t_draw *draw, t_fract *f)
@@ -43,11 +38,11 @@ void			fract3(t_shape *shape)
 		while (++draw.y < draw.image_y)
 		{
 			ft_const_var_3(shape, &draw, &f);
-			while ((ft_pow(f.z_r, 2) + ft_pow(f.z_i, 2)) < 4.0
+			while (((f.z_r * f.z_r) + (f.z_i * f.z_i)) < 4.0
 					&& f.i < shape->iter)
 			{
-				draw.tmp = ft_pow(f.z_r, 2) - ft_pow(f.z_i, 2) + f.c_r;
-				f.z_i = 2.0 * ft_absolute(f.z_r * f.z_i) + f.c_i;
+				draw.tmp = (f.z_r * f.z_r) - (f.z_i * f.z_i) + f.c_r;
+				f.z_i = 2.0 * fabs(f.z_r * f.z_i) + f.c_i;
 				f.z_r = draw.tmp;
 				++f.i;
 			}

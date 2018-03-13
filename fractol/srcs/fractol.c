@@ -6,16 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:29:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/20 11:19:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:24:11 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	ft_clear(t_shape *shape)
-{
-	mlx_clear_window(shape->mlx, shape->win);
-}
 
 void	ft_display(t_shape *shape)
 {
@@ -35,9 +30,9 @@ int		main(int ac, char **av)
 		ft_usage();
 	shape.fract_name = av[1];
 	ft_set_values(&shape);
-	shape.win_x = 1600;
-	shape.win_y = 1200;
-	shape.zoom = 500.0;
+	shape.win_x = 800;
+	shape.win_y = 600;
+	shape.zoom = 250.0;
 	shape.mlx = mlx_init();
 	shape.win = mlx_new_window(shape.mlx, shape.win_x, shape.win_y, "test");
 	shape.c_r = -0.8;

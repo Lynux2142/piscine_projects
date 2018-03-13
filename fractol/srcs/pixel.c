@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:17:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/02/19 15:29:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 10:24:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ void	ft_init(t_shape *shape, t_draw *draw)
 	draw->image_x = (shape->x2 - shape->x1) * shape->zoom;
 	draw->image_y = (shape->y2 - shape->y1) * shape->zoom;
 	draw->x = -1;
-}
-
-double	ft_pow(double nb, int power)
-{
-	double	value;
-	int		i;
-
-	value = 1.0;
-	i = -1;
-	while (++i < power)
-		value *= nb;
-	return (value);
 }
 
 void	fill_pixel(t_shape *shape, int x, int y, int color)
@@ -65,8 +53,8 @@ void	ft_set_values(t_shape *shape)
 	if (ft_strequ("fract1", shape->fract_name) == 1)
 	{
 		shape->iter = 50.0;
-		shape->x1 = -2.2;
-		shape->x2 = 2.2;
+		shape->x1 = -2.1;
+		shape->x2 = 1.1;
 		shape->y1 = -1.2;
 		shape->y2 = 1.2;
 	}
@@ -81,9 +69,9 @@ void	ft_set_values(t_shape *shape)
 	else if (ft_strequ("fract3", shape->fract_name) == 1)
 	{
 		shape->iter = 50.0;
-		shape->x1 = -2.0;
-		shape->x2 = 2.0;
-		shape->y1 = -1.8;
-		shape->y2 = 1.8;
+		shape->x1 = -2.2;
+		shape->x2 = 1.0;
+		shape->y1 = -1.4;
+		shape->y2 = 1.0;
 	}
 }
