@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/12 17:42:37 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 09:25:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static void		ft_rotate(int key, t_shape *shape)
 
 static void		move_others(int key, t_shape *shape)
 {
-	if (key == 69)
+	if (key == 24)
 		shape->agr += 1.0;
-	if (key == 78)
+	if (key == 27)
 		shape->agr -= 1.0;
 	if (key == 124)
 		shape->start_x += shape->speed;
@@ -101,6 +101,7 @@ static void		ft_auto_funct(int key, t_shape *shape)
 
 int				ft_key_funct(int key, t_shape *shape)
 {
+	ft_putendl(ft_itoa(key));
 	mlx_clear_window(shape->mlx, shape->win);
 	mlx_destroy_image(shape->mlx, shape->img);
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
@@ -108,7 +109,7 @@ int				ft_key_funct(int key, t_shape *shape)
 			&shape->sizeline, &shape->endian);
 	if (key == 0 || key == 2)
 		ft_rotate(key, shape);
-	if (key == 15 || key == 3 || key == 69 || key == 78 || key == 49
+	if (key == 15 || key == 3 || key == 24 || key == 27 || key == 49
 			|| (key >= 123 && key <= 126))
 		move_others(key, shape);
 	if (key == 53)
