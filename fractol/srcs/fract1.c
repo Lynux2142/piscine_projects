@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:12:30 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 12:35:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 15:33:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		fract1(t_shape *shape)
 				f.i += 1.0;
 			}
 			if (f.i == shape->iter)
-				fill_pixel(shape, f.draw.x, f.draw.y, 0);
+				fill_pixel(shape, f.draw.x, f.draw.y, 1);
 			else
 				ft_set_color(shape, f);
 		}

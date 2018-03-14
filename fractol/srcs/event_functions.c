@@ -6,12 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:53:32 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 14:17:10 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 18:05:52 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 static void	ft_reset_fract(t_shape *shape)
 {
@@ -53,19 +52,12 @@ int			ft_key_funct(int key, t_shape *shape)
 	if (key == 49)
 		ft_reset_fract(shape);
 	if (key == 36)
-	{
-		if (shape->color < 1 || shape->color > 5)
-			shape->color = 1;
-		else
-			++shape->color;
-	}
+		shape->color =
+			(shape->color < 1 || shape->color > 5) ? 1 : ++shape->color;
 	if (key == 258)
-	{
-		if (shape->ok != 1)
-			shape->ok = 1;
-		else
-			shape->ok = 0;
-	}
+		shape->ok = (shape->ok == 1) ? 0 : 1;
+	if (key == 3)
+		ft_create_fdf(shape, shape->data);
 	if (key == 53)
 		exit(0);
 	ft_display(shape);

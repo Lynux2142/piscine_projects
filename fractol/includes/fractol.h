@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 14:07:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 16:34:13 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ void				ft_set_values(t_shape *shape);
 int					ft_var_julia(int x, int y, t_shape *shape);
 void				ft_set_color(t_shape *shape, t_fract f);
 void				ft_set_string(t_shape *shape);
+void				ft_create_fdf(t_shape *shape, char *data);
 
 #endif
