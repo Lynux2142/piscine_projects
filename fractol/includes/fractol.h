@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 12:51:25 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 13:24:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include "mlx.h"
 # include <stdlib.h>
 # include <math.h>
+
+# define FRACT1 "mandelbrot"
+# define FRACT2 "julia"
+# define FRACT3 "burningship"
 
 typedef struct		s_string
 {

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:17:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 16:51:12 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 13:25:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_couleur(int red, int green, int blue)
 
 void	ft_set_values(t_shape *shape)
 {
-	if (ft_strequ("fract1", shape->fract_name) == 1)
+	if (ft_strequ(FRACT1, shape->fract_name) == 1)
 	{
 		shape->iter = 50.0;
 		shape->x1 = -2.1;
@@ -56,7 +56,7 @@ void	ft_set_values(t_shape *shape)
 		shape->y1 = -1.2;
 		shape->y2 = 1.2;
 	}
-	else if (ft_strequ("fract2", shape->fract_name) == 1)
+	else if (ft_strequ(FRACT2, shape->fract_name) == 1)
 	{
 		shape->iter = 150.0;
 		shape->x1 = -1.6;
@@ -64,7 +64,7 @@ void	ft_set_values(t_shape *shape)
 		shape->y1 = -1.2;
 		shape->y2 = 1.2;
 	}
-	else if (ft_strequ("fract3", shape->fract_name) == 1)
+	else if (ft_strequ(FRACT3, shape->fract_name) == 1)
 	{
 		shape->iter = 50.0;
 		shape->x1 = -2.0;

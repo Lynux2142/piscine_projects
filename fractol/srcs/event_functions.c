@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:53:32 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 13:06:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 13:25:12 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ int			ft_key_funct(int key, t_shape *shape)
 static void	ft_change_fract(t_shape *shape, int x, int y)
 {
 	if (x >= 5 && x <= 125 && y >= 10 && y <= 35)
-		shape->fract_name = "fract1";
+		shape->fract_name = FRACT1;
 	if (x >= 5 && x <= 125 && y >= 50 && y <= 75)
-		shape->fract_name = "fract2";
+		shape->fract_name = FRACT2;
 	if (x >= 5 && x <= 125 && y >= 90 && y <= 115)
-		shape->fract_name = "fract3";
+		shape->fract_name = FRACT3;
 	ft_reset_fract(shape);
 }
 
