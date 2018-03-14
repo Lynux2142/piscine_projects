@@ -6,16 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:14:45 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 16:58:05 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 10:18:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-static int		ft_calc_color(int col)
-{
-	return (ft_couleur(col, col, col));
-}
 
 static void		ft_const_var_3(t_shape *shape, t_draw *draw, t_fract *f)
 {
@@ -46,10 +41,9 @@ void			fract3(t_shape *shape)
 				f.i += 1.0;
 			}
 			if (f.i == shape->iter)
-				fill_pixel(shape, f.draw.x, f.draw.y, 0x000000);
+				fill_pixel(shape, f.draw.x, f.draw.y, 0);
 			else
-				fill_pixel(shape, f.draw.x, f.draw.y,
-						ft_calc_color(255 - (int)(f.i * 255 / shape->iter)));
+				ft_set_color(shape, f);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/13 14:18:57 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/14 10:44:09 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@
 
 NAME		= fractol
 SRCS		= srcs/fractol.c srcs/event_functions.c srcs/fract1.c srcs/fract2.c \
-	   srcs/fract3.c srcs/pixel.c srcs/annex_funct.c
+			  srcs/fract3.c srcs/pixel.c srcs/annex_funct.c srcs/set_color.c \
+			  srcs/set_string.c
 INCLUDES	= ./includes/
 LIBFT		= ./libft/libft.a
 MINILIBX	= ./minilibx/libmlx.a

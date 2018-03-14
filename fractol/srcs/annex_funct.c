@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:29:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 12:50:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 12:51:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ static double	ft_inter_out(double start, double end, double interpolation)
 	return (start + ((end - start) / interpolation));
 }
 
-void			apply_zoom(t_shape *shape, double mouse_re,
-		double mouse_im, double zoom_factor)
+void			apply_zoom(t_shape *shape, int x, int y, double zoom_factor)
 {
 	double	interpolation;
+	double	mouse_re;
+	double	mouse_im;
 
+	mouse_re = (double)x / (shape->img_x / (shape->x2 - shape->x1)) + shape->x1;
+	mouse_im = (double)y / (shape->img_y / (shape->y2 - shape->y1)) + shape->y1;
 	interpolation = 1.0 / zoom_factor;
 	if (shape->in_out == 5 || shape->in_out == 1)
 	{
