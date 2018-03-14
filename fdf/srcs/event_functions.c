@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 09:25:25 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 09:26:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ static void		ft_auto_funct(int key, t_shape *shape)
 
 int				ft_key_funct(int key, t_shape *shape)
 {
-	ft_putendl(ft_itoa(key));
 	mlx_clear_window(shape->mlx, shape->win);
 	mlx_destroy_image(shape->mlx, shape->img);
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
