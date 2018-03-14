@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:53:32 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 14:16:49 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 14:17:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ static void	ft_reset_fract(t_shape *shape)
 
 int			ft_var_julia(int x, int y, t_shape *ptr)
 {
-	ptr->c_r = (double)x / (ptr->img_x / (ptr->x2 - ptr->x1)) + ptr->x1;
-	ptr->c_i = (double)y / (ptr->img_y / (ptr->y2 - ptr->y1)) + ptr->y1;
+	if (ptr->ok == 1)
+	{
+		ptr->c_r = (double)x / (ptr->img_x / (ptr->x2 - ptr->x1)) + ptr->x1;
+		ptr->c_i = (double)y / (ptr->img_y / (ptr->y2 - ptr->y1)) + ptr->y1;
+	}
 	ft_display(ptr);
 	if (x >= 5 && x <= 125 && y >= 10 && y <= 35)
 		ptr->string.mand = 0;
@@ -55,6 +58,13 @@ int			ft_key_funct(int key, t_shape *shape)
 			shape->color = 1;
 		else
 			++shape->color;
+	}
+	if (key == 258)
+	{
+		if (shape->ok != 1)
+			shape->ok = 1;
+		else
+			shape->ok = 0;
 	}
 	if (key == 53)
 		exit(0);

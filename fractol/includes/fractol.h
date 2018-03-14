@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 13:24:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 14:07:42 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct		s_shape
 	double			c_i;
 	int				in_out;
 	int				color;
+	int				ok;
 	t_string		string;
 }					t_shape;
 

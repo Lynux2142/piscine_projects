@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:17:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 13:25:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/14 14:23:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ int		ft_couleur(int red, int green, int blue)
 	return ((red << 16) | (green << 8) | (blue));
 }
 
+void	ft_julia_set(t_shape *shape)
+{
+	shape->c_r = -0.8;
+	shape->c_i = 0.156;
+}
+
 void	ft_set_values(t_shape *shape)
 {
 	if (ft_strequ(FRACT1, shape->fract_name) == 1)
@@ -63,6 +69,7 @@ void	ft_set_values(t_shape *shape)
 		shape->x2 = 1.6;
 		shape->y1 = -1.2;
 		shape->y2 = 1.2;
+		ft_julia_set(shape);
 	}
 	else if (ft_strequ(FRACT3, shape->fract_name) == 1)
 	{
