@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/15 16:43:01 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/15 16:56:12 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCLUDES		= ./includes/
 LIBFT			= ./libft/libft.a
 MINILIBX		= ./minilibx/libmlx.a
 OBJ				= $(addprefix ./srcs/, $(SRCS:.c=.o))
-FLAGS			= -Wall -Wextra -Werror -g
+FLAGS			= -Wall -Wextra -Werror
 FRAMEWORK		= -framework OpenGL -framework Appkit
 
 ##################
