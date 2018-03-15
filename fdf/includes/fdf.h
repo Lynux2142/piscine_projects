@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/15 09:23:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:49:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <math.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
 
 typedef struct				s_shape
 {

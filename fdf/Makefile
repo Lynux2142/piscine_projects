@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/15 10:48:16 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/15 16:43:01 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,30 +15,33 @@
 ##################
 
 NAME			= fdf
-SRCS			= srcs/main.c srcs/ft_check_stock.c srcs/ft_list.c srcs/ft_draw.c \
-				  srcs/event_functions.c srcs/ft_pixels.c srcs/octan_part_one.c \
-				  srcs/octan_part_two.c srcs/octan_part_three.c srcs/octan_part_four.c \
-				  srcs/auto_function.c
+SRCS			= main.c ft_check_stock.c ft_list.c ft_draw.c \
+				  event_functions.c ft_pixels.c octan_part_one.c \
+				  octan_part_two.c octan_part_three.c octan_part_four.c \
+				  auto_function.c
 INCLUDES		= ./includes/
 LIBFT			= ./libft/libft.a
 MINILIBX		= ./minilibx/libmlx.a
-OBJ				= $(SRCS:.c=.o)
-FLAGS			= -Wall -Wextra -Werror
+OBJ				= $(addprefix ./srcs/, $(SRCS:.c=.o))
+FLAGS			= -Wall -Wextra -Werror -g
+FRAMEWORK		= -framework OpenGL -framework Appkit
 
 ##################
 ##    COLORS    ##
 ##################
 
-_BLACK	=$ \033[30m
-_RED	=$ \033[31m
-_GREEN	=$ \033[32m
-_YELLOW	=$ \033[33m
-_BLUE	=$ \033[34m
-_VIOLET	=$ \033[35m
-_CYAN	=$ \033[36m
-_WHITE	=$ \033[37m
-_END	=$ \033[0m
-_CLEAR	=$ \033[2K
+_BLACK	= "\033[30m"
+_RED	= "\033[31m"
+_GREEN	= "\033[32m"
+_YELLOW	= "\033[33m"
+_BLUE	= "\033[34m"
+_VIOLET	= "\033[35m"
+_CYAN	= "\033[36m"
+_WHITE	= "\033[37m"
+_END	= "\033[0m"
+_CLEAR	= "\033[2K"
+_UP		= "\033[A"
+_CUT	= "\033[k"
 
 ##################
 ##   TARGETS    ##
@@ -55,15 +58,14 @@ minilibx:
 	@make -C minilibx
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) $(MINILIBX) -framework OpenGL -framework Appkit $(OBJ) $(LIBFT) -o $(NAME)
-	@printf "$(_GREEN) Done.\n$(_END)"
+	@gcc $(FLAGS) $(FRAMEWORK) $(MINILIBX) $(OBJ) $(LIBFT) -o $(NAME)
+	@echo $(_GREEN)"Done."$(_END)
 
 %.o: %.c
 	@gcc $(FLAGS) -I $(INCLUDES) -c $^ -o $@
-	@printf "$(_YELLOW) building - $(_END)"
-	@printf "$(_GREEN)"
-	@printf $@ | cut -c6- | cut -d'.' -f1
-	@printf "$(_END)"
+	@printf $(_YELLOW)"building - "$(_GREEN)
+	@printf $@ | cut -c3- | cut -d'.' -f1
+	@printf $(_END)
 
 clean:
 	@make -C libft clean

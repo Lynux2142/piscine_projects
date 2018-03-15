@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/15 16:14:04 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/15 16:35:22 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,12 +58,12 @@ minilibx:
 
 $(NAME): $(OBJ)
 	@gcc $(FLAGS) $(FRAMEWORK) $(MINILIBX) $(OBJ) $(LIBFT) -o $(NAME)
-	@echo $(_GREEN) Done.$(_END)
+	@echo $(_GREEN)"Done."$(_END)
 
 
 %.o: %.c
 	@gcc $(FLAGS) -I $(INC) -c $^ -o $@
-	@printf $(_YELLOW)" building - "$(_END)$(_GREEN)
+	@printf $(_YELLOW)"building - "$(_GREEN)
 	@printf $@ | cut -c6- | cut -d'.' -f1
 	@printf $(_END)
 

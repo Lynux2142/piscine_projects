@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:29 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/15 16:18:16 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/15 16:43:12 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC		= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 		  ft_realloc.c ft_sqrt.c get_next_line.c ft_isspace.c print_memory.c \
 		  ft_atoi_base.c ft_power.c ft_split_whitespaces.c ft_error.c
 OBJ		= $(SRC:.c=.o)
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror -g
 
 ##################
 ##    COLORS    ##
@@ -66,12 +66,12 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo $(_CLEAR)$(_YELLOW) building - $(_GREEN)libft$(_END)
-	@echo $(_GREEN) Done.$(_END)$(_SHOW_CURS)
+	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)"libft"$(_END)
+	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 
 %.o: %.c
 	@gcc $(FLAGS) -c $^ -o $@
-	@echo $(_HIDE_CURS)$(_CLEAR)$(_YELLOW) building - $(_GREEN)$@$(_END)
+	@echo $(_HIDE_CURS)$(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$@$(_END)
 	@printf $(_UP)$(_CUT)
 
 clean:

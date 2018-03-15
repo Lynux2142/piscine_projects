@@ -6,14 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 17:47:21 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/13 09:08:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:48:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
 
 /*
 **static void		ft_print_list(t_slist *list)

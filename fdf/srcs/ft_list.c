@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/15 10:05:23 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:51:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ static void		ft_register(t_shape *shape, int x, int y, char *z_col)
 	}
 	ft_memdel((void **)&test_overflow);
 	data->z = ft_atoi(tmp[0]);
-	data->color = (char *)ft_memalloc(sizeof(char) * ft_strlen(tmp[1]));
+	if (tmp[1])
+		if (!(data->color = (char *)ft_memalloc(sizeof(char) * ft_strlen(tmp[1]))))
+			exit(8);
 	data->color = (tmp[1]) ? ft_strcpy(data->color, tmp[1]) : NULL;
 	ft_clear_tmp(tmp);
 }
