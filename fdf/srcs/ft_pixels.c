@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:25:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/08 17:05:07 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 09:42:48 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 static int	ft_calcul_color(t_shape *shape, t_slist *first, t_slist *second)
 {
-	t_link	*ptr;
+	t_link	*frst;
+	t_link	*sec;
 
-	ptr = (t_link *)first->link;
-	if (first->link->color && second->link->color)
+	frst = first->link;
+	sec = second->link;
+	if (frst->color && sec->color)
 	{
-		if (((t_link *)first->link)->z < ((t_link *)second->link)->z)
-			return (((t_link *)second->link)->color);
+		if (frst->z < sec->z)
+			return (ft_atoi_base(sec->color, 16));
 		else
-			return (((t_link *)first->link)->color);
+			return (ft_atoi_base(frst->color, 16));
 	}
 	else
 		return (
-		ft_couleur((int)(((double)ptr->x / (double)shape->x_max) * 255.0),
-			(int)(((double)ptr->y / (double)shape->y_max) * 255.0), 200));
+			ft_couleur((int)(((double)frst->x / (double)shape->x_max) * 255.0),
+			(int)(((double)frst->y / (double)shape->y_max) * 255.0), 200));
 }
 
 void		choose_color(t_shape *shape, t_slist *list)
@@ -37,14 +39,12 @@ void		choose_color(t_shape *shape, t_slist *list)
 	if (list->next_y)
 	{
 		color = ft_calcul_color(shape, list, list->next_y);
-		ft_draw_segment(shape, (t_link *)list->link,
-				(t_link *)list->next_y->link, color);
+		ft_draw_segment(shape, list->link, list->next_y->link, color);
 	}
 	if (list->next_x)
 	{
 		color = ft_calcul_color(shape, list, list->next_x);
-		ft_draw_segment(shape, (t_link *)list->link,
-				(t_link *)list->next_x->link, color);
+		ft_draw_segment(shape, list->link, list->next_x->link, color);
 	}
 }
 

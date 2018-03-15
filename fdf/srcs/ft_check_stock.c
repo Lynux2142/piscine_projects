@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:52:41 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/12 17:50:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 09:07:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		ft_check_stock(int fd, t_shape *shape)
 		ft_error("error: Not valid file", 1);
 	shape->line_len = ft_check_line_len(line);
 	shape->previous = ft_add_first_line(shape, line, 0);
-	ft_memdel((void *)&line);
+	ft_memdel((void **)&line);
 	y = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -48,8 +48,8 @@ void		ft_check_stock(int fd, t_shape *shape)
 			return ;
 		shape->current = ((t_slist *)shape->current)->next_y;
 		shape->previous = ft_add_next_line(shape, line, ++y);
-		ft_memdel((void *)&line);
+		ft_memdel((void **)&line);
 	}
 	shape->y_max = y;
-	ft_memdel((void *)&line);
+	ft_memdel((void **)&line);
 }

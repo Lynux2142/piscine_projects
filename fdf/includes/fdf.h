@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/08 17:34:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 09:23:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct				s_link
 	int						x;
 	int						y;
 	int						z;
-	int						color;
+	char					*color;
 	double					u;
 	double					v;
 }							t_link;

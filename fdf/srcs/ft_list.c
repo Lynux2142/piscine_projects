@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:12:23 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/12 18:03:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 10:05:23 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			ft_clear_tmp(char **tmp)
 
 	i = -1;
 	while (tmp[++i])
-		ft_memdel((void *)&tmp[i]);
+		ft_memdel((void **)&tmp[i]);
 	ft_memdel((void **)&tmp);
 }
 
@@ -28,22 +28,21 @@ static void		ft_register(t_shape *shape, int x, int y, char *z_col)
 	char	**tmp;
 	char	*test_overflow;
 
-	data = ((t_link *)shape->temp->link);
+	data = shape->temp->link;
 	tmp = ft_strsplit(z_col, ',');
 	data->x = x;
 	data->y = y;
 	if (!tmp)
 		ft_error("error: Not valid file", 3);
-	test_overflow = ft_itoa(ft_atoi(tmp[0]));
-	if (!ft_strequ(test_overflow, tmp[0]))
+	if (!ft_strequ((test_overflow = ft_itoa(ft_atoi(tmp[0]))), tmp[0]))
 	{
 		ft_memdel((void **)&test_overflow);
 		ft_error("error: Overflow", 5);
 	}
 	ft_memdel((void **)&test_overflow);
 	data->z = ft_atoi(tmp[0]);
-	if (tmp[1] != NULL)
-		data->color = ft_atoi_base(tmp[1], 16);
+	data->color = (char *)ft_memalloc(sizeof(char) * ft_strlen(tmp[1]));
+	data->color = (tmp[1]) ? ft_strcpy(data->color, tmp[1]) : NULL;
 	ft_clear_tmp(tmp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 17:47:21 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/12 18:06:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/13 09:08:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 **				ft_putstr(",0x");
 **				nbr = ft_itoa_base(((t_link *)line->link)->color, 16);
 **				ft_putstr(nbr);
-**				ft_memdel((void *)&nbr);
+**				ft_memdel((void **)&nbr);
 **			}
 **			if (line->next_x != NULL)
 **				ft_putchar(' ');
