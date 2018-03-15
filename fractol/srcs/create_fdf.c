@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 16:08:29 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 17:59:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 10:20:04 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+
+static int	ft_puthex_fd(unsigned char c, int fd)
+{
+	static char tab[] = "0123456789ABCFEF";
+
+	ft_putchar_fd(tab[c / 16], fd);
+	ft_putchar_fd(tab[c % 16], fd);
+	return (1);
+}
 
 static void	ft_write_data(t_shape *shape, char *data, int fd)
 {
@@ -34,7 +43,11 @@ static void	ft_write_data(t_shape *shape, char *data, int fd)
 		}
 		else
 		{
-			ft_putnbr_fd(255 - (int)((unsigned char)data[x]) * 100 / 255, fd);
+			ft_putnbr_fd((int)((unsigned char)data[x]) * 100 / 255, fd);
+			ft_putstr_fd(",0x", fd);
+			ft_puthex_fd((unsigned char)data[x + 2], fd);
+			ft_puthex_fd((unsigned char)data[x + 1], fd);
+			ft_puthex_fd((unsigned char)data[x], fd);
 			ft_putchar_fd(' ', fd);
 		}
 	}
@@ -45,7 +58,8 @@ void		ft_create_fdf(t_shape *shape, char *data)
 	int		fd;
 
 	(void)data;
-	if ((fd = open("fract.fdf", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR)) == -1)
+	if ((fd = open("fract.fdf", O_CREAT | O_WRONLY | O_TRUNC,
+					S_IRUSR | S_IWUSR)) == -1)
 	{
 		perror("error");
 		exit(5);

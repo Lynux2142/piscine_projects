@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 10:40:15 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 12:29:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/15 10:35:30 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	put_rect(t_shape *shape, t_rect *rect)
+void		put_rect(t_shape *shape, t_rect *rect)
 {
 	int x;
 	int y;
@@ -30,28 +30,28 @@ void	put_rect(t_shape *shape, t_rect *rect)
 	}
 }
 
-void	ft_mand_string(t_shape *shape, t_rect *rect)
+static void	ft_mand_string(t_shape *shape, t_rect *rect)
 {
 	rect->pos_y = 10;
 	put_rect(shape, rect);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 }
 
-void	ft_julia_string(t_shape *shape, t_rect *rect)
+static void	ft_julia_string(t_shape *shape, t_rect *rect)
 {
 	rect->pos_y = 50;
 	put_rect(shape, rect);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 }
 
-void	ft_burn_string(t_shape *shape, t_rect *rect)
+static void	ft_burn_string(t_shape *shape, t_rect *rect)
 {
 	rect->pos_y = 90;
 	put_rect(shape, rect);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 }
 
-void	ft_set_string(t_shape *shape)
+void		ft_set_string(t_shape *shape)
 {
 	t_rect rect;
 
