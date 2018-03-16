@@ -41,7 +41,7 @@ int		ft_change_z(int x, int y, t_shape *shape)
 		shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 		shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 				&shape->sizeline, &shape->endian);
-		shape->alpha = -((double)y / 1600 * 10 - 4);
+		shape->alpha = -((double)y / shape->win_x * 10 - 4);
 		ft_projection(shape);
 		mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 	}
