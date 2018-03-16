@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/15 16:35:22 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/16 14:46:45 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 ##################
 
 NAME		= fractol
-SRCS		= fractol.c event_functions.c fract1.c fract2.c \
+SRCS		= fractol.c mouse_funct.c keyboard_funct.c fract1.c fract2.c \
 			  fract3.c pixel.c annex_funct.c set_color.c \
 			  set_string.c create_fdf.c
 INC			= ./includes/

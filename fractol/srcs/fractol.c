@@ -6,11 +6,18 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:29:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/14 14:23:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/16 13:26:52 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void		ft_reset_fract(t_shape *shape)
+{
+	shape->zoom = 250.0;
+	ft_set_values(shape);
+	ft_set_string(shape);
+}
 
 void		ft_display(t_shape *shape)
 {
@@ -29,9 +36,9 @@ static void	ft_init_values(t_shape *shape)
 	shape->color = 1;
 	shape->c_r = -0.8;
 	shape->c_i = 0.156;
-	shape->string.mand = 0xFFFFFF;
-	shape->string.julia = 0xFFFFFF;
-	shape->string.burn = 0xFFFFFF;
+	shape->string.mand = 0xFF0000;
+	shape->string.julia = 0xFF0000;
+	shape->string.burn = 0xFF0000;
 }
 
 int			main(int ac, char **av)
@@ -45,7 +52,7 @@ int			main(int ac, char **av)
 	ft_set_values(&shape);
 	ft_init_values(&shape);
 	shape.mlx = mlx_init();
-	shape.win = mlx_new_window(shape.mlx, shape.win_x, shape.win_y, "test");
+	shape.win = mlx_new_window(shape.mlx, shape.win_x, shape.win_y, "fractol");
 	draw_f = get_f_funct(av[1]);
 	draw_f(&shape);
 	mlx_put_image_to_window(shape.mlx, shape.win, shape.img, 0, 0);
