@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/15 18:05:59 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/16 14:38:18 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,18 +21,10 @@ SRCS			= main.c ft_check_stock.c ft_list.c ft_draw.c \
 				  auto_function.c
 INCLUDES		= ./includes/
 LIBFT			= ./libft/libft.a
-MINILIBX		= $(MLX)/libmlx.a
+MINILIBX		= ./minilibx/libmlx.a
 OBJ				= $(addprefix ./srcs/, $(SRCS:.c=.o))
-FLAGS			= -Wall -Wextra -Werror
-OS				= $(shell uname)
-
-ifeq ($(OS), Linux)
-	MLX			= ./minilibX_X11
-	FRAMEWORK	= -lXext -lX11
-else
-	MLX			= ./minilibx
-	FRAMEWORK	= -framework OpenGL -framework Appkit
-endif
+FLAGS			= -Wall -Wextra -Werror -O3
+FRAMEWORK		= -framework OpenGL -framework Appkit
 
 ##################
 ##    COLORS    ##
@@ -55,15 +47,15 @@ _CUT	= "\033[k"
 ##   TARGETS    ##
 ##################
 
-.PHONY: all libft $(MLX) clean fclean re
+.PHONY: all libft minilibx clean fclean re
 
-all: libft $(MLX) $(NAME)
+all: libft minilibx $(NAME)
 
 libft:
 	@make -C libft
 
-$(MLX):
-	@make -C $(MLX)
+minilibx:
+	@make -C minilibx
 
 $(NAME): $(OBJ)
 	@gcc $(FLAGS) $(FRAMEWORK) $(MINILIBX) $(OBJ) $(LIBFT) -o $(NAME)
@@ -72,12 +64,12 @@ $(NAME): $(OBJ)
 %.o: %.c
 	@gcc $(FLAGS) -I $(INCLUDES) -c $^ -o $@
 	@printf $(_YELLOW)"building - "$(_GREEN)
-	@printf $@ | cut -c6- | cut -d'.' -f1
+	@printf $@ | cut -c3- | cut -d'.' -f1
 	@printf $(_END)
 
 clean:
 	@make -C libft clean
-	@make -C $(MLX) clean
+	@make -C minilibx clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean

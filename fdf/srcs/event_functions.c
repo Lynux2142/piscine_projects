@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/15 09:04:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:37:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 				&shape->sizeline, &shape->endian);
 		if (mouse == 5)
 		{
-			shape->agr += 1.0;
+			shape->agr *= 1.1;
 			shape->speed += 2;
 		}
 		if (mouse == 4)
 		{
-			shape->agr -= 1.0;
+			shape->agr /= 1.1;
 			shape->speed -= 2;
 		}
 		ft_projection(shape);
@@ -60,9 +60,9 @@ static void		ft_rotate(int key, t_shape *shape)
 static void		move_others(int key, t_shape *shape)
 {
 	if (key == 24)
-		shape->agr += 1.0;
+		shape->agr *= 1.1;
 	if (key == 27)
-		shape->agr -= 1.0;
+		shape->agr /= 1.1;
 	if (key == 124)
 		shape->start_x += shape->speed;
 	if (key == 123)
