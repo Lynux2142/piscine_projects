@@ -6,11 +6,26 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 12:40:46 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/16 13:42:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/16 16:46:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	ft_print_coord(int x, int y, t_shape *shape)
+{
+	char	reel[20];
+	char	imag[20];
+	double	mouse_re;
+	double	mouse_im;
+
+	mouse_re = (double)x / (shape->img_x / (shape->x2 - shape->x1)) + shape->x1;
+	mouse_im = (double)y / (shape->img_y / (shape->y2 - shape->y1)) + shape->y1;
+	sprintf(reel, "x: %f", mouse_re);
+	mlx_string_put(shape->mlx, shape->win, 10, 530, 0xFF0000, reel);
+	sprintf(imag, "y: %f", mouse_im);
+	mlx_string_put(shape->mlx, shape->win, 10, 550, 0xFF0000, imag);
+}
 
 int			ft_var_julia(int x, int y, t_shape *ptr)
 {
@@ -32,6 +47,7 @@ int			ft_var_julia(int x, int y, t_shape *ptr)
 		ptr->string.burn = 0;
 	else
 		ptr->string.burn = 0xFF0000;
+	ft_print_coord(x, y, ptr);
 	ft_set_string(ptr);
 	return (0);
 }
@@ -74,6 +90,7 @@ int			ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 	if (mouse == 1)
 		ft_change_fract(shape, x, y);
 	ft_display(shape);
+	ft_print_coord(x, y, shape);
 	ft_set_string(shape);
 	return (0);
 }

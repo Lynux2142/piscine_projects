@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/16 12:39:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/16 16:44:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "mlx.h"
 # include <stdlib.h>
 # include <math.h>
+# include <stdio.h>
 
 # define FRACT1 "mandelbrot"
 # define FRACT2 "julia"
