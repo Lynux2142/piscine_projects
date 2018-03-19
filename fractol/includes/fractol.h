@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/16 16:44:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:08:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define FRACT1 "mandelbrot"
 # define FRACT2 "julia"
 # define FRACT3 "burningship"
+
+#define RED 0xFF0000
 
 typedef unsigned char	t_uc;
 
@@ -107,5 +109,6 @@ void					ft_set_color(t_shape *shape, t_fract f);
 void					ft_set_string(t_shape *shape);
 void					ft_create_fdf(t_shape *shape, char *data);
 void					ft_reset_fract(t_shape *shape);
+void					ft_put_infos(t_shape *shape);
 
 #endif

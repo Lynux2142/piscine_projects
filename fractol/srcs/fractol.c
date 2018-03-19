@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:29:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/16 16:46:30 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:09:11 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void		ft_display(t_shape *shape)
 
 static void	ft_init_values(t_shape *shape)
 {
-	shape->win_x = 800;
+	shape->win_x = 1600;
 	shape->win_y = 600;
 	shape->zoom = 250.0;
 	shape->color = 1;
 	shape->c_r = -0.8;
 	shape->c_i = 0.156;
-	shape->string.mand = 0xFF0000;
-	shape->string.julia = 0xFF0000;
-	shape->string.burn = 0xFF0000;
+	shape->string.mand = RED;
+	shape->string.julia = RED;
+	shape->string.burn = RED;
 }
 
 int			main(int ac, char **av)
@@ -60,6 +60,7 @@ int			main(int ac, char **av)
 	mlx_hook(shape.win, 6, (1L << 6), ft_var_julia, &shape);
 	mlx_mouse_hook(shape.win, ft_mouse_funct, &shape);
 	ft_set_string(&shape);
+	ft_put_infos(&shape);
 	mlx_loop(shape.mlx);
 	return (0);
 }

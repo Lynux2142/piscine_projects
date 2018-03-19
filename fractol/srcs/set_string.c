@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 10:40:15 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/16 16:01:23 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:09:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		ft_set_string(t_shape *shape)
 	rect.pos_x = 5;
 	rect.dim_x = 120;
 	rect.dim_y = 25;
-	rect.col = 0xFF0000;
+	rect.col = RED;
 	if (shape->string.mand == 0)
 		ft_mand_string(shape, &rect);
 	if (shape->string.julia == 0)

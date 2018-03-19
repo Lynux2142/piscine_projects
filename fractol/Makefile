@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/19 09:47:54 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/19 15:53:54 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@
 NAME		= fractol
 SRCS		= fractol.c mouse_funct.c keyboard_funct.c fract1.c fract2.c \
 			  fract3.c pixel.c annex_funct.c set_color.c \
-			  set_string.c create_fdf.c
+			  set_string.c create_fdf.c put_infos.c
 INC			= ./includes/
 LIBFT		= ./libft/libft.a
 MINILIBX	= ./minilibx/libmlx.a
 OBJ			= $(addprefix ./srcs/, $(SRCS:.c=.o))
-FLAGS		= -Wall -Wextra -Werror -O3
+FLAGS		= -Wall -Wextra -Werror
 FRAMEWORK	= -framework OpenGL -framework Appkit
 
 ##################
