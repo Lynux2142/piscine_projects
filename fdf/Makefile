@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/03/16 15:02:14 by lguiller         ###   ########.fr        #
+#    Updated: 2018/03/19 09:46:44 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCLUDES		= ./includes/
 LIBFT			= ./libft/libft.a
 MINILIBX		= ./minilibx/libmlx.a
 OBJ				= $(addprefix ./srcs/, $(SRCS:.c=.o))
-FLAGS			= -Wall -Wextra -Werror -O -O1 -O2 -O3
+FLAGS			= -Wall -Wextra -Werror -O3
 FRAMEWORK		= -framework OpenGL -framework Appkit
 
 ##################
@@ -64,7 +64,7 @@ $(NAME): $(OBJ)
 %.o: %.c
 	@gcc $(FLAGS) -I $(INCLUDES) -c $^ -o $@
 	@printf $(_YELLOW)"building - "$(_GREEN)
-	@printf $@ | cut -c3- | cut -d'.' -f1
+	@printf $@ | cut -c6- | cut -d'.' -f1
 	@printf $(_END)
 
 clean:
