@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 10:04:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 12:07:53 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 12:47:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void			ft_draw(t_shape *shape)
 	shape->img_y = shape->win_y;
 	shape->agr = 0.2;
 	shape->alpha = 1.0;
-	shape->win = mlx_new_window(shape->mlx, shape->win_x, shape->win_y, "test");
+	shape->win = mlx_new_window(shape->mlx, shape->win_x, shape->win_y, "fdf");
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 			&shape->sizeline, &shape->endian);
