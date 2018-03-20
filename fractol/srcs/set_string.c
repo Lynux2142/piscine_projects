@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 10:40:15 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 12:28:43 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:04:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	put_rect(t_shape *shape, t_rect *rect)
+void		put_rect(t_shape *shape, t_rect *rect)
 {
 	int x;
 	int y;
@@ -23,7 +23,7 @@ static void	put_rect(t_shape *shape, t_rect *rect)
 		y = rect->pos_y;
 		while (y <= (rect->pos_y + rect->dim_y))
 		{
-			fill_pixel(shape, x, y, rect->col);
+			mlx_pixel_put(shape->mlx, shape->win, x, y, rect->col);
 			++y;
 		}
 		++x;
@@ -34,7 +34,6 @@ static void	ft_change_string(t_shape *shape, t_rect *rect, int pos_y)
 {
 	rect->pos_y = pos_y;
 	put_rect(shape, rect);
-	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 }
 
 void		ft_set_string(t_shape *shape)
@@ -61,4 +60,5 @@ void		ft_set_string(t_shape *shape)
 			shape->string.burn, "BurningShip");
 	mlx_string_put(shape->mlx, shape->win, 10, 100,
 			shape->string.tri, "Tricorn");
+	mlx_string_put(shape->mlx, shape->win, 690, 570, RED, "\"h\" : Help");
 }

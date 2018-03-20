@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 12:30:34 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/19 17:11:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:56:20 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int			ft_key_funct(int key, t_shape *shape)
 		mlx_string_put(shape->mlx, shape->win, 340, 289, RED, "File Created");
 	}
 	ft_set_string(shape);
+	if (key == 4)
+		ft_put_infos(shape);
 	return (0);
 }

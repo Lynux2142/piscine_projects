@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:17:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 10:53:19 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:48:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_init(t_shape *shape, t_draw *draw)
 {
-	shape->img_x = shape->win_x / 2;
+	shape->img_x = shape->win_x;
 	shape->img_y = shape->win_y;
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(

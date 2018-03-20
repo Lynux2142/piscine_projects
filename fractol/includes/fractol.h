@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 12:39:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:56:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ void					ft_set_string(t_shape *shape);
 void					ft_create_fdf(t_shape *shape, char *data);
 void					ft_reset_fract(t_shape *shape);
 void					ft_put_infos(t_shape *shape);
+void					put_rect(t_shape *shape, t_rect *rect);
 
 #endif
