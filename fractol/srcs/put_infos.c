@@ -6,16 +6,14 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 15:51:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 14:48:17 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:37:50 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	ft_put_keybord(t_shape *shape)
+static void	ft_put_keybord(t_shape *shape, int y)
 {
-	int y;
-
 	mlx_string_put(shape->mlx, shape->win, 30, (y = 180), RED, "Mooving:");
 	mlx_string_put(shape->mlx, shape->win, 50, y += 20, RED,
 			"Up arrow    : move up");
@@ -39,6 +37,8 @@ static void	ft_put_keybord(t_shape *shape)
 			"Space bar   : restore default");
 	mlx_string_put(shape->mlx, shape->win, 50, y += 20, RED,
 			"\"f\"         : generate .fdf");
+	mlx_string_put(shape->mlx, shape->win, 50, y += 20, RED,
+			"ESC         : Exit program");
 }
 
 void		ft_put_infos(t_shape *shape)
@@ -62,5 +62,5 @@ void		ft_put_infos(t_shape *shape)
 			"MWHEELDOWN : zoom in");
 	mlx_string_put(shape->mlx, shape->win, 500, y += 20, RED,
 			"MWHEELUP   : zoom out");
-	ft_put_keybord(shape);
+	ft_put_keybord(shape, 180);
 }
