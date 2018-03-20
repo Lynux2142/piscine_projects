@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:17:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/19 15:49:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 10:53:19 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_julia_set(t_shape *shape)
 
 void	ft_set_values(t_shape *shape)
 {
-	if (ft_strequ(FRACT1, shape->fract_name) == 1)
+	if (ft_strequ(FRACT1, shape->name) || ft_strequ(FRACT4, shape->name))
 	{
 		shape->iter = 50.0;
 		shape->x1 = -2.1;
@@ -62,7 +62,7 @@ void	ft_set_values(t_shape *shape)
 		shape->y1 = -1.2;
 		shape->y2 = 1.2;
 	}
-	else if (ft_strequ(FRACT2, shape->fract_name) == 1)
+	else if (ft_strequ(FRACT2, shape->name))
 	{
 		shape->iter = 150.0;
 		shape->x1 = -1.6;
@@ -71,7 +71,7 @@ void	ft_set_values(t_shape *shape)
 		shape->y2 = 1.2;
 		ft_julia_set(shape);
 	}
-	else if (ft_strequ(FRACT3, shape->fract_name) == 1)
+	else if (ft_strequ(FRACT3, shape->name))
 	{
 		shape->iter = 50.0;
 		shape->x1 = -2.0;

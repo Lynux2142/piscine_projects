@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 12:40:46 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/19 17:11:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 12:20:12 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ int			ft_var_julia(int x, int y, t_shape *ptr)
 		ptr->string.mand = 0;
 	else
 		ptr->string.mand = RED;
-	if (x >= 5 && x <= 125 && y >= 50 && y <= 75)
+	if (x >= 5 && x <= 125 && y >= 40 && y <= 65)
 		ptr->string.julia = 0;
 	else
 		ptr->string.julia = RED;
-	if (x >= 5 && x <= 125 && y >= 90 && y <= 115)
+	if (x >= 5 && x <= 125 && y >= 70 && y <= 95)
 		ptr->string.burn = 0;
 	else
 		ptr->string.burn = RED;
+	if (x >= 5 && x <= 125 && y >= 100 && y <= 125)
+		ptr->string.tri = 0;
+	else
+		ptr->string.tri = RED;
 	ft_print_coord(x, y, ptr);
 	ft_set_string(ptr);
 	return (0);
@@ -56,17 +60,22 @@ static void	ft_change_fract(t_shape *shape, int x, int y)
 {
 	if (x >= 5 && x <= 125 && y >= 10 && y <= 35)
 	{
-		shape->fract_name = FRACT1;
+		shape->name = FRACT1;
 		ft_reset_fract(shape);
 	}
-	if (x >= 5 && x <= 125 && y >= 50 && y <= 75)
+	if (x >= 5 && x <= 125 && y >= 40 && y <= 65)
 	{
-		shape->fract_name = FRACT2;
+		shape->name = FRACT2;
 		ft_reset_fract(shape);
 	}
-	if (x >= 5 && x <= 125 && y >= 90 && y <= 115)
+	if (x >= 5 && x <= 125 && y >= 70 && y <= 95)
 	{
-		shape->fract_name = FRACT3;
+		shape->name = FRACT3;
+		ft_reset_fract(shape);
+	}
+	if (x >= 5 && x <= 125 && y >= 100 && y <= 125)
+	{
+		shape->name = FRACT4;
 		ft_reset_fract(shape);
 	}
 }

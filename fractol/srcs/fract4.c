@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract1.c                                           :+:      :+:    :+:   */
+/*   fract4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/16 13:12:30 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 10:47:51 by lguiller         ###   ########.fr       */
+/*   Created: 2018/03/20 10:40:21 by lguiller          #+#    #+#             */
+/*   Updated: 2018/03/20 10:40:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	ft_const_var_1(t_shape *shape, t_draw *draw, t_fract *f)
+static void	ft_const_var_4(t_shape *shape, t_draw *draw, t_fract *f)
 {
 	f->c_r = (double)draw->x / shape->zoom + shape->x1;
 	f->c_i = (double)draw->y / shape->zoom + shape->y1;
@@ -21,7 +21,7 @@ static void	ft_const_var_1(t_shape *shape, t_draw *draw, t_fract *f)
 	f->i = 0.0;
 }
 
-void		fract1(t_shape *shape)
+void		fract4(t_shape *shape)
 {
 	t_fract	f;
 
@@ -31,11 +31,11 @@ void		fract1(t_shape *shape)
 		f.draw.y = -1.0;
 		while (++f.draw.y < shape->img_y)
 		{
-			ft_const_var_1(shape, &f.draw, &f);
+			ft_const_var_4(shape, &f.draw, &f);
 			while (((f.z_r * f.z_r) + (f.z_i * f.z_i)) < 4.0
 					&& f.i < shape->iter)
 			{
-				f.draw.tmp = f.z_r;
+				f.draw.tmp = -f.z_r;
 				f.z_r =
 					(f.z_r * f.z_r) - (f.z_i * f.z_i) + f.c_r;
 				f.z_i = 2.0 * f.z_i * f.draw.tmp + f.c_i;

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/19 17:08:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 12:13:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define FRACT1 "mandelbrot"
 # define FRACT2 "julia"
 # define FRACT3 "burningship"
+# define FRACT4 "tricorn"
 
 #define RED 0xFF0000
 
@@ -32,6 +33,7 @@ typedef struct			s_string
 	int					mand;
 	int					julia;
 	int					burn;
+	int					tri;
 }						t_string;
 
 typedef struct			s_rect
@@ -62,7 +64,7 @@ typedef struct			s_fract
 
 typedef struct			s_shape
 {
-	char				*fract_name;
+	char				*name;
 	void				*mlx;
 	void				*win;
 	void				*img;
@@ -103,6 +105,7 @@ int						ft_couleur(int red, int green, int blue);
 void					fract1(t_shape *shape);
 void					fract2(t_shape *shape);
 void					fract3(t_shape *shape);
+void					fract4(t_shape *shape);
 void					ft_set_values(t_shape *shape);
 int						ft_var_julia(int x, int y, t_shape *shape);
 void					ft_set_color(t_shape *shape, t_fract f);

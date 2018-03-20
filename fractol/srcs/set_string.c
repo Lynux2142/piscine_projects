@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 10:40:15 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/19 17:09:51 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 12:28:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		put_rect(t_shape *shape, t_rect *rect)
+static void	put_rect(t_shape *shape, t_rect *rect)
 {
 	int x;
 	int y;
@@ -30,23 +30,9 @@ void		put_rect(t_shape *shape, t_rect *rect)
 	}
 }
 
-static void	ft_mand_string(t_shape *shape, t_rect *rect)
+static void	ft_change_string(t_shape *shape, t_rect *rect, int pos_y)
 {
-	rect->pos_y = 10;
-	put_rect(shape, rect);
-	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
-}
-
-static void	ft_julia_string(t_shape *shape, t_rect *rect)
-{
-	rect->pos_y = 50;
-	put_rect(shape, rect);
-	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
-}
-
-static void	ft_burn_string(t_shape *shape, t_rect *rect)
-{
-	rect->pos_y = 90;
+	rect->pos_y = pos_y;
 	put_rect(shape, rect);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 }
@@ -60,15 +46,19 @@ void		ft_set_string(t_shape *shape)
 	rect.dim_y = 25;
 	rect.col = RED;
 	if (shape->string.mand == 0)
-		ft_mand_string(shape, &rect);
+		ft_change_string(shape, &rect, 10);
 	if (shape->string.julia == 0)
-		ft_julia_string(shape, &rect);
+		ft_change_string(shape, &rect, 40);
 	if (shape->string.burn == 0)
-		ft_burn_string(shape, &rect);
+		ft_change_string(shape, &rect, 70);
+	if (shape->string.tri == 0)
+		ft_change_string(shape, &rect, 100);
 	mlx_string_put(shape->mlx, shape->win, 10, 10,
 			shape->string.mand, "Mandelbrot");
-	mlx_string_put(shape->mlx, shape->win, 10, 50,
+	mlx_string_put(shape->mlx, shape->win, 10, 40,
 			shape->string.julia, "Julia");
-	mlx_string_put(shape->mlx, shape->win, 10, 90,
+	mlx_string_put(shape->mlx, shape->win, 10, 70,
 			shape->string.burn, "BurningShip");
+	mlx_string_put(shape->mlx, shape->win, 10, 100,
+			shape->string.tri, "Tricorn");
 }

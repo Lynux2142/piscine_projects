@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:29:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/16 16:05:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 11:53:49 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void			ft_usage(void)
 {
 	ft_putendl("usage: ./fractol [fract_name]");
-	ft_putendl("	- fract_name: [mandebrot / julia / burningship]");
+	ft_putendl("	- fract_name: [mandebrot / julia / burningship / tricorn]");
 	exit(1);
 }
 
 t_funct			get_f_funct(char *name_f)
 {
-	const char		*f_name[] = {FRACT1, FRACT2, FRACT3};
-	const t_funct	funct_name[] = {&fract1, &fract2, &fract3};
+	const char		*f_name[] = {FRACT1, FRACT2, FRACT3, FRACT4};
+	const t_funct	funct_name[] = {&fract1, &fract2, &fract3, &fract4};
 	int				i;
 
 	i = -1;
-	while (++i < 3)
+	while (++i < 4)
 		if (ft_strequ(name_f, f_name[i]) == 1)
 			return (funct_name[i]);
 	return (NULL);

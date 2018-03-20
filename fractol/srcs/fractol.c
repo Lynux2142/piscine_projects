@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 12:29:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/19 17:09:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 12:23:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		ft_display(t_shape *shape)
 {
 	t_funct draw_f;
 
-	draw_f = get_f_funct(shape->fract_name);
+	draw_f = get_f_funct(shape->name);
 	draw_f(shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
 }
@@ -39,6 +39,7 @@ static void	ft_init_values(t_shape *shape)
 	shape->string.mand = RED;
 	shape->string.julia = RED;
 	shape->string.burn = RED;
+	shape->string.tri = RED;
 }
 
 int			main(int ac, char **av)
@@ -48,7 +49,7 @@ int			main(int ac, char **av)
 
 	if (ac != 2 || get_f_funct(av[1]) == NULL)
 		ft_usage();
-	shape.fract_name = av[1];
+	shape.name = av[1];
 	ft_set_values(&shape);
 	ft_init_values(&shape);
 	shape.mlx = mlx_init();
@@ -56,7 +57,7 @@ int			main(int ac, char **av)
 	draw_f = get_f_funct(av[1]);
 	draw_f(&shape);
 	mlx_put_image_to_window(shape.mlx, shape.win, shape.img, 0, 0);
-	mlx_key_hook(shape.win, ft_key_funct, &shape);
+	mlx_hook(shape.win, 2, (1L << 8), ft_key_funct, &shape);
 	mlx_hook(shape.win, 6, (1L << 6), ft_var_julia, &shape);
 	mlx_mouse_hook(shape.win, ft_mouse_funct, &shape);
 	ft_set_string(&shape);
