@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 12:13:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/03/20 12:39:04 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define FRACT3 "burningship"
 # define FRACT4 "tricorn"
 
-#define RED 0xFF0000
+# define RED 0xFF0000
 
 typedef unsigned char	t_uc;
 
