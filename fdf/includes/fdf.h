@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-# ifdef __APPLE__
+# ifdef __linux__
 #  define ESC			65307
 #  define U_ARROW		65362
 #  define D_ARROW		65364

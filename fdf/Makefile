@@ -20,17 +20,18 @@ SRCS			= main.c ft_check_stock.c ft_list.c ft_draw.c \
 				  event_functions.c ft_pixels.c octan_part_one.c \
 				  octan_part_two.c octan_part_three.c octan_part_four.c \
 				  auto_function.c
-LIBFT			= ./libft/libft.a
+MINILIBX		= $(MLX_DIR)/libmlx.a
+LIBFT			= libft/libft.a
 OBJ				= $(addprefix ./srcs/, $(SRCS:.c=.o))
 FLAGS			= -Wall -Wextra -Werror -O2
 
 ifeq ($(OPE_SYS), Linux)
-	INCLUDES	= ./includes /usr/include
-	MINILIBX	= ./minilibx_X11/libmlx.a
-	FRAMEWORK	= -L./minilibx_X11 -lmlx -L/usr/lib -lXext -lX11 -lm
+	INCLUDES	= includes /usr/include
+	MLX_DIR		= minilibx_X11
+	FRAMEWORK	= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 else
-	INCLUDES	= ./includes
-	MINILIBX	= ./minilibx/libmlx.a
+	INCLUDES	= includes
+	MLX_DIR		= minilibx
 	FRAMEWORK	= -framework OpenGL -framework Appkit
 endif
 
@@ -63,7 +64,7 @@ libft:
 	@make -C libft
 
 minilibx:
-	@make -C minilibx
+	@make -C $(MLX_DIR)
 
 $(NAME): $(OBJ)
 	@gcc $(FLAGS) $(OBJ) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -o $(NAME)
@@ -77,7 +78,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@make -C libft clean
-	@make -C minilibx clean
+	@make -C $(MLX_DIR) clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean
