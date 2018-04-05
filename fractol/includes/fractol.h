@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:27 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 14:56:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/04/05 16:58:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,48 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
+
+# ifdef __linux__
+#  define ESC			65307
+#  define U_ARROW		65362
+#  define D_ARROW		65364
+#  define R_ARROW		65363
+#  define L_ARROW		65361
+#  define KEY_A			97
+#  define KEY_D			100
+#  define KEY_F			3
+#  define KEY_H			4
+#  define SPACE			32
+#  define EQUAL			61
+#  define MINUS			45
+#  define ENTER			65293
+#  define R_SHIFT		65506
+#  define L_CLIC		1
+#  define R_CLIC		3
+#  define MID_CLIC		2
+#  define MWHEELUP		4
+#  define MWHEELDOWN	5
+# else
+#  define ESC			53
+#  define U_ARROW		126
+#  define D_ARROW		125
+#  define R_ARROW		124
+#  define L_ARROW		123
+#  define KEY_A			0
+#  define KEY_D			2
+#  define KEY_F			3
+#  define KEY_H			4
+#  define SPACE			49
+#  define EQUAL			24
+#  define MINUS			27
+#  define ENTER			36
+#  define R_SHIFT		258
+#  define L_CLIC		1
+#  define R_CLIC		2
+#  define MID_CLIC		3
+#  define MWHEELUP		4
+#  define MWHEELDOWN	5
+# endif
 
 # define FRACT1 "mandelbrot"
 # define FRACT2 "julia"

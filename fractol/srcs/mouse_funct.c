@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 12:40:46 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 12:57:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/04/05 16:58:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_print_coord(int x, int y, t_shape *shape)
 
 int			ft_var_julia(int x, int y, t_shape *ptr)
 {
-	if (ptr->ok == 1)
+	if (ptr->ok == L_CLIC)
 	{
 		ptr->c_r = (double)x / (ptr->img_x / (ptr->x2 - ptr->x1)) + ptr->x1;
 		ptr->c_i = (double)y / (ptr->img_y / (ptr->y2 - ptr->y1)) + ptr->y1;
@@ -82,21 +82,21 @@ static void	ft_change_fract(t_shape *shape, int x, int y)
 
 int			ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 {
-	if (mouse == 5)
+	if (mouse == MWHEELDOWN)
 	{
 		shape->iter += 5.0;
 		shape->zoom *= 1.2;
 		shape->in_out = mouse;
 		apply_zoom(shape, x, y, 1.2);
 	}
-	if (mouse == 4)
+	if (mouse == MWHEELUP)
 	{
 		shape->iter -= 5.0;
 		shape->zoom /= 1.5;
 		shape->in_out = mouse;
 		apply_zoom(shape, x, y, 1.5);
 	}
-	if (mouse == 1)
+	if (mouse == L_CLIC)
 		ft_change_fract(shape, x, y);
 	ft_display(shape);
 	ft_print_coord(x, y, shape);

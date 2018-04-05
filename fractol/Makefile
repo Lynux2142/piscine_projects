@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/04/05 16:16:34 by lguiller         ###   ########.fr        #
+#    Updated: 2018/04/05 16:46:33 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,25 @@
 ##  VARIABLES   ##
 ##################
 
+OPE_SYS		= $(shell uname)
 NAME		= fractol
 SRCS		= fractol.c mouse_funct.c keyboard_funct.c fract1.c fract2.c \
 			  fract3.c fract4.c pixel.c annex_funct.c set_color.c \
 			  set_string.c create_fdf.c put_infos.c
-INC			= ./includes/
-LIBFT		= ./libft/libft.a
-MINILIBX	= ./minilibx/libmlx.a
+MINILIBX	= $(MLX_DIR)/libmlx.a
+LIBFT		= libft/libft.a
 OBJ			= $(addprefix ./srcs/, $(SRCS:.c=.o))
 FLAGS		= -Wall -Wextra -Werror -O2
-FRAMEWORK	= -framework OpenGL -framework Appkit
+
+ifeq ($(OPE_SYS), Linux)
+	INCLUDES	= includes /usr/include
+	MLX_DIR		= minilibx_X11
+	FRAMEWORK	=-L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
+else
+	INCLUDES	= includes
+	MLX_DIR		= minilibx
+	FRAMEWORK	= -framework OpenGL -framework Appkit
+endif
 
 ##################
 ##    COLORS    ##
@@ -54,22 +63,22 @@ libft:
 	@make -C libft
 
 minilibx:
-	@make -C minilibx
+	@make -C $(MLX_DIR)
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) $(FRAMEWORK) $(MINILIBX) $(OBJ) $(LIBFT) -o $(NAME)
+	@gcc $(FLAGS) $(OBJ) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -o $(NAME)
 	@echo $(_GREEN)"Done."$(_END)
 
 
 %.o: %.c
-	@gcc $(FLAGS) -I $(INC) -c $^ -o $@
+	@gcc $(FLAGS) -I $(INCLUDES) -c $^ -o $@
 	@printf $(_YELLOW)"building - "$(_GREEN)
 	@printf $@ | cut -c6- | cut -d'.' -f1
 	@printf $(_END)
 
 clean:
 	@make -C libft clean
-	@make -C minilibx clean
+	@make -C $(MLX_DIR) clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean
