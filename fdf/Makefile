@@ -14,17 +14,23 @@
 ##  VARIABLES   ##
 ##################
 
+OPE_SYS			= $(shell uname)
 NAME			= fdf
 SRCS			= main.c ft_check_stock.c ft_list.c ft_draw.c \
 				  event_functions.c ft_pixels.c octan_part_one.c \
 				  octan_part_two.c octan_part_three.c octan_part_four.c \
 				  auto_function.c
-INCLUDES		= ./includes/
+INCLUDES		= ./includes /usr/include
 LIBFT			= ./libft/libft.a
 MINILIBX		= ./minilibx/libmlx.a
 OBJ				= $(addprefix ./srcs/, $(SRCS:.c=.o))
 FLAGS			= -Wall -Wextra -Werror -O3
-FRAMEWORK		= -framework OpenGL -framework Appkit
+
+ifeq ($(OPE_SYS), Linux)
+	FRAMEWORK	= -L./minilibx -lmlx -L/usr/lib -lXext -lX11 -lm
+else
+	FRAMEWORK	= -framework OpenGL -framework AppKit
+endif
 
 ##################
 ##    COLORS    ##
@@ -58,7 +64,7 @@ minilibx:
 	@make -C minilibx
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) $(FRAMEWORK) $(MINILIBX) $(OBJ) $(LIBFT) -o $(NAME)
+	@gcc $(FLAGS) $(OBJ) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -o $(NAME)
 	@echo $(_GREEN)"Done."$(_END)
 
 %.o: %.c

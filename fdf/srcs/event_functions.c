@@ -16,19 +16,19 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 {
 	(void)x;
 	(void)y;
-	if (mouse == 5 || mouse == 4)
+	if (mouse == MWHEELDOWN || mouse == MWHEELUP)
 	{
 		mlx_clear_window(shape->mlx, shape->win);
 		mlx_destroy_image(shape->mlx, shape->img);
 		shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 		shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 				&shape->sizeline, &shape->endian);
-		if (mouse == 5)
+		if (mouse == MWHEELDOWN)
 		{
 			shape->agr *= 1.1;
 			shape->speed += 2;
 		}
-		if (mouse == 4)
+		if (mouse == MWHEELUP)
 		{
 			shape->agr /= 1.1;
 			shape->speed -= 2;
@@ -41,14 +41,14 @@ int				ft_mouse_funct(int mouse, int x, int y, t_shape *shape)
 
 static void		ft_rotate(int key, t_shape *shape)
 {
-	if (key == 2)
+	if (key == KEY_D)
 	{
 		if (shape->rot < 350.0 * M_PI / 180.0)
 			shape->rot += 10.0 * M_PI / 180.0;
 		else
 			shape->rot = 0.0 * M_PI / 180.0;
 	}
-	if (key == 0)
+	if (key == KEY_A)
 	{
 		if (shape->rot > 0.0 * M_PI / 180.0)
 			shape->rot -= 10.0 * M_PI / 180.0;
@@ -59,19 +59,19 @@ static void		ft_rotate(int key, t_shape *shape)
 
 static void		move_others(int key, t_shape *shape)
 {
-	if (key == 24)
+	if (key == EQUAL)
 		shape->agr *= 1.1;
-	if (key == 27)
+	if (key == MINUS)
 		shape->agr /= 1.1;
-	if (key == 124)
+	if (key == R_ARROW)
 		shape->start_x += shape->speed;
-	if (key == 123)
+	if (key == L_ARROW)
 		shape->start_x -= shape->speed;
-	if (key == 125)
+	if (key == D_ARROW)
 		shape->start_y -= shape->speed;
-	if (key == 126)
+	if (key == U_ARROW)
 		shape->start_y += shape->speed;
-	if (key == 49)
+	if (key == SPACE)
 	{
 		shape->rot = 0.0 * M_PI / 180.0;
 		shape->coef_x = 0.0 * M_PI / 180.0;
@@ -83,14 +83,14 @@ static void		move_others(int key, t_shape *shape)
 
 static void		ft_auto_funct(int key, t_shape *shape)
 {
-	if (key == 36)
+	if (key == ENTER)
 	{
 		if (shape->ok_rotate != 1)
 			shape->ok_rotate = 1;
 		else
 			shape->ok_rotate = 0;
 	}
-	if (key == 258)
+	if (key == R_SHIFT)
 	{
 		if (shape->ok_z != 1)
 			shape->ok_z = 1;
