@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:35:37 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/16 14:37:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:25:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,17 @@ int				ft_key_funct(int key, t_shape *shape)
 	shape->img = mlx_new_image(shape->mlx, shape->img_x, shape->img_y);
 	shape->data = mlx_get_data_addr(shape->img, &shape->bpp,
 			&shape->sizeline, &shape->endian);
-	if (key == 0 || key == 2)
+	if (key == KEY_A || key == KEY_D)
 		ft_rotate(key, shape);
-	if (key == 15 || key == 3 || key == 24 || key == 27 || key == 49
-			|| (key >= 123 && key <= 126))
+	if (key == EQUAL || key == MINUS || key == SPACE
+			|| (key >= L_ARROW && key <= U_ARROW))
 		move_others(key, shape);
-	if (key == 53)
+	if (key == ESC)
 	{
 		ft_clear_list(&shape->list);
 		exit(0);
 	}
-	if (key == 36 || key == 258)
+	if (key == ENTER || key == R_SHIFT)
 		ft_auto_funct(key, shape);
 	ft_projection(shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);

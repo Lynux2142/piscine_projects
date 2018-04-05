@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/15 16:49:05 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:19:41 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+
+# define ESC		53
+# define U_ARROW	126
+# define D_ARROW	125
+# define R_ARROW	124
+# define L_ARROW	123
+# define KEY_A		0
+# define KEY_D		2
+# define SPACE		49
+# define EQUAL		24
+# define MINUS		27
+# define ENTER		36
+# define R_SHIFT	258
 
 typedef struct				s_shape
 {
