@@ -6,14 +6,14 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:33:17 by lguiller          #+#    #+#             */
-/*   Updated: 2018/04/05 15:19:41 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/04/05 16:29:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-# ifndef __Lynx__
+# ifdef __APPLE__
 #  define ESC			65307
 #  define U_ARROW		65362
 #  define D_ARROW		65364
