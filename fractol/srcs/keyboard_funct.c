@@ -47,8 +47,8 @@ int			ft_key_funct(int key, t_shape *shape)
 	if (key == SPACE)
 		ft_reset_fract(shape);
 	if (key == ENTER)
-		shape->color =
-			(shape->color < 1 || shape->color > 6) ? 1 : ++shape->color;
+		(shape->color < 1 || shape->color > 6) ?
+		shape->color = 1 : ++shape->color;
 	if (key == R_SHIFT)
 		shape->ok = (shape->ok == 1) ? 0 : 1;
 	if (key == ESC)
