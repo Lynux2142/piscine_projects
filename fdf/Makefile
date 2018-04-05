@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/04/05 16:17:52 by lguiller         ###   ########.fr        #
+#    Updated: 2018/04/05 16:31:33 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,15 +21,16 @@ SRCS			= main.c ft_check_stock.c ft_list.c ft_draw.c \
 				  octan_part_two.c octan_part_three.c octan_part_four.c \
 				  auto_function.c
 LIBFT			= ./libft/libft.a
-MINILIBX		= ./minilibx/libmlx.a
 OBJ				= $(addprefix ./srcs/, $(SRCS:.c=.o))
 FLAGS			= -Wall -Wextra -Werror -O2
 
 ifeq ($(OPE_SYS), Linux)
 	INCLUDES	= ./includes /usr/include
-	FRAMEWORK	= -L./minilibx -lmlx -L/usr/lib -lXext -lX11 -lm
+	MINILIBX	= ./minilibx_X11/libmlx.a
+	FRAMEWORK	= -L./minilibx_X11 -lmlx -L/usr/lib -lXext -lX11 -lm
 else
 	INCLUDES	= ./includes
+	MINILIBX	= ./minilibx/libmlx.a
 	FRAMEWORK	= -framework OpenGL -framework Appkit
 endif
 
