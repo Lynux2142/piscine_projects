@@ -25,11 +25,11 @@ OBJ			= $(addprefix ./srcs/, $(SRCS:.c=.o))
 FLAGS		= -Wall -Wextra -Werror -O2
 
 ifeq ($(OPE_SYS), Linux)
-	INCLUDES	= includes /usr/include
+	INCLUDES	= -I includes -I libft -I minilibx_X11 -I /usr/include
 	MLX_DIR		= minilibx_X11
 	FRAMEWORK	=-L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 else
-	INCLUDES	= includes
+	INCLUDES	= -I includes -I libft -I minilibx
 	MLX_DIR		= minilibx
 	FRAMEWORK	= -framework OpenGL -framework Appkit
 endif
@@ -71,7 +71,7 @@ $(NAME): $(OBJ)
 
 
 %.o: %.c
-	@gcc $(FLAGS) -I $(INCLUDES) -c $^ -o $@
+	@gcc $(FLAGS) $(INCLUDES) -c $^ -o $@
 	@printf $(_YELLOW)"building - "$(_GREEN)
 	@printf $@ | cut -c6- | cut -d'.' -f1
 	@printf $(_END)
