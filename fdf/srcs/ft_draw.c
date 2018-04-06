@@ -112,8 +112,7 @@ void			ft_draw(t_shape *shape)
 	ft_projection(shape);
 	ft_start_auto_funct(shape);
 	mlx_put_image_to_window(shape->mlx, shape->win, shape->img, 0, 0);
-//	mlx_hook(shape->win, 2, (1L << 8), ft_key_funct, shape);
-	mlx_key_hook(shape->win, ft_key_funct, shape);
+	mlx_hook(shape->win, 2, (1L << 0), ft_key_funct, shape);
 	mlx_mouse_hook(shape->win, ft_mouse_funct, shape);
 	mlx_loop(shape->mlx);
 }
