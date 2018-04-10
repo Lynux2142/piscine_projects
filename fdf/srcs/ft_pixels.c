@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 16:25:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/15 16:42:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/04/10 14:18:11 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void		choose_color(t_shape *shape, t_slist *list)
 
 void		fill_pixel(t_shape *shape, int x, int y, int color)
 {
-	if ((y >= 0 && y < shape->img_y)
-	&& (x >= 0 && x < shape->img_x))
+	if ((y >= 0 && y <= shape->img_y)
+	&& (x >= 0 && x <= shape->img_x))
 	{
 		if (shape->endian == 0)
 		{

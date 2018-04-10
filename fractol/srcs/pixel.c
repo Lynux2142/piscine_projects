@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 13:17:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/03/20 14:48:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/04/10 14:18:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_init(t_shape *shape, t_draw *draw)
 
 void	fill_pixel(t_shape *shape, int x, int y, int color)
 {
-	if ((y >= 0 && y < shape->img_y)
-	&& (x > 0 && x < shape->img_x))
+	if ((y >= 0 && y <= shape->img_y)
+	&& (x >= 0 && x <= shape->img_x))
 	{
 		if (shape->endian == 0 && shape->bpp == (8 * 4))
 		{
