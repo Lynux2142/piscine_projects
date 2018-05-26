@@ -6,19 +6,11 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 09:08:34 by lguiller          #+#    #+#             */
-/*   Updated: 2017/07/16 18:44:20 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/05/26 13:10:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-
-int		ft_test_error(int argc, char **argv);
-
-void	ft_print(char **argv);
-
-int		solve_sudoku(char **argv, int line, int column);
+#include "sudoku.h"
 
 int		main(int argc, char **argv)
 {
