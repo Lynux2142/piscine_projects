@@ -1,0 +1,7 @@
+Credentials cache: API:9CE94E46-E836-40CA-B3D9-6509DC874DF9
+        Principal: lguiller@42.FR
+
+  Issued                Expires               Principal
+Jul  3 20:04:06 2017  Jul 10 20:04:06 2017  krbtgt/42.FR@42.FR
+Jul  3 20:04:07 2017  Jul 10 20:04:06 2017  ldap/ldap-proxy.42.fr@42.FR
+Jul  3 20:04:07 2017  Jul 10 20:04:06 2017  HTTP/home-piscine.42.fr@42.FR
