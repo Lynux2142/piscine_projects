@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/06 12:05:05 by lguiller          #+#    #+#             */
-/*   Updated: 2017/07/08 12:04:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:04:50 by lynux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,7 @@ void	ft_is_negative(int n)
 	int a;
 
 	if (n < 0)
-	{
-		a = 'N';
-		ft_putchar(a);
-	}
+		ft_putchar('N');
 	else
-	{
-		a = 'P';
-		ft_putchar(a);
-	}
+		ft_putchar('P');
 }

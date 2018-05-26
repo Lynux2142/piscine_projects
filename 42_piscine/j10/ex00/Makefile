@@ -6,7 +6,7 @@
 #    By: lguiller <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/22 10:35:50 by lguiller          #+#    #+#              #
-#    Updated: 2017/07/25 17:43:46 by lguiller         ###   ########.fr        #
+#    Updated: 2017/07/26 09:56:35 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,19 @@ OBJ = ft_putchar.o ft_putstr.o ft_strcmp.o ft_strlen.o ft_swap.o
 
 HEADERS = ./includes
 
-all:
+all: compil
+
+$(OBJ):
 	gcc -I $(HEADERS) -c $(SRCS)
+
+compil: $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib libft.a
 
 clean:
-	rm ft_putchar.o ft_putstr.o ft_strcmp.o ft_strlen.o ft_swap.o
+	rm -f *.o
 
 fclean: clean
-	rm libft.a
+	rm -f libft.a
 
 re: fclean all

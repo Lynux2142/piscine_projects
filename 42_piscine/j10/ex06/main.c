@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 08:29:58 by lguiller          #+#    #+#             */
-/*   Updated: 2017/07/25 11:44:37 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/07/26 17:31:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 		if (ft_atoi(argv[3]) != 0)
 			ft_modulo(ft_atoi(argv[1]), ft_atoi(argv[3]));
 		else
-			write(1, "Stop : division by zero\n", 24);
+			write(1, "Stop : modulo by zero\n", 22);
 	}
 	return (0);
 }

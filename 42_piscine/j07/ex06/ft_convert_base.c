@@ -52,6 +52,7 @@ int		ft_strlen(char *str)
 
 int		ft_base_to_num(char *nbr, char *base_from)
 {
+	int *new_nbr;
 	int i;
 	int j;
 	int base_size;
@@ -79,6 +80,6 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	char *result;
 
-	*result = ft_base_to_num(nbr, base_from);
+	ft_base_to_num(nbr, base_from);
 	return (result);
 }
