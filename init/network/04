@@ -1,1 +1,0 @@
-netstat -nr | grep default | grep '\.' | cut -d' ' -f13
